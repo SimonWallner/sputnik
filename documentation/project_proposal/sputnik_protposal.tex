@@ -5,6 +5,8 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{subfig}
+\usepackage{graphicx}
 
 
 \author{Simon Wallner\\\texttt{me@simonwallner.at}}
@@ -16,30 +18,38 @@
 \maketitle
 
 \begin{abstract}
-This project proposal for the \emph{HCC Project Seminar} should give an overview about the planed work. The goal of the project is to investigate and provide a prototype implementation for an \emph{electronic music instrument} that uses light as an input device.
+This project is about using a motion controller as a \emph{New Interface for Musical Expression} (\emph{NIME}). It is used to manipulate sound creating objects in a 3D Scene. The final system should be capable of making use of bigger as well as smaller motions and fine nuances to articulate the performers expression.
 \end{abstract}
 
 \section{Introduction}
+The system is designed to work with a motion controller like the \emph{Wii Remote} controller. Interaction with the virtual scene is visualized as an elastic \emph{light arc} that seems to be coming out of the controller and reaches into the scene. The endpoint of the arc is fixed at the object the user interacts with. The arc now follows the motions of the controller as if it were a long and elastic fishing rod.
 
-\section{Related Work}
-\subsection{GRL}
-Projects under the \emph{GRL} (Graffiti Research Lab) umbrella
-\subsubsection{3D light graffiti with matrix like effekt}
-\footnote{\texttt{http://www.instructables.com/id/How-to-Enter-the-Ghetto-Matrix-DIY-Bullet-Time/}} A camera array of still image consumer cameras is used to capture a long exposure image of the same object from slightly different angles. The images are then composed to a image sequence. This is a technique made famous by the first \emph{Matrix} movie.
-
-\subsubsection{L.A.S.E.R Tag}
-\footnote{\texttt{http://graffitiresearchlab.com/projects/laser-tag/}} Virtual graffiti is created with a projector, a laser pointer and a CV system. The graffiti canvas is projected onto a house wall and calibrated. The laser pointer is then used to \emph{draw} on the house' wall. The path of the laser is tracked by the CV system and \emph{virtual paint} is used to draw on the canvas.
-
-\subsection{PiKA PiKA}
-\footnote{\texttt{http://tochka.jp/pikapika/}} Light painting and light painting animations from japan.
-
-\subsection{Light Painting with an iPad}
-\footnote{\texttt{http://www.todayandtomorrow.net/2010/09/14/ipad-light-drawing-making-future-magic/}} A digitl 3D scene is preprocessed and then played back on an iPad. During the playback the iPad is moved, thus recreating the original shape of the scene in the final image.
-
-\subsection{Reactable}
-\texttt{http://www.reactable.com/}
+This metaphor should be immediately comprehensible also for uninformed users and users that are not familiar with the input device.  Figure \ref{fig:motion} illustrates the interaction.
 
 
+\begin{figure}[hbtp]
+\centering
+\subfloat[bigger motion]{\includegraphics[width=0.4\columnwidth]{img/move}}
+\subfloat[finer motion]{\includegraphics[width=0.4\columnwidth]{img/waggle}}
+\caption{Bigger motions are used to apply a pulling force to objects in the scene while finer motions can be used for finer effects like vibrato, etc.}
+\label{fig:motion}
+\end{figure}
 
+\section{Interaction}
+The user interacts with the scene through this arc of light. The body is extended into the scene. Interaction occurs on three layers:
+
+\begin{description}
+\item[bigger motions] The primary interaction is to apply a pulling force to objects. Movable objects can be dragged around the scene. This is the domain of the arm and the whole body.
+
+\item[finer motions] The second interaction layer comes from finer motions like a slight wiggle of the controller or a subtle rotation. This is what enables fine artistic expression. It is the domain of the hand and the fingers. Like the vibrato of violin player. 
+
+\item[buttons] The final layer are simple button presses, that can be used as well.
+\end{description}
+
+\section{Scientific Merit}
+During my quick research I didn't find any work that concentrated on the extension of the body into the virtual scene and on the fine motions required for true artistic expression. My search was generally influence by \cite{Dobrian2006} that emphasises the importance of expression and virtuosity in new music interfaces.
+
+\bibliographystyle{apalike}
+\bibliography{library}
 
 \end{document}
