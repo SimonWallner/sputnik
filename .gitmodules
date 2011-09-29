@@ -1,0 +1,3 @@
+[submodule "external/kocmoc-core"]
+	path = external/kocmoc-core
+	url = git@github.com:SimonWallner/kocmoc-core.git

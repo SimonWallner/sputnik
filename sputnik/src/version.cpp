@@ -1,7 +1,7 @@
 #include "version.hpp"
 
-std::string kocmoc::version::getVersionString(void)
+std::string sputnik::version::getVersionString(void)
 {
-	std::string version = std::string("KOCMOC-MAIN git SHA1 hash: ");
+	std::string version = std::string("SPUTNIK git SHA1 hash: ");
 	return version + gitSHA1;
 }
