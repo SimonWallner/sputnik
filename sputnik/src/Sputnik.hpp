@@ -1,13 +1,9 @@
-//
-//  Kocmoc.hpp
-//  kocmoc
-//
 //  Created by Simon Wallner on 28.08.11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef KOCMOC_KOCMOC_HPP
-#define KOCMOC_KOCMOC_HPP
+#ifndef SPUTNIK_SPUTNIK_HPP
+#define SPUTNIK_SPUTNIK_HPP
 
 #include <kocmoc-core/types/Symbol.hpp>
 #include <kocmoc-core/input/ButtonEventListener.hpp>
@@ -24,12 +20,16 @@ namespace kocmoc
 			class Properties;
 		}
 	}
+}
+
+namespace sputnik
+{
 	
 	/**
 	 * The main game class. It is created in main() and does everything from
 	 * there.
 	 */
-	class Kocmoc
+	class Sputnik
 	{
 	public:
 		
@@ -54,10 +54,10 @@ namespace kocmoc
 		component::Ship* ship;
 		core::scene::ImageLoader imageLoader;
 		
-		class KeyWatcher : public core::input::ButtonEventListener
+		class InputCallback : public core::input::ButtonEventListener
 		{
 		public:
-			KeyWatcher(Kocmoc* _p)
+			InputCallback(Kocmoc* _p)
 			: p(_p)
 			{};
 			
@@ -70,7 +70,7 @@ namespace kocmoc
 			}
 		private:
 			Kocmoc* p;
-		} kw;
+		} ic;
 		
 		void init(void);
 	};

@@ -8,7 +8,7 @@
 #include <kocmoc-core/version.hpp>
 
 
-#include "Kocmoc.hpp"
+#include "Sputnik.hpp"
 #include "version.hpp"
 
 
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 	// parse command line args
 	try
 	{
-		po::options_description options("kocmoc program options");
+		po::options_description options("sputnik program options");
 		options.add_options()
 			("version,v", "print version string")
 			("help,h", "produce help message")
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 			core::util::Properties props;
 			props.add(core::types::symbolize("config-file"), configFile);
 			
-			Kocmoc kocmoc(&props);
+			Sputnik sputnik(&props);
 		}
 		
 	}

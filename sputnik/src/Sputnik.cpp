@@ -47,12 +47,12 @@ using kocmoc::core::time::Timer;
 using glm::vec3;
 
 
-Kocmoc::Kocmoc(Properties* _props)
+Sputnik::Sputnik(Properties* _props)
 	: props(_props)
 	, running(true)
 	, quit(symbolize("quit"))
 	, screenShot(symbolize("screen-shot"))
-	, kw(this)
+	, ic(this)
 {
 	string configFile = props->getString(symbolize("config-file"));
 	core::util::parser::parseConfigXMLFileIntoProperties(configFile, props);
@@ -107,7 +107,7 @@ Kocmoc::Kocmoc(Properties* _props)
 	}
 }
 
-void Kocmoc::printIntro()
+void Sputnik::printIntro()
 {
 	std::cout	<< "//////////////////////////////////////////////////////////////////////////////" << std::endl
 	<< "   *           .                          .                          .        " << std::endl
@@ -132,13 +132,13 @@ void Kocmoc::printIntro()
 	<< "//// kocmoc //////////////////////////////////////////////////////////////////" << std::endl;
 }
 
-void Kocmoc::init()
+void Sputnik::init()
 {
 	ship = new Ship("the player ship", props);
 	ship->init();
 }
 
-Kocmoc::~Kocmoc()
+Sputnik::~Sputnik()
 {
 	std::cout << "destroying kocmoc" << std::endl;
 }
