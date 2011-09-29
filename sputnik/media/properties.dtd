@@ -1,0 +1,17 @@
+<!ELEMENT properties (float | bool | string)+ >
+
+<!ELEMENT float EMPTY>
+<!ELEMENT bool EMPTY>
+<!ELEMENT string EMPTY>
+
+<!ATTLIST float 
+	name	CDATA #REQUIRED
+	value	CDATA #REQUIRED>
+
+<!ATTLIST bool 
+	name	CDATA #REQUIRED
+	value	(0 | 1) #REQUIRED>
+
+<!ATTLIST string 
+	name	CDATA #REQUIRED
+	value	CDATA #REQUIRED>

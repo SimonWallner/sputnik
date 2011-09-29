@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "properties.dtd">
+
+<!--
+ This is the main config file for kocmoc:
+ All config values must reside inside the <properties> tag. The following
+ properties are allowed:
+	<string name="foo" value="asdf" />
+	<float name="bar" value="42.123456789" />
+	<bool name="bario" value="1" />
+
+ the names should use hyphens not cammelCase.
+-->
+
+
+<properties>
+	<float name="width" value="720" />
+	<float name="height" value="432" />
+
+	<string name="media-path" value="${KOCMOC_MEDIA_PATH}" />
+	<!-- <string name="test-model-name" value="models/monkey.blend" /> -->
+	<!-- <string name="test-model-name" value="models/icosphere.blend" /> -->
+	<string name="test-model-name" value="models/kocmoc.dae" />
+</properties>

@@ -1,0 +1,28 @@
+//
+//  version.hpp.in
+//  kocmoc-main
+//
+//  Created by Simon Wallner on 19.08.11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+/**
+ * configured through cmake, DO NOT EDIT!
+ * edit version.hpp.in instead!
+ */
+
+#ifndef KOCMOC_VERSION_HPP
+#define KOCMOC_VERSION_HPP
+
+#include <string>
+
+namespace kocmoc
+{
+	namespace version
+	{
+		const std::string gitSHA1 = "${KOCMOC_MAIN_GIT_SHA1}";	
+		std::string getVersionString(void);
+	}
+}
+
+#endif
