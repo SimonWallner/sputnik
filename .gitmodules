@@ -1,0 +1,3 @@
+[submodule "sputnik/external/kocmoc-core"]
+	path = sputnik/external/kocmoc-core
+	url = git@github.com:SimonWallner/kocmoc-core.git
