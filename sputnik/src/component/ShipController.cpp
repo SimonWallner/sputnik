@@ -10,7 +10,7 @@
 
 #include "ShipBehaviour.hpp"
 
-using namespace kocmoc::component;
+using namespace sputnik::component;
 
 ShipController::ShipController()
 {}

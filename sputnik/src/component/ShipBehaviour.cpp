@@ -8,7 +8,7 @@
 
 #include "ShipBehaviour.hpp"
 
-using namespace kocmoc::component;
+using namespace sputnik::component;
 using kocmoc::core::component::ObjectBehaviour;
 
 void ShipBehaviour::init()

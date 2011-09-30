@@ -15,11 +15,11 @@
 
 #include <iostream>
 
-namespace kocmoc
+namespace sputnik
 {
 	namespace component
 	{
-		class ShipBehaviour : public core::componentSystem::Component
+		class ShipBehaviour : public kocmoc::core::componentSystem::Component
 		{
 		public:
 			ShipBehaviour(void) {};
@@ -37,7 +37,7 @@ namespace kocmoc
 			void init(void);
 			
 		private:
-			core::component::ObjectBehaviour* objectBehaviour;
+			kocmoc::core::component::ObjectBehaviour* objectBehaviour;
 		};
 	}
 }

@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include "Kocmoc.hpp"
+#include "Sputnik.hpp"
 
 #include <iostream>
 #include <string>
@@ -28,11 +28,11 @@
 
 #include <kocmoc-core/component/CameraController.hpp>
 
-using namespace kocmoc;
+using namespace sputnik;
 using namespace kocmoc::core::types;
 using namespace kocmoc::core::input;
 using namespace kocmoc::core::component;
-using namespace kocmoc::component;
+using namespace sputnik::component;
 
 using std::string;
 
@@ -42,7 +42,6 @@ using kocmoc::core::renderer::Shader;
 using kocmoc::core::scene::FilmCamera;
 using kocmoc::core::scene::OrthoCamera;
 using kocmoc::core::time::Timer;
-
 
 using glm::vec3;
 
@@ -55,7 +54,7 @@ Sputnik::Sputnik(Properties* _props)
 	, ic(this)
 {
 	string configFile = props->getString(symbolize("config-file"));
-	core::util::parser::parseConfigXMLFileIntoProperties(configFile, props);
+	kocmoc::core::util::parser::parseConfigXMLFileIntoProperties(configFile, props);
 	props->dumpCache();
 	
 	
@@ -64,10 +63,10 @@ Sputnik::Sputnik(Properties* _props)
 	
 	InputManager inputManager(context.getWindowHandle());
 	
-	inputManager.registerButtonEventListener(quit, &kw);
+	inputManager.registerButtonEventListener(quit, &ic);
 	inputManager.bindKeyToButtonEvent(256, quit);	// ESC
 
-	inputManager.registerButtonEventListener(screenShot, &kw);
+	inputManager.registerButtonEventListener(screenShot, &ic);
 	inputManager.bindKeyToButtonEvent(',', screenShot);
 
 	
@@ -129,7 +128,7 @@ void Sputnik::printIntro()
 	<< "                     *               .                    .                     " << std::endl
 	<< "   .                                                                 *         " << std::endl
 	<< "                                      .                                       " << std::endl
-	<< "//// kocmoc //////////////////////////////////////////////////////////////////" << std::endl;
+	<< "//// sputnik //////////////////////////////////////////////////////////////////" << std::endl;
 }
 
 void Sputnik::init()

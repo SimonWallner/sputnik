@@ -12,7 +12,7 @@
 #include "version.hpp"
 
 
-using namespace kocmoc;
+using namespace sputnik;
 namespace po = boost::program_options;
 
 int main(int argc, char *argv[])
@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 		if (vars.count("version"))
 		{
 			std::cout << "kocmoc version: " << std::endl;
-			std::cout << "\t" << core::version::getVersionString() << std::endl;
+			std::cout << "\t" << kocmoc::core::version::getVersionString() << std::endl;
 			std::cout << "\t" << version::getVersionString() << std::endl;
 			std::cout << "\tbuild date: " << __DATE__ << std::endl;
 			
@@ -52,8 +52,8 @@ int main(int argc, char *argv[])
 		
 		// bootstrap kocmoc...
 		{
-			core::util::Properties props;
-			props.add(core::types::symbolize("config-file"), configFile);
+			kocmoc::core::util::Properties props;
+			props.add(kocmoc::core::types::symbolize("config-file"), configFile);
 			
 			Sputnik sputnik(&props);
 		}

@@ -38,8 +38,9 @@ namespace sputnik
 		 * @param props basic properties with all relevant startup information
 		 *			like command line arguments and so on
 		 */
-		Kocmoc(core::util::Properties* props);
-		~Kocmoc(void);
+		Sputnik(kocmoc::core::util::Properties* props);
+		Sputnik(void);
+		~Sputnik(void);
 		
 		/**
 		 * print the awesome ASCII art intro.
@@ -47,21 +48,21 @@ namespace sputnik
 		void printIntro(void);
 
 	private:
-		core::util::Properties* props;
+		kocmoc::core::util::Properties* props;
 		bool running;
-		core::types::Symbol quit, screenShot;
+		kocmoc::core::types::Symbol quit, screenShot;
 		
 		component::Ship* ship;
-		core::scene::ImageLoader imageLoader;
+		kocmoc::core::scene::ImageLoader imageLoader;
 		
-		class InputCallback : public core::input::ButtonEventListener
+		class InputCallback : public kocmoc::core::input::ButtonEventListener
 		{
 		public:
-			InputCallback(Kocmoc* _p)
+			InputCallback(Sputnik* _p)
 			: p(_p)
 			{};
 			
-			void buttonEventCallback(core::types::Symbol name, core::input::ButtonEvent event)
+			void buttonEventCallback(kocmoc::core::types::Symbol name, kocmoc::core::input::ButtonEvent event)
 			{
 				if (name == p->quit && event.isPressed == true)
 					p->running = false;
@@ -69,7 +70,7 @@ namespace sputnik
 					p->imageLoader.screenShot();
 			}
 		private:
-			Kocmoc* p;
+			Sputnik* p;
 		} ic;
 		
 		void init(void);

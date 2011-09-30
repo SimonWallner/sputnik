@@ -17,7 +17,7 @@
 #include "ShipController.hpp"
 
 
-namespace kocmoc
+namespace sputnik
 {
 	namespace component
 	{
@@ -25,17 +25,17 @@ namespace kocmoc
 		{
 		public:
 			
-			explicit Ship(std::string name, core::util::Properties* props) : Object(name, props) {}
+			explicit Ship(std::string name, kocmoc::core::util::Properties* props) : Object(name, props) {}
 			
 			void onMessage(void);
 			
 			void init(void);
 			
 		private:
-			core::component::ObjectBehaviour* objectBehaviour;
+			kocmoc::core::component::ObjectBehaviour* objectBehaviour;
 			ShipBehaviour* shipBehaviour;
 			ShipController* shipController;
-			core::component::Renderable* renderable;
+			kocmoc::core::component::Renderable* renderable;
 		};
 	}
 }

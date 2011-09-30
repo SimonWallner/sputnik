@@ -10,7 +10,7 @@
 
 #include <kocmoc-core/scene/AssetLoader.hpp>
 
-using namespace kocmoc::component;
+using namespace sputnik::component;
 using namespace kocmoc::core::component;
 
 using kocmoc::core::scene::AssetLoader;

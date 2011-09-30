@@ -12,13 +12,13 @@
 #include <kocmoc-core/componentSystem/Component.hpp>
 #include <kocmoc-core/types/types.h>
 
-namespace kocmoc
+namespace sputnik
 {
 	namespace component
 	{
 		class ShipBehaviour;
 		
-		class ShipController : public core::componentSystem::Component
+		class ShipController : public kocmoc::core::componentSystem::Component
 		{
 		public:
 			

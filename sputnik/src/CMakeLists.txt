@@ -32,9 +32,9 @@ file(GLOB_RECURSE HEADER_FILES *.hpp)
 file(GLOB_RECURSE SOURCE_FILES *.cpp)
 
 
-add_executable(kocmoc ${SOURCE_FILES} ${HEADER_FILES})
+add_executable(sputnik ${SOURCE_FILES} ${HEADER_FILES})
 
-set (TARGET_LINK_LIBRARIES kocmoc
+set (TARGET_LINK_LIBRARIES sputnik
     kocmoc-core
 	${Boost_PROGRAM_OPTIONS_LIBRARY}
 )

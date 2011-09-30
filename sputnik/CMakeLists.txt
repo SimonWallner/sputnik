@@ -58,5 +58,3 @@ configure_file(media/properties.dtd ${EXECUTABLE_OUTPUT_PATH}/properties.dtd COP
 # -- add subdirs -------------------------------------------------------------
 add_subdirectory(external/kocmoc-core)
 add_subdirectory(src)
-
-
