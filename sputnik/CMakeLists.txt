@@ -58,4 +58,5 @@ set(KOCMOC_CORE_CONFIG_TARGET_LOCATION ${EXECUTABLE_OUTPUT_PATH}/kocmoc-core-con
 
 # -- add subdirs -------------------------------------------------------------
 add_subdirectory(external/kocmoc-core)
+add_subdirectory(external/rtmidi)
 add_subdirectory(src)
