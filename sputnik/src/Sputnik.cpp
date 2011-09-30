@@ -28,10 +28,13 @@
 
 #include <kocmoc-core/component/CameraController.hpp>
 
+#include <output/MIDIOut.hpp>
+
 using namespace sputnik;
 using namespace kocmoc::core::types;
 using namespace kocmoc::core::input;
 using namespace kocmoc::core::component;
+
 using namespace sputnik::component;
 
 using std::string;
@@ -42,6 +45,8 @@ using kocmoc::core::renderer::Shader;
 using kocmoc::core::scene::FilmCamera;
 using kocmoc::core::scene::OrthoCamera;
 using kocmoc::core::time::Timer;
+
+using sputnik::output::MIDIOut;
 
 using glm::vec3;
 
@@ -73,6 +78,14 @@ Sputnik::Sputnik(Properties* _props)
 
 	
 	init();
+	
+	
+	MIDIOut midiOut;
+	midiOut.sendCC(12, 0.6);
+	
+	
+	
+	
 	
 	FilmCamera* camera = new FilmCamera(vec3(0, 0, 4), vec3(0, 0, 0), vec3(0, 1, 0));
 	camera->setGateInPixel(720, 432);
