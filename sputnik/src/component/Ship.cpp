@@ -24,8 +24,9 @@ void Ship::init()
 
 	AssetLoader loader;
 	loader.addResourcePath(props->getString(symbolize("media-path")));
+	loader.addResourcePath(props->getString(symbolize("core-media-path")));
 	std::string test = props->getString(symbolize("test-model-name"));
-	std::string shaderPath = props->getString(symbolize("media-path")) + "shaders/base";
+	std::string shaderPath = props->getString(symbolize("core-media-path")) + "shaders/base";
 	
 	// FIXME: something mutates my stirngs in the props.
 	// changing it here to c_str() helped, but it is evil

@@ -52,8 +52,9 @@ endforeach()
 message(STATUS "configuring files...")
 set(KOCMOC_MEDIA_PATH ${PROJECT_SOURCE_DIR}/media/)
 configure_file(media/sputnik-config.xml.in ${EXECUTABLE_OUTPUT_PATH}/sputnik-config.xml)
-configure_file(media/properties.dtd ${EXECUTABLE_OUTPUT_PATH}/properties.dtd COPYONLY)
 
+# set up parent media path, to allow the core to copy its config file
+set(KOCMOC_CORE_CONFIG_TARGET_LOCATION ${EXECUTABLE_OUTPUT_PATH}/kocmoc-core-config.xml)
 
 # -- add subdirs -------------------------------------------------------------
 add_subdirectory(external/kocmoc-core)

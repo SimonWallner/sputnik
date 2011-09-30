@@ -18,7 +18,7 @@
 	<float name="height" value="432" />
 
 	<string name="media-path" value="${KOCMOC_MEDIA_PATH}" />
-	<!-- <string name="test-model-name" value="models/monkey.blend" /> -->
+	<string name="test-model-name" value="models/monkey.blend" />
 	<!-- <string name="test-model-name" value="models/icosphere.blend" /> -->
-	<string name="test-model-name" value="models/kocmoc.dae" />
+
 </properties>

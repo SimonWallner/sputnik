@@ -54,7 +54,9 @@ Sputnik::Sputnik(Properties* _props)
 	, ic(this)
 {
 	string configFile = props->getString(symbolize("config-file"));
+	string coreConfigFile = props->getString(symbolize("core-config-file"));
 	kocmoc::core::util::parser::parseConfigXMLFileIntoProperties(configFile, props);
+	kocmoc::core::util::parser::parseConfigXMLFileIntoProperties(coreConfigFile, props);
 	props->dumpCache();
 	
 	

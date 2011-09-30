@@ -19,7 +19,8 @@ int main(int argc, char *argv[])
 {	
 
 	// command line arguments, defaults
-	std::string configFile = "kocmoc-config.xml";
+	std::string configFile = "sputnik-config.xml";
+	std::string coreConfigFile = "kocmoc-core-config.xml";
 
 	// parse command line args
 	try
@@ -28,7 +29,8 @@ int main(int argc, char *argv[])
 		options.add_options()
 			("version,v", "print version string")
 			("help,h", "produce help message")
-			("config-file,c", po::value(&configFile), "xml config file to parse");
+			("config-file,c", po::value(&configFile), "xml config file to parse")
+			("core-config-file,k", po::value(&coreConfigFile), "xml kocmoc-core config fileto parse");
 		
 		po::variables_map vars;        
 		po::store(po::parse_command_line(argc, argv, options), vars);
@@ -54,6 +56,7 @@ int main(int argc, char *argv[])
 		{
 			kocmoc::core::util::Properties props;
 			props.add(kocmoc::core::types::symbolize("config-file"), configFile);
+			props.add(kocmoc::core::types::symbolize("core-config-file"), coreConfigFile);
 			
 			Sputnik sputnik(&props);
 		}
