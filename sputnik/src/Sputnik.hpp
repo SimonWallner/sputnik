@@ -72,8 +72,8 @@ namespace sputnik
 					p->imageLoader.screenShot();
 				else if (name == p->note && event.isPressed == true)
 				{
-					p->midiOut.sendCC(12, 42);
-					p->midiOut.sendNote(21, 44);
+					p->midiOut.sendCC(12, 99999);
+					p->midiOut.sendNote(21, -42);
 				}
 			}
 		private:
