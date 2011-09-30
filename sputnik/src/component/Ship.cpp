@@ -47,4 +47,5 @@ void Ship::init()
 	objectBehaviour->init();
 	shipBehaviour->init();
 	renderable->init();
+
 }

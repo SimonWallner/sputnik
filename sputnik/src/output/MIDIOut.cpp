@@ -23,7 +23,7 @@ MIDIOut::~MIDIOut()
 void MIDIOut::sendCC(int number, float value)
 {
 	std::vector<unsigned char> message;
-	message.push_back(0); // channel 0
+	message.push_back(176); // CC???
 	message.push_back(number);
 	message.push_back(value);
 	
@@ -32,6 +32,10 @@ void MIDIOut::sendCC(int number, float value)
 
 void MIDIOut::sendNote(int note, float velocity)
 {
-	UNUSED note;
-	UNUSED velocity;
+	std::vector<unsigned char> message;
+	message.push_back(144); // note on???
+	message.push_back(note);
+	message.push_back(velocity);
+	
+	midiOut->sendMessage(&message);
 }

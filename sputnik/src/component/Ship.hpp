@@ -12,6 +12,7 @@
 #include <kocmoc-core/componentSystem/Object.hpp>
 #include <kocmoc-core/component/ObjectBehaviour.hpp>
 #include <kocmoc-core/component/Renderable.hpp>
+#include <kocmoc-core/input/InputManager.hpp>
 
 #include "ShipBehaviour.hpp"
 #include "ShipController.hpp"
@@ -25,17 +26,25 @@ namespace sputnik
 		{
 		public:
 			
-			explicit Ship(std::string name, kocmoc::core::util::Properties* props) : Object(name, props) {}
+			explicit Ship(std::string name,
+						  kocmoc::core::util::Properties* props,
+						  kocmoc::core::input::InputManager* _inputManager)
+				: Object(name, props)
+				, inputManager(_inputManager)
+			{}
 			
 			void onMessage(void);
 			
 			void init(void);
 			
 		private:
+			
 			kocmoc::core::component::ObjectBehaviour* objectBehaviour;
 			ShipBehaviour* shipBehaviour;
 			ShipController* shipController;
 			kocmoc::core::component::Renderable* renderable;
+			
+			kocmoc::core::input::InputManager* inputManager;
 		};
 	}
 }

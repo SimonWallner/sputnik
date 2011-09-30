@@ -9,6 +9,8 @@
 #include <kocmoc-core/input/ButtonEventListener.hpp>
 #include <kocmoc-core/scene/ImageLoader.hpp>
 
+#include <output/MIDIOut.hpp>
+
 #include "component/Ship.hpp"
 
 namespace kocmoc
@@ -50,7 +52,7 @@ namespace sputnik
 	private:
 		kocmoc::core::util::Properties* props;
 		bool running;
-		kocmoc::core::types::Symbol quit, screenShot;
+		kocmoc::core::types::Symbol quit, screenShot, note;
 		
 		component::Ship* ship;
 		kocmoc::core::scene::ImageLoader imageLoader;
@@ -68,12 +70,20 @@ namespace sputnik
 					p->running = false;
 				else if (name == p->screenShot && event.isPressed == true)
 					p->imageLoader.screenShot();
+				else if (name == p->note && event.isPressed == true)
+				{
+					p->midiOut.sendCC(12, 42);
+					p->midiOut.sendNote(21, 44);
+				}
 			}
 		private:
 			Sputnik* p;
 		} ic;
 		
 		void init(void);
+		
+		output::MIDIOut midiOut;
+
 	};
 }
 

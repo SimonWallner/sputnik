@@ -28,8 +28,6 @@
 
 #include <kocmoc-core/component/CameraController.hpp>
 
-#include <output/MIDIOut.hpp>
-
 using namespace sputnik;
 using namespace kocmoc::core::types;
 using namespace kocmoc::core::input;
@@ -56,6 +54,7 @@ Sputnik::Sputnik(Properties* _props)
 	, running(true)
 	, quit(symbolize("quit"))
 	, screenShot(symbolize("screen-shot"))
+	, note(symbolize("note"))
 	, ic(this)
 {
 	string configFile = props->getString(symbolize("config-file"));
@@ -75,15 +74,14 @@ Sputnik::Sputnik(Properties* _props)
 
 	inputManager.registerButtonEventListener(screenShot, &ic);
 	inputManager.bindKeyToButtonEvent(',', screenShot);
+	
+	inputManager.registerButtonEventListener(note, &ic);
+	inputManager.bindKeyToButtonEvent('1', note);
 
 	
-	init();
-	
-	
-	MIDIOut midiOut;
-	midiOut.sendCC(12, 0.6);
-	
-	
+//	init();
+	ship = new Ship("the player ship", props, &inputManager);
+	ship->init();
 	
 	
 	
@@ -148,8 +146,7 @@ void Sputnik::printIntro()
 
 void Sputnik::init()
 {
-	ship = new Ship("the player ship", props);
-	ship->init();
+	;
 }
 
 Sputnik::~Sputnik()
