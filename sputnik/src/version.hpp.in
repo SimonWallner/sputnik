@@ -20,7 +20,7 @@ namespace sputnik
 {
 	namespace version
 	{
-		const std::string gitSHA1 = "${SPUTNIK_MAIN_GIT_SHA1}";	
+		const std::string gitSHA1 = "${SPUTNIK_GIT_SHA1}";	
 		std::string getVersionString(void);
 	}
 }

@@ -11,8 +11,8 @@ set(APP_NAME sputnik)
 # -- get it revision number (SHA1) -------------------------------------------
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 include(GetGitRevisionDescription)
-get_git_head_revision(GIT_REFSPEC SPUTNIK_MAIN_GIT_SHA1)
-message(STATUS "SPUTNIK revision hash is: ${SPUTNIK_MAIN_GIT_SHA1}")
+get_git_head_revision(GIT_REFSPEC SPUTNIK_GIT_SHA1)
+message(STATUS "SPUTNIK revision hash is: ${SPUTNIK_GIT_SHA1}")
 
 
 # -- doxygen -----------------------------------------------------------------

@@ -23,10 +23,12 @@ include_directories(
 	${PROJECT_SOURCE_DIR}/external/kocmoc-core/external/glfw/include
 	${PROJECT_SOURCE_DIR}/external/kocmoc-core/external/glm/include
 	${PROJECT_SOURCE_DIR}/external/rtmidi/include
+	${PROJECT_SOURCE_DIR}/external/wiic/include
 )
 
 link_directories(
 	${Boost_LIBRARY_DIRS}
+	${PROJECT_SOURCE_DIR}/external/wiic/lib
 )
 
 # collect the files
@@ -40,6 +42,7 @@ set (TARGET_LINK_LIBRARIES sputnik
     kocmoc-core
 	${Boost_PROGRAM_OPTIONS_LIBRARY}
 	rtmidi
+	wiic
 )
 
 target_link_libraries(${TARGET_LINK_LIBRARIES})
