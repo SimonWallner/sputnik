@@ -10,6 +10,8 @@ namespace sputnik
 		class WiimoteInputManager : public kocmoc::core::input::InputManager
 		{
 		public:
+			WiimoteInputManager(GLFWwindow);
+			
 //			void registerWiimoteEventListener(kocmoc::core::types::Symbol name, WiiEventListener* lisener);
 			void bindWiimoteEvent(int wiimoteEventSymbolicConstant, kocmoc::core::types::Symbol name);
 			void pollWiimote(void);

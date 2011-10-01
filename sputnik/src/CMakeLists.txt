@@ -43,6 +43,7 @@ set (TARGET_LINK_LIBRARIES sputnik
 	${Boost_PROGRAM_OPTIONS_LIBRARY}
 	rtmidi
 	wiic
+	wiicpp
 )
 
 target_link_libraries(${TARGET_LINK_LIBRARIES})

@@ -13,20 +13,17 @@
 
 #include <kocmoc-core/util/Properties.hpp>
 #include <kocmoc-core/util/util.hpp>
-
 #include <kocmoc-core/types/Symbol.hpp>
-
 #include <kocmoc-core/renderer/Context.hpp>
 #include <kocmoc-core/renderer/Shader.hpp>
-
 #include <kocmoc-core/input/InputManager.hpp>
-
 #include <kocmoc-core/scene/FilmCamera.hpp>
 #include <kocmoc-core/scene/OrthoCamera.hpp>
-
 #include <kocmoc-core/time/Timer.hpp>
-
 #include <kocmoc-core/component/CameraController.hpp>
+
+#include <input/WiimoteInputManager.hpp>
+
 
 using namespace sputnik;
 using namespace kocmoc::core::types;
@@ -67,7 +64,7 @@ Sputnik::Sputnik(Properties* _props)
 	Context context;
 	context.getInfo();
 	
-	InputManager inputManager(context.getWindowHandle());
+	input::WiimoteInputManager inputManager(context.getWindowHandle());
 	
 	inputManager.registerButtonEventListener(quit, &ic);
 	inputManager.bindKeyToButtonEvent(256, quit);	// ESC
