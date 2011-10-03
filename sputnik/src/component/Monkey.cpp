@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include "Ship.hpp"
+#include "Monkey.hpp"
 
 #include <kocmoc-core/scene/AssetLoader.hpp>
 
@@ -16,11 +16,11 @@ using namespace kocmoc::core::component;
 using kocmoc::core::scene::AssetLoader;
 using kocmoc::core::types::symbolize;
 
-void Ship::init()
+void Monkey::init()
 {
 	objectBehaviour = new ObjectBehaviour();
-	shipBehaviour = new ShipBehaviour();
-	shipController = new ShipController();
+	monkeyBehaviour = new MonkeyBehaviour();
+	monkeyController = new MonkeyController();
 
 	AssetLoader loader;
 	loader.addResourcePath(props->getString(symbolize("media-path")));
@@ -36,16 +36,12 @@ void Ship::init()
 	props->dumpCache();
 	
 	addComponent(objectBehaviour);
-	addComponent(shipBehaviour);
+	addComponent(monkeyBehaviour);
 	addComponent(renderable);
-	addComponent(shipController);
+	addComponent(monkeyController);
 	
-	registerUpdateReceiver(shipController);
+	registerUpdateReceiver(monkeyController);
 	registerRenderReceiver(renderable);
 	
-	shipController->init();
-	objectBehaviour->init();
-	shipBehaviour->init();
-	renderable->init();
-
+	initComponents();
 }

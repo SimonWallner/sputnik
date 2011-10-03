@@ -16,20 +16,20 @@ namespace sputnik
 {
 	namespace component
 	{
-		class ShipBehaviour;
+		class MonkeyBehaviour;
 		
-		class ShipController : public kocmoc::core::componentSystem::Component
+		class MonkeyController : public kocmoc::core::componentSystem::Component
 		{
 		public:
 			
-			ShipController(void);
+			MonkeyController(void);
 			
 			void onUpdate(void);
 			
 			void init(void);
 
 		private:
-			ShipBehaviour* shipBehaviour;
+			MonkeyBehaviour* monkeyBehaviour;
 		};
 	}
 }

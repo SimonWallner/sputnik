@@ -67,7 +67,7 @@ Sputnik::Sputnik(Properties* _props)
 	
 	inputManager.registerButtonEventListener(quit, &ic);
 	inputManager.bindKeyToButtonEvent(256, quit);	// ESC
-	inputManager.bindWiimoteEvent(WIIMOTE_EVENT_BUTTON_MINUS, quit);
+	inputManager.bindWiimoteEvent(WIIMOTE_EVENT_BUTTON_MINUS_HELD, quit);
 
 	inputManager.registerButtonEventListener(screenShot, &ic);
 	inputManager.bindKeyToButtonEvent(',', screenShot);
@@ -80,8 +80,8 @@ Sputnik::Sputnik(Properties* _props)
 
 	
 //	init();
-	ship = new Ship("the player ship", props, &inputManager);
-	ship->init();
+	monkey = new Monkey("the player ship", props, &inputManager);
+	monkey->init();
 	
 	
 	
@@ -106,14 +106,14 @@ Sputnik::Sputnik(Properties* _props)
 		inputManager.pollWiimote();
 		
 		// update
-		ship->update(deltaT);
+		monkey->update(deltaT);
 		
 		
 		// post update
 		camera->updateMatrixes();
 		
 		// render
-		ship->render(camera);
+		monkey->render(camera);
 		
 		// post render
 		context->swapBuffers();

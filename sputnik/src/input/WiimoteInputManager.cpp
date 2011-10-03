@@ -73,38 +73,38 @@ void WiimoteInputManager::pollWiimote()
 
 void WiimoteInputManager::handleEvent(CWiimote& wiimote, unsigned int controllerNumber)
 {
-	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_A))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_A, ButtonEvent(true), controllerNumber);
+	if(wiimote.Buttons.isHeld(CButtons::BUTTON_A))
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_A_HELD, ButtonEvent(true), controllerNumber);
 	
-	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_B))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_B, ButtonEvent(true), controllerNumber);
+	if(wiimote.Buttons.isHeld(CButtons::BUTTON_B))
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_B_HELD, ButtonEvent(true), controllerNumber);
 	
-	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_ONE))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_1, ButtonEvent(true), controllerNumber);
+	if(wiimote.Buttons.isHeld(CButtons::BUTTON_ONE))
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_1_HELD, ButtonEvent(true), controllerNumber);
 	
-	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_TWO))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_2, ButtonEvent(true), controllerNumber);
+	if(wiimote.Buttons.isHeld(CButtons::BUTTON_TWO))
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_2_HELD, ButtonEvent(true), controllerNumber);
 	
-	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_LEFT))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_LEFT, ButtonEvent(true), controllerNumber);
+	if(wiimote.Buttons.isHeld(CButtons::BUTTON_LEFT))
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_LEFT_HELD, ButtonEvent(true), controllerNumber);
 	
-	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_RIGHT))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_RIGHT, ButtonEvent(true), controllerNumber);
+	if(wiimote.Buttons.isHeld(CButtons::BUTTON_RIGHT))
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_RIGHT_HELD, ButtonEvent(true), controllerNumber);
 	
-	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_UP))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_UP, ButtonEvent(true), controllerNumber);
+	if(wiimote.Buttons.isHeld(CButtons::BUTTON_UP))
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_UP_HELD, ButtonEvent(true), controllerNumber);
 	
-	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_DOWN))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_DOWN, ButtonEvent(true), controllerNumber);
+	if(wiimote.Buttons.isHeld(CButtons::BUTTON_DOWN))
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_DOWN_HELD, ButtonEvent(true), controllerNumber);
 	
-	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_MINUS))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_MINUS, ButtonEvent(true), controllerNumber);
+	if(wiimote.Buttons.isHeld(CButtons::BUTTON_MINUS))
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_MINUS_HELD, ButtonEvent(true), controllerNumber);
 	
-	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_PLUS))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_PLUS, ButtonEvent(true), controllerNumber);
+	if(wiimote.Buttons.isHeld(CButtons::BUTTON_PLUS))
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_PLUS_HELD, ButtonEvent(true), controllerNumber);
 	
-	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_HOME))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_HOME, ButtonEvent(true), controllerNumber);
+	if(wiimote.Buttons.isHeld(CButtons::BUTTON_HOME))
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_HOME_HELD, ButtonEvent(true), controllerNumber);
 	
     if(wiimote.isUsingACC())
     {
@@ -124,10 +124,11 @@ void WiimoteInputManager::handleEvent(CWiimote& wiimote, unsigned int controller
 		std::cout << "cursor position :" << x << " | " << y << std::endl;
 
 		float relativeX = (float)x / 10000.0f;
-		float relativeY = (float)x / 10000.0f;
+		float relativeY = (float)y / 10000.0f;
 		
-		notifyAnalogListeners(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y, WiimoteAnalogEvent(controllerNumber, relativeX, 0, 0));
-		UNUSED relativeY;
+		notifyAnalogListeners(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y,
+							  WiimoteAnalogEvent(controllerNumber, relativeX,
+												 relativeY, 0));
     }
 	
     int exType = wiimote.ExpansionDevice.GetType();

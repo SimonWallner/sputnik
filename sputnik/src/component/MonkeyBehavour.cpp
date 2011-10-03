@@ -6,12 +6,12 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include "ShipBehaviour.hpp"
+#include "MonkeyBehaviour.hpp"
 
 using namespace sputnik::component;
 using kocmoc::core::component::ObjectBehaviour;
 
-void ShipBehaviour::init()
+void MonkeyBehaviour::init()
 {
 	objectBehaviour = parent->getComponent<ObjectBehaviour>();
 }

@@ -19,10 +19,10 @@ namespace sputnik
 {
 	namespace component
 	{
-		class ShipBehaviour : public kocmoc::core::componentSystem::Component
+		class MonkeyBehaviour : public kocmoc::core::componentSystem::Component
 		{
 		public:
-			ShipBehaviour(void) {};
+			MonkeyBehaviour(void) {};
 			
 			void left(void)
 			{

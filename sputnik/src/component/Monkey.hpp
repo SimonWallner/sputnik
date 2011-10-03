@@ -6,29 +6,28 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef KOCMOC_COMPONENT_SHIP_HPP
-#define KOCMOC_COMPONENT_SHIP_HPP
+#ifndef SPUTNIK_COMPONENT_MONKEY_HPP
+#define	SPUTNIK_COMPONENT_MONKEY_HPP
 
 #include <kocmoc-core/componentSystem/Object.hpp>
 #include <kocmoc-core/component/ObjectBehaviour.hpp>
 #include <kocmoc-core/component/Renderable.hpp>
-#include <kocmoc-core/input/InputManager.hpp>
 
-#include "ShipBehaviour.hpp"
-#include "ShipController.hpp"
+#include <input/WiimoteInputManager.hpp>
 
+#include "MonkeyBehaviour.hpp"
+#include "MonkeyController.hpp"
 
 namespace sputnik
 {
 	namespace component
 	{
-		class Ship : public kocmoc::core::componentSystem::Object
+		class Monkey : public kocmoc::core::componentSystem::Object
 		{
 		public:
-			
-			explicit Ship(std::string name,
-						  kocmoc::core::util::Properties* props,
-						  kocmoc::core::input::InputManager* _inputManager)
+			Monkey(std::string name,
+				   kocmoc::core::util::Properties* props,
+				   sputnik::input::WiimoteInputManager* _inputManager)
 				: Object(name, props)
 				, inputManager(_inputManager)
 			{}
@@ -38,13 +37,12 @@ namespace sputnik
 			void init(void);
 			
 		private:
-			
 			kocmoc::core::component::ObjectBehaviour* objectBehaviour;
-			ShipBehaviour* shipBehaviour;
-			ShipController* shipController;
+			MonkeyBehaviour* monkeyBehaviour;
+			MonkeyController* monkeyController;
 			kocmoc::core::component::Renderable* renderable;
 			
-			kocmoc::core::input::InputManager* inputManager;
+			sputnik::input::WiimoteInputManager* inputManager;
 		};
 	}
 }
