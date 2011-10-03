@@ -36,9 +36,6 @@
 #include <vector>
 #include "wiic.h"
 #include "dataset.h"
-#include "logger.h"
-
-//using namespace WiiC;
 
 class CButtonBase
 {
@@ -180,12 +177,12 @@ public:
     void SetAccelThreshold(int Threshold);
 
     void GetOrientation(float &Pitch, float &Roll, float &Yaw);
+    void GetRawOrientation(float &Pitch, float &Roll);
 
     void GetGravityCalVector(float &X, float &Y, float &Z);
     void SetGravityCalVector(float X, float Y, float Z);
 
     void GetGravityVector(float &X, float &Y, float &Z);
-	void GetRawGravityVector(float &X, float &Y, float &Z);
 
 private:
     struct accel_t *mpAccelCalibPtr;
@@ -379,7 +376,7 @@ public:
         TYPE_CLASSIC = EXP_CLASSIC,
         TYPE_GUITAR_HERO_3 = EXP_GUITAR_HERO_3,
         TYPE_MOTION_PLUS = EXP_MOTION_PLUS,
-		TYPE_BALANCE_BOARD = EXP_BALANCE_BOARD
+		  TYPE_BALANCE_BOARD = EXP_BALANCE_BOARD
     };
 
     CExpansionDevice(struct expansion_t *ExpPtr);
@@ -390,7 +387,7 @@ public:
     CClassic Classic;
     CGuitarHero3 GuitarHero3;
     CMotionPlus MotionPlus;
-	CBalanceBoard BalanceBoard;
+	 CBalanceBoard BalanceBoard;
 
 private:
     struct expansion_t *mpExpansionPtr;
@@ -450,13 +447,11 @@ public:
     CWiimote();
     CWiimote(struct wiimote_t *wmPtr);
     CWiimote(const CWiimote & copyin);
-    ~CWiimote() { }
 
     void Disconnected();
 
     void SetRumbleMode(OnOffSelection State);
     void ToggleRumble();
-    bool isRumbleEnabled();
 
     int GetLEDs();
     void SetLEDs(int LEDs);
@@ -468,21 +463,8 @@ public:
     EventTypes GetEvent();
     const unsigned char *GetEventBuffer();
 
-	void SetSmoothing(bool Smooth);
-
     void SetMotionSensingMode(OnOffSelection State);
     void EnableMotionPlus(OnOffSelection State);
-
-	/* Logging methods */
-	inline void LogStart(int type =WIIC_LOG_NONE, const std::string& file ="") { 
-		logType = type;
-		logger.SetLogLevel(WiiC::WIIC_LOG_START, type, file);
-	}
-	inline void LogStop() { logger.SetLogLevel(WiiC::WIIC_LOG_STOP); }
-	inline void Log(); 
-	
-	/* Timestamp methods */
-	inline struct timeval GetTimestamp() const { return mpWiimotePtr->timestamp; }
 
 	void EnableSpeaker(OnOffSelection State);
 	void MuteSpeaker(OnOffSelection State);
@@ -494,7 +476,6 @@ public:
     void UpdateStatus();
 
     int GetID();
-    const char* GetAddress();
 
     int GetState();
 
@@ -512,20 +493,16 @@ public:
 	int isSpeakerMuted();
     int isUsingMotionPlus();
     int isLEDSet(int LEDNum);
-	inline bool isLogEnabled() { return logger.isLogEnabled(); }
 
     CIR IR;
     CButtons Buttons;
     CAccelerometer Accelerometer;
     CExpansionDevice ExpansionDevice;
-
-    struct wiimote_t *mpWiimotePtr; // Pointer to the wm structure
 private:
+    /* The pointer to the wm structure */
+    struct wiimote_t *mpWiimotePtr;
     int mpTempInt;
     float mpTempFloat;
-    
-	Logger logger;
-	int logType;
 };
 
 class CWii
@@ -545,10 +522,12 @@ public:
 
     int Find(int timeout);
 	int LoadRegisteredWiimotes();
-    std::vector<CWiimote>& Connect(bool autoreconnect =false);
-	std::vector<CWiimote>& FindAndConnect(int timeout =5, bool rumbleAck = true, bool autoreconnect =false);
+    std::vector<CWiimote>& Connect();
 
     int Poll();
+
+//protected:
+
 
 private:
     struct wiimote_t **mpWiimoteArray;

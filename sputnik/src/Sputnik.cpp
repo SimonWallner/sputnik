@@ -68,6 +68,7 @@ Sputnik::Sputnik(Properties* _props)
 	
 	inputManager.registerButtonEventListener(quit, &ic);
 	inputManager.bindKeyToButtonEvent(256, quit);	// ESC
+	inputManager.bindWiimoteEvent(WIIMOTE_EVENT_BUTTON_MINUS, quit);
 
 	inputManager.registerButtonEventListener(screenShot, &ic);
 	inputManager.bindKeyToButtonEvent(',', screenShot);
@@ -100,6 +101,7 @@ Sputnik::Sputnik(Properties* _props)
 		timer->tick();
 		cameraController.onUpdate(deltaT);
 		inputManager.poll();
+		inputManager.pollWiimote();
 		
 		// update
 		ship->update(deltaT);
