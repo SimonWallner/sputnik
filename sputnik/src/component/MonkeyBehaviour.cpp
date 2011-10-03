@@ -21,8 +21,8 @@ using glm::vec3;
 MonkeyBehaviour::MonkeyBehaviour(input::WiimoteInputManager* inputManager)
 	: moveMonkey(symbolize("move-monkey"))
 	, bump(symbolize("bump-monkey"))
-	, movementDomainStart(vec2(-5.0f, -5.0f))
-	, movementDomainSize(vec2(10.0f, 10.0f))
+	, movementDomainStart(vec2(-3.0f, -3.0f))
+	, movementDomainSize(vec2(6.0f, 6.0f))
 	, ic(this)
 {
 	inputManager->registerWiimoteEventListener(moveMonkey, &ic);
