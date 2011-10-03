@@ -19,8 +19,7 @@ using kocmoc::core::types::symbolize;
 void Monkey::init()
 {
 	objectBehaviour = new ObjectBehaviour();
-	monkeyBehaviour = new MonkeyBehaviour();
-	monkeyController = new MonkeyController();
+	monkeyBehaviour = new MonkeyBehaviour(inputManager);
 
 	AssetLoader loader;
 	loader.addResourcePath(props->getString(symbolize("media-path")));
@@ -38,9 +37,7 @@ void Monkey::init()
 	addComponent(objectBehaviour);
 	addComponent(monkeyBehaviour);
 	addComponent(renderable);
-	addComponent(monkeyController);
 	
-	registerUpdateReceiver(monkeyController);
 	registerRenderReceiver(renderable);
 	
 	initComponents();

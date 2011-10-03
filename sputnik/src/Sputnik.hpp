@@ -82,9 +82,9 @@ namespace sputnik
 			
 			void wiimoteAnalogEventCallback(kocmoc::core::types::Symbol name, input::WiimoteAnalogEvent event)
 			{
-				GLFWwindow windowHadle = p->context->getWindowHandle();
-				if (name == p->cursorX)
-					glfwSetMousePos(windowHadle, event.x * 720.0f, event.y * 400);
+//				GLFWwindow windowHadle = p->context->getWindowHandle();
+//				if (name == p->cursorX)
+//					glfwSetMousePos(windowHadle, event.x * 720.0f, event.y * 400);
 			}
 			
 			void wiimoteButtonEventCallback(kocmoc::core::types::Symbol name, input::WiimoteButtonEvent event)
