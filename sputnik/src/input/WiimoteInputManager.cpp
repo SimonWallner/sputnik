@@ -121,7 +121,7 @@ void WiimoteInputManager::handleEvent(CWiimote& wiimote, unsigned int controller
     {
 		int x, y;
 		wiimote.IR.GetCursorPosition(x, y);
-		std::cout << "cursor position :" << x << " | " << y << std::endl;
+//		std::cout << "cursor position :" << x << " | " << y << std::endl;
 
 		float relativeX = (float)x / 10000.0f;
 		float relativeY = (float)y / 10000.0f;

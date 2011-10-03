@@ -10,7 +10,6 @@
 #include <kocmoc-core/scene/ImageLoader.hpp>
 #include <kocmoc-core/renderer/Context.hpp>
 
-#include <output/MIDIOut.hpp>
 #include <input/WiimoteInputManager.hpp>
 
 #include "component/Monkey.hpp"
@@ -73,11 +72,6 @@ namespace sputnik
 					p->running = false;
 				else if (name == p->screenShot && event.isPressed == true)
 					p->imageLoader.screenShot();
-				else if (name == p->note && event.isPressed == true)
-				{
-					p->midiOut.sendCC(12, 99999);
-					p->midiOut.sendNote(21, -42);
-				}
 			}
 			
 			void wiimoteAnalogEventCallback(kocmoc::core::types::Symbol name, input::WiimoteAnalogEvent event)

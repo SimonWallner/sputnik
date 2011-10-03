@@ -72,9 +72,6 @@ Sputnik::Sputnik(Properties* _props)
 	inputManager.registerButtonEventListener(screenShot, &ic);
 	inputManager.bindKeyToButtonEvent(',', screenShot);
 	
-	inputManager.registerButtonEventListener(note, &ic);
-	inputManager.bindKeyToButtonEvent('1', note);
-	
 	inputManager.registerWiimoteEventListener(cursorX, &ic);
 	inputManager.bindWiimoteEvent(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y, cursorX);
 

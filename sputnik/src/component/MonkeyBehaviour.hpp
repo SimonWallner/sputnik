@@ -19,6 +19,7 @@
 #include <kocmoc-core/types/Symbol.hpp>
 
 #include <input/WiimoteInputManager.hpp>
+#include <output/MIDIOut.hpp>
 
 
 namespace sputnik
@@ -35,6 +36,7 @@ namespace sputnik
 			kocmoc::core::component::ObjectBehaviour* objectBehaviour;
 			kocmoc::core::types::Symbol moveMonkey, bump;
 			glm::vec2 movementDomainStart, movementDomainSize;
+			output::MIDIOut midiOut;
 			
 			class InputCallback : public kocmoc::core::input::ButtonEventListener, 
 									public input::WiimoteEventListener

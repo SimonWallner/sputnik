@@ -47,5 +47,9 @@ void MonkeyBehaviour::InputCallback::wiimoteAnalogEventCallback(Symbol name, Wii
 		vec2 newPosition = p->movementDomainSize * rel + p->movementDomainStart;
 		
 		p->objectBehaviour->position = vec3(newPosition, 0);
+		
+		// send some midi data
+		p->midiOut.sendCC(1, event.x);
+		p->midiOut.sendCC(2, event.y);
 	}
 }
