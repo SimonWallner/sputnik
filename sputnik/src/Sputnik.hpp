@@ -8,8 +8,10 @@
 #include <kocmoc-core/types/Symbol.hpp>
 #include <kocmoc-core/input/ButtonEventListener.hpp>
 #include <kocmoc-core/scene/ImageLoader.hpp>
+#include <kocmoc-core/renderer/Context.hpp>
 
 #include <output/MIDIOut.hpp>
+#include <input/WiimoteInputManager.hpp>
 
 #include "component/Ship.hpp"
 
@@ -50,14 +52,15 @@ namespace sputnik
 		void printIntro(void);
 
 	private:
+		kocmoc::core::renderer::Context context;
 		kocmoc::core::util::Properties* props;
 		bool running;
-		kocmoc::core::types::Symbol quit, screenShot, note;
+		kocmoc::core::types::Symbol quit, screenShot, note, cursorX, cursorY;
 		
 		component::Ship* ship;
 		kocmoc::core::scene::ImageLoader imageLoader;
 		
-		class InputCallback : public kocmoc::core::input::ButtonEventListener
+		class InputCallback : public kocmoc::core::input::ButtonEventListener, public input::WiimoteEventListener
 		{
 		public:
 			InputCallback(Sputnik* _p)
@@ -76,6 +79,17 @@ namespace sputnik
 					p->midiOut.sendNote(21, -42);
 				}
 			}
+			
+			void wiimoteAnalogEventCallback(kocmoc::core::types::Symbol name, input::WiimoteAnalogEvent event)
+			{
+				GLFWwindow windowHadle = p->context.getWindowHandle();
+				if (name == p->cursorX)
+					glfwSetMousePos(windowHadle, event.value * 720.0f, 100);
+			}
+			
+			void wiimoteButtonEventCallback(kocmoc::core::types::Symbol name, input::WiimoteButtonEvent event)
+			{}
+			
 		private:
 			Sputnik* p;
 		} ic;

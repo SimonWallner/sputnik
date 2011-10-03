@@ -6,6 +6,7 @@ using namespace sputnik::input;
 using namespace kocmoc::core;
 
 using kocmoc::core::input::ButtonEvent;
+using kocmoc::core::input::AnalogEvent;
 
 WiimoteInputManager::WiimoteInputManager(GLFWwindow window)
 	: InputManager(window)
@@ -35,6 +36,7 @@ WiimoteInputManager::WiimoteInputManager(GLFWwindow window)
 		it->SetMotionSensingMode(CWiimote::ON);
 		it->EnableMotionPlus(CWiimote::ON);
 		it->IR.SetMode(CIR::ON);
+		it->IR.SetVres(10000, 10000);
 	}
 }
 
@@ -47,15 +49,21 @@ void WiimoteInputManager::pollWiimote()
 {
 	if (wii.Poll())
 	{
+		unsigned int controllerNumber = 0;
 		for (std::vector<CWiimote >::iterator it = wiimotes->begin();
 			 it != wiimotes->end();
-			 it++)
+			 it++, controllerNumber++)
 		{
 			switch (it->GetEvent())
 			{
 				case CWiimote::EVENT_EVENT:
-					handleEvent(*it);
+					handleEvent(*it, controllerNumber);
 					break;
+					
+				case CWiimote::EVENT_STATUS:
+					handleStatus(*it, controllerNumber);
+					break;
+
 				default:
 					break;
 			}
@@ -63,40 +71,40 @@ void WiimoteInputManager::pollWiimote()
 	}
 }
 
-void WiimoteInputManager::handleEvent(CWiimote& wiimote)
+void WiimoteInputManager::handleEvent(CWiimote& wiimote, unsigned int controllerNumber)
 {
 	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_A))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_A, ButtonEvent(true));
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_A, ButtonEvent(true), controllerNumber);
 	
 	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_B))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_B, ButtonEvent(true));
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_B, ButtonEvent(true), controllerNumber);
 	
 	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_ONE))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_1, ButtonEvent(true));
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_1, ButtonEvent(true), controllerNumber);
 	
 	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_TWO))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_2, ButtonEvent(true));
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_2, ButtonEvent(true), controllerNumber);
 	
 	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_LEFT))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_LEFT, ButtonEvent(true));
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_LEFT, ButtonEvent(true), controllerNumber);
 	
 	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_RIGHT))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_RIGHT, ButtonEvent(true));
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_RIGHT, ButtonEvent(true), controllerNumber);
 	
 	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_UP))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_UP, ButtonEvent(true));
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_UP, ButtonEvent(true), controllerNumber);
 	
 	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_DOWN))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_DOWN, ButtonEvent(true));
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_DOWN, ButtonEvent(true), controllerNumber);
 	
 	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_MINUS))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_MINUS, ButtonEvent(true));
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_MINUS, ButtonEvent(true), controllerNumber);
 	
 	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_PLUS))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_PLUS, ButtonEvent(true));
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_PLUS, ButtonEvent(true), controllerNumber);
 	
 	if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_HOME))
-		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_HOME, ButtonEvent(true));
+		notifyButtonListeners(WIIMOTE_EVENT_BUTTON_HOME, ButtonEvent(true), controllerNumber);
 	
     if(wiimote.isUsingACC())
     {
@@ -109,8 +117,17 @@ void WiimoteInputManager::handleEvent(CWiimote& wiimote)
     }
 	
     // if(IR tracking is on then print the coordinates
-    if(wiimote.isUsingIR())
+	if(wiimote.isUsingIR())
     {
+		int x, y;
+		wiimote.IR.GetCursorPosition(x, y);
+		std::cout << "cursor position :" << x << " | " << y << std::endl;
+
+		float relativeX = (float)x / 10000.0f;
+		float relativeY = (float)x / 10000.0f;
+		
+		notifyAnalogListeners(WIIMOTE_EVENT_CURSOR_RELATIVE_X, AnalogEvent(relativeX), controllerNumber);
+		UNUSED relativeY;
     }
 	
     int exType = wiimote.ExpansionDevice.GetType();
@@ -121,13 +138,15 @@ void WiimoteInputManager::handleEvent(CWiimote& wiimote)
  
 }
 
-void WiimoteInputManager::handleStatus(CWiimote &wiimote)
+void WiimoteInputManager::handleStatus(CWiimote &wiimote, unsigned int controllerNumber)
 {
-	std::cout << "Wiimote Status for Wiimote: " << wiimote.GetID() << std::endl;
+	std::cout << "Wiimote Status for Wiimote: " << controllerNumber << std::endl;
 	std::cout << "battery level: " << wiimote.GetBatteryLevel() << "%" << std::endl;
 }
 
-void WiimoteInputManager::notifyButtonListeners(int wiimoteEventSymbolicConstant, ButtonEvent event)
+void WiimoteInputManager::notifyButtonListeners(int wiimoteEventSymbolicConstant,
+												ButtonEvent event,
+												unsigned int controllerNumber)
 {
 	// constant --> symbol
 	std::pair<WiimoteBindings::const_iterator, WiimoteBindings::const_iterator> bounds = 
@@ -146,6 +165,53 @@ void WiimoteInputManager::notifyButtonListeners(int wiimoteEventSymbolicConstant
 			 listeners++)
 		{
 			(listeners->second)->buttonEventCallback(ci->second, event);
+		}
+		
+		// symbol --> listener
+		std::pair<WiimoteEventListenerMultiMap::const_iterator, WiimoteEventListenerMultiMap::const_iterator> bounds3 = 
+		wiimoteEventListeners.equal_range(ci->second);
+		
+		for (WiimoteEventListenerMultiMap::const_iterator listeners = bounds3.first;
+			 listeners != bounds3.second;
+			 listeners++)
+		{
+			(listeners->second)->wiimoteButtonEventCallback(ci->second, WiimoteButtonEvent(controllerNumber, event.isPressed));
+		}
+	}
+}
+
+void WiimoteInputManager::notifyAnalogListeners(int wiimoteEventSymbolicConstant,
+												AnalogEvent event,
+												unsigned int controllerNumber)
+{
+	// constant --> symbol
+	std::pair<WiimoteBindings::const_iterator, WiimoteBindings::const_iterator> bounds = 
+	wiimoteEventBindings.equal_range(wiimoteEventSymbolicConstant);
+	
+	for (WiimoteBindings::const_iterator ci = bounds.first;
+		 ci != bounds.second;
+		 ci++)
+	{
+		// symbol --> listener
+		std::pair<AnalogEventListenerMultiMap::const_iterator, AnalogEventListenerMultiMap::const_iterator> bounds2 = 
+		analogEventListeners.equal_range(ci->second);
+		
+		for (AnalogEventListenerMultiMap::const_iterator listeners = bounds2.first;
+			 listeners != bounds2.second;
+			 listeners++)
+		{
+			(listeners->second)->analogEventCallback(ci->second, event);
+		}
+		
+		// symbol --> listener
+		std::pair<WiimoteEventListenerMultiMap::const_iterator, WiimoteEventListenerMultiMap::const_iterator> bounds3 = 
+		wiimoteEventListeners.equal_range(ci->second);
+		
+		for (WiimoteEventListenerMultiMap::const_iterator listeners = bounds3.first;
+			 listeners != bounds3.second;
+			 listeners++)
+		{
+			(listeners->second)->wiimoteAnalogEventCallback(ci->second, WiimoteAnalogEvent(controllerNumber, event.value));
 		}
 	}
 }

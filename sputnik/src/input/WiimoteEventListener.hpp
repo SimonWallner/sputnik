@@ -7,17 +7,28 @@ namespace sputnik
 {
 	namespace input
 	{
-		struct WiimoteEvent
+		struct WiimoteAnalogEvent
 		{
 			unsigned int controlerNumber;
 			double value;
 			
-			WiimoteEvent(unsigned int _controlerNumber, double _value)
+			WiimoteAnalogEvent(unsigned int _controlerNumber, double _value)
 				: controlerNumber(_controlerNumber)
 				, value(_value)
 			{}
 		};
-		
+
+		struct WiimoteButtonEvent
+		{
+			unsigned int controlerNumber;
+			bool isPressed;
+			
+			WiimoteButtonEvent(unsigned int _controlerNumber, bool _isPressed)
+			: controlerNumber(_controlerNumber)
+			, isPressed(_isPressed)
+			{}
+		};
+
 		/**
 		 * Callback function for the wiimote. The specialty about it is the
 		 * added controller number, since we are dealing with more than one
@@ -26,7 +37,8 @@ namespace sputnik
 		class WiimoteEventListener
 		{
 		public:
-			virtual void wiimoteEventCallback(kocmoc::core::types::Symbol name, WiimoteEvent event) = 0;
+			virtual void wiimoteAnalogEventCallback(kocmoc::core::types::Symbol name, WiimoteAnalogEvent event) = 0;
+			virtual void wiimoteButtonEventCallback(kocmoc::core::types::Symbol name, WiimoteButtonEvent event) = 0;
 		};
 	}
 }

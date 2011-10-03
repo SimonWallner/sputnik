@@ -14,16 +14,12 @@
 #include <kocmoc-core/util/Properties.hpp>
 #include <kocmoc-core/util/util.hpp>
 #include <kocmoc-core/types/Symbol.hpp>
-#include <kocmoc-core/renderer/Context.hpp>
 #include <kocmoc-core/renderer/Shader.hpp>
 #include <kocmoc-core/input/InputManager.hpp>
 #include <kocmoc-core/scene/FilmCamera.hpp>
 #include <kocmoc-core/scene/OrthoCamera.hpp>
 #include <kocmoc-core/time/Timer.hpp>
 #include <kocmoc-core/component/CameraController.hpp>
-
-#include <input/WiimoteInputManager.hpp>
-
 
 using namespace sputnik;
 using namespace kocmoc::core::types;
@@ -52,17 +48,17 @@ Sputnik::Sputnik(Properties* _props)
 	, quit(symbolize("quit"))
 	, screenShot(symbolize("screen-shot"))
 	, note(symbolize("note"))
+	, cursorX(symbolize("cursor-x"))
 	, ic(this)
 {
+	context.getInfo();
+	
 	string configFile = props->getString(symbolize("config-file"));
 	string coreConfigFile = props->getString(symbolize("core-config-file"));
 	kocmoc::core::util::parser::parseConfigXMLFileIntoProperties(configFile, props);
 	kocmoc::core::util::parser::parseConfigXMLFileIntoProperties(coreConfigFile, props);
 	props->dumpCache();
 	
-	
-	Context context;
-	context.getInfo();
 	
 	input::WiimoteInputManager inputManager(context.getWindowHandle());
 	
@@ -75,6 +71,9 @@ Sputnik::Sputnik(Properties* _props)
 	
 	inputManager.registerButtonEventListener(note, &ic);
 	inputManager.bindKeyToButtonEvent('1', note);
+	
+	inputManager.registerWiimoteEventListener(cursorX, &ic);
+	inputManager.bindWiimoteEvent(WIIMOTE_EVENT_CURSOR_RELATIVE_X, cursorX);
 
 	
 //	init();

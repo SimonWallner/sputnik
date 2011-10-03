@@ -14,11 +14,15 @@
 #define WIIMOTE_EVENT_BUTTON_DOWN		9
 #define WIIMOTE_EVENT_BUTTON_HOME		10
 
+#define	WIIMOTE_EVENT_CURSOR_RELATIVE_X		101
+#define	WIIMOTE_EVENT_CURSOR_RELATIVE_Y		102
+
 
 #include <wiic/wiicpp.h>
 
 #include <kocmoc-core/input/InputManager.hpp>
 #include <kocmoc-core/input/ButtonEventListener.hpp>
+#include <kocmoc-core/input/AnalogEventListener.hpp>
 
 
 #include <input/WiimoteEventListener.hpp>
@@ -70,10 +74,15 @@ namespace sputnik
 			CWii wii; // Defaults to 4 remotes
 			std::vector<CWiimote>* wiimotes;
 			
-			void handleEvent(CWiimote& wiimote);
-			void handleStatus(CWiimote& wiimote);
+			void handleEvent(CWiimote& wiimote, unsigned int controllerNumber);
+			void handleStatus(CWiimote& wiimote, unsigned int controllerNumber);
 			
-			void notifyButtonListeners(int wiimoteEventSymbolicConstant, kocmoc::core::input::ButtonEvent event);
+			void notifyButtonListeners(int wiimoteEventSymbolicConstant,
+									   kocmoc::core::input::ButtonEvent event,
+									   unsigned int controllerNumber);
+			void notifyAnalogListeners(int wiimoteEventSymbolicConstant,
+									  kocmoc::core::input::AnalogEvent event,
+									  unsigned int controllerNumber);
 		};
 	}
 }
