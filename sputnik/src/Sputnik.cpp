@@ -51,16 +51,19 @@ Sputnik::Sputnik(Properties* _props)
 	, cursorX(symbolize("cursor-x"))
 	, ic(this)
 {
-	context.getInfo();
-	
 	string configFile = props->getString(symbolize("config-file"));
 	string coreConfigFile = props->getString(symbolize("core-config-file"));
 	kocmoc::core::util::parser::parseConfigXMLFileIntoProperties(configFile, props);
 	kocmoc::core::util::parser::parseConfigXMLFileIntoProperties(coreConfigFile, props);
 	props->dumpCache();
+
+#warning FIXME: context somehow fucks up working directory, therfore must be after config file loading
+	// this only occurs in the Xcode debugger, not when build with make and run
+	// from the command line.
+	context = new Context();
+	context->getInfo();
 	
-	
-	input::WiimoteInputManager inputManager(context.getWindowHandle());
+	input::WiimoteInputManager inputManager(context->getWindowHandle());
 	
 	inputManager.registerButtonEventListener(quit, &ic);
 	inputManager.bindKeyToButtonEvent(256, quit);	// ESC
@@ -73,7 +76,7 @@ Sputnik::Sputnik(Properties* _props)
 	inputManager.bindKeyToButtonEvent('1', note);
 	
 	inputManager.registerWiimoteEventListener(cursorX, &ic);
-	inputManager.bindWiimoteEvent(WIIMOTE_EVENT_CURSOR_RELATIVE_X, cursorX);
+	inputManager.bindWiimoteEvent(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y, cursorX);
 
 	
 //	init();
@@ -92,7 +95,7 @@ Sputnik::Sputnik(Properties* _props)
 	
 	Timer* timer = new Timer();
 	
-	while (running == true && context.isAlive())
+	while (running == true && context->isAlive())
 	{	
 		float deltaT = timer->getDeltaT();
 		
@@ -113,7 +116,7 @@ Sputnik::Sputnik(Properties* _props)
 		ship->render(camera);
 		
 		// post render
-		context.swapBuffers();
+		context->swapBuffers();
 	}
 }
 

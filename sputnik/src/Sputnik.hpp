@@ -52,7 +52,7 @@ namespace sputnik
 		void printIntro(void);
 
 	private:
-		kocmoc::core::renderer::Context context;
+		kocmoc::core::renderer::Context* context;
 		kocmoc::core::util::Properties* props;
 		bool running;
 		kocmoc::core::types::Symbol quit, screenShot, note, cursorX, cursorY;
@@ -82,9 +82,9 @@ namespace sputnik
 			
 			void wiimoteAnalogEventCallback(kocmoc::core::types::Symbol name, input::WiimoteAnalogEvent event)
 			{
-				GLFWwindow windowHadle = p->context.getWindowHandle();
+				GLFWwindow windowHadle = p->context->getWindowHandle();
 				if (name == p->cursorX)
-					glfwSetMousePos(windowHadle, event.value * 720.0f, 100);
+					glfwSetMousePos(windowHadle, event.x * 720.0f, event.y * 400);
 			}
 			
 			void wiimoteButtonEventCallback(kocmoc::core::types::Symbol name, input::WiimoteButtonEvent event)

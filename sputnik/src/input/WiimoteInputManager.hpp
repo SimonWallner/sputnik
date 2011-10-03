@@ -14,8 +14,7 @@
 #define WIIMOTE_EVENT_BUTTON_DOWN		9
 #define WIIMOTE_EVENT_BUTTON_HOME		10
 
-#define	WIIMOTE_EVENT_CURSOR_RELATIVE_X		101
-#define	WIIMOTE_EVENT_CURSOR_RELATIVE_Y		102
+#define	WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y	100
 
 
 #include <wiic/wiicpp.h>
@@ -81,8 +80,7 @@ namespace sputnik
 									   kocmoc::core::input::ButtonEvent event,
 									   unsigned int controllerNumber);
 			void notifyAnalogListeners(int wiimoteEventSymbolicConstant,
-									  kocmoc::core::input::AnalogEvent event,
-									  unsigned int controllerNumber);
+									   WiimoteAnalogEvent event);
 		};
 	}
 }

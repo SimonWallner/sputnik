@@ -126,7 +126,7 @@ void WiimoteInputManager::handleEvent(CWiimote& wiimote, unsigned int controller
 		float relativeX = (float)x / 10000.0f;
 		float relativeY = (float)x / 10000.0f;
 		
-		notifyAnalogListeners(WIIMOTE_EVENT_CURSOR_RELATIVE_X, AnalogEvent(relativeX), controllerNumber);
+		notifyAnalogListeners(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y, WiimoteAnalogEvent(controllerNumber, relativeX, 0, 0));
 		UNUSED relativeY;
     }
 	
@@ -181,8 +181,7 @@ void WiimoteInputManager::notifyButtonListeners(int wiimoteEventSymbolicConstant
 }
 
 void WiimoteInputManager::notifyAnalogListeners(int wiimoteEventSymbolicConstant,
-												AnalogEvent event,
-												unsigned int controllerNumber)
+												WiimoteAnalogEvent event)
 {
 	// constant --> symbol
 	std::pair<WiimoteBindings::const_iterator, WiimoteBindings::const_iterator> bounds = 
@@ -193,17 +192,6 @@ void WiimoteInputManager::notifyAnalogListeners(int wiimoteEventSymbolicConstant
 		 ci++)
 	{
 		// symbol --> listener
-		std::pair<AnalogEventListenerMultiMap::const_iterator, AnalogEventListenerMultiMap::const_iterator> bounds2 = 
-		analogEventListeners.equal_range(ci->second);
-		
-		for (AnalogEventListenerMultiMap::const_iterator listeners = bounds2.first;
-			 listeners != bounds2.second;
-			 listeners++)
-		{
-			(listeners->second)->analogEventCallback(ci->second, event);
-		}
-		
-		// symbol --> listener
 		std::pair<WiimoteEventListenerMultiMap::const_iterator, WiimoteEventListenerMultiMap::const_iterator> bounds3 = 
 		wiimoteEventListeners.equal_range(ci->second);
 		
@@ -211,7 +199,7 @@ void WiimoteInputManager::notifyAnalogListeners(int wiimoteEventSymbolicConstant
 			 listeners != bounds3.second;
 			 listeners++)
 		{
-			(listeners->second)->wiimoteAnalogEventCallback(ci->second, WiimoteAnalogEvent(controllerNumber, event.value));
+			(listeners->second)->wiimoteAnalogEventCallback(ci->second, event);
 		}
 	}
 }

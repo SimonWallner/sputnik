@@ -7,14 +7,20 @@ namespace sputnik
 {
 	namespace input
 	{
+		/**
+		 * Struct for wiimote analog input
+		 * @note depending on the event, not all 3 values might be set
+		 */
 		struct WiimoteAnalogEvent
 		{
 			unsigned int controlerNumber;
-			double value;
+			double x, y, z;
 			
-			WiimoteAnalogEvent(unsigned int _controlerNumber, double _value)
+			WiimoteAnalogEvent(unsigned int _controlerNumber, double _x, double _y, double _z)
 				: controlerNumber(_controlerNumber)
-				, value(_value)
+				, x(_x)
+				, y(_y)
+				, z(_z)
 			{}
 		};
 
