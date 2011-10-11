@@ -15,13 +15,15 @@ namespace sputnik
 		{
 		public:
 			WiimoteDebugger(std::string name, kocmoc::core::util::Properties* props,
-							sputnik::input::WiimoteInputManager* _inputManager);
+							sputnik::input::WiimoteInputManager* _inputManager,
+							unsigned int controllerNumber);
 			
 			void init(void);
 		private:
 			input::WiimoteInputManager* inputManager;
 			kocmoc::core::component::OverlayQuad* markers[4];
 			kocmoc::core::types::Symbol dot0, dot1, dot2, dot3;
+			unsigned int controllerNumber;
 			
 			class InputCallback : public input::WiimoteEventListener
 			{

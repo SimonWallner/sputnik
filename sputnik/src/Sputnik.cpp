@@ -95,9 +95,10 @@ Sputnik::Sputnik(Properties* _props)
 	
 	
 	
-	WiimoteDebugger wiimoteDebugger("wiimote debugger", props, &inputManager);
-	wiimoteDebugger.init();
-	
+	WiimoteDebugger wiimoteDebugger0("wiimote debugger 0", props, &inputManager, 0);
+	wiimoteDebugger0.init();
+	WiimoteDebugger wiimoteDebugger1("wiimote debugger 1", props, &inputManager, 1);
+	wiimoteDebugger1.init();	
 	
 	
 	
@@ -139,7 +140,8 @@ Sputnik::Sputnik(Properties* _props)
 		monkey->render(RP_NORMAL, camera);
 		
 		// render overlays
-		wiimoteDebugger.render(RP_OVERLAY, &overlayCamera);
+		wiimoteDebugger0.render(RP_OVERLAY, &overlayCamera);
+		wiimoteDebugger1.render(RP_OVERLAY, &overlayCamera);
 		
 		// post render
 		context->swapBuffers();

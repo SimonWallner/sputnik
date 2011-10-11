@@ -10,13 +10,15 @@ using sputnik::input::WiimoteAnalogEvent;
 using sputnik::input::WiimoteEventListener;
 
 WiimoteDebugger::WiimoteDebugger(std::string name, kocmoc::core::util::Properties* props,
-											sputnik::input::WiimoteInputManager* _inputManager)
+											sputnik::input::WiimoteInputManager* _inputManager,
+								 unsigned int _controllerNumber)
 	: Object(name, props)
 	, inputManager(_inputManager)
 	, dot0(symbolize("dot-0"))
 	, dot1(symbolize("dot-1"))
 	, dot2(symbolize("dot-2"))
 	, dot3(symbolize("dot-3"))
+	, controllerNumber(_controllerNumber)
 	, ic(this)
 {}
 
@@ -55,7 +57,7 @@ void WiimoteDebugger::InputCallback::wiimoteAnalogEventCallback(Symbol name,
 	Symbol dots[] = {p->dot0, p->dot1, p->dot2, p->dot3};
 	for (unsigned int i = 0; i < 4; i++)
 	{
-		if (name == dots[i])
+		if (name == dots[i] && event.controlerNumber == p->controllerNumber)
 		{
 			p->markers[i]->setScale(glm::vec2(event.z) * 8.0f);
 			p->markers[i]->setPosition(glm::vec2(event.x, event.y));
