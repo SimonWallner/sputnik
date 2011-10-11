@@ -22,8 +22,10 @@ namespace sputnik
 		private:
 			input::WiimoteInputManager* inputManager;
 			kocmoc::core::component::OverlayQuad* markers[4];
-			kocmoc::core::types::Symbol dot0, dot1, dot2, dot3;
+			kocmoc::core::component::OverlayQuad* cursor;
+			kocmoc::core::types::Symbol dot0, dot1, dot2, dot3, cursorSymbol;
 			unsigned int controllerNumber;
+			unsigned int frameWidth, frameHeight;
 			
 			class InputCallback : public input::WiimoteEventListener
 			{

@@ -18,9 +18,13 @@ WiimoteDebugger::WiimoteDebugger(std::string name, kocmoc::core::util::Propertie
 	, dot1(symbolize("dot-1"))
 	, dot2(symbolize("dot-2"))
 	, dot3(symbolize("dot-3"))
+	, cursorSymbol(symbolize("cursor"))
 	, controllerNumber(_controllerNumber)
 	, ic(this)
-{}
+{
+	frameWidth = props->getFloat(symbolize("width"));
+	frameHeight = props->getFloat(symbolize("height"));
+}
 
 void WiimoteDebugger::init()
 {
@@ -28,12 +32,16 @@ void WiimoteDebugger::init()
 	markers[1] = new OverlayQuad(props);
 	markers[2] = new OverlayQuad(props);
 	markers[3] = new OverlayQuad(props);
-	
 	for (unsigned int i = 0; i < 4; i++)
 	{
 		addComponent(markers[i]);
 		registerRenderReceiver(markers[i]);
 	}
+	
+	cursor = new OverlayQuad(props);
+	cursor->setScale(glm::vec2(16.0f));
+	addComponent(cursor);
+	registerRenderReceiver(cursor);
 	
 	initComponents();
 	
@@ -41,14 +49,12 @@ void WiimoteDebugger::init()
 	inputManager->registerWiimoteEventListener(dot1, &ic);
 	inputManager->registerWiimoteEventListener(dot2, &ic);
 	inputManager->registerWiimoteEventListener(dot3, &ic);
+	inputManager->registerWiimoteEventListener(cursorSymbol, &ic);
 	inputManager->bindWiimoteEvent(WIIMOTE_EVENT_DOT_0_X_Y_SIZE, dot0);
 	inputManager->bindWiimoteEvent(WIIMOTE_EVENT_DOT_1_X_Y_SIZE, dot1);
 	inputManager->bindWiimoteEvent(WIIMOTE_EVENT_DOT_2_X_Y_SIZE, dot2);
 	inputManager->bindWiimoteEvent(WIIMOTE_EVENT_DOT_3_X_Y_SIZE, dot3);
-	
-	std::cout << "dump wiimote input manager" << std::endl;
-	inputManager->dumpBindings();
-	
+	inputManager->bindWiimoteEvent(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y, cursorSymbol);
 }
 
 void WiimoteDebugger::InputCallback::wiimoteAnalogEventCallback(Symbol name,
@@ -59,8 +65,14 @@ void WiimoteDebugger::InputCallback::wiimoteAnalogEventCallback(Symbol name,
 	{
 		if (name == dots[i] && event.controlerNumber == p->controllerNumber)
 		{
-			p->markers[i]->setScale(glm::vec2(event.z) * 8.0f);
+			p->markers[i]->setScale(glm::vec2(event.z) * 4.0f);
 			p->markers[i]->setPosition(glm::vec2(event.x, event.y));
 		}
+	}
+	
+	if (name == p->cursorSymbol && event.controlerNumber == p->controllerNumber)
+	{
+		p->cursor->setPosition(glm::vec2(event.x * p->frameWidth,
+										 (1.0f - event.y) * p->frameHeight));
 	}
 }

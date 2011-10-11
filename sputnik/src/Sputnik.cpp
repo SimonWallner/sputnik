@@ -100,10 +100,8 @@ Sputnik::Sputnik(Properties* _props)
 	WiimoteDebugger wiimoteDebugger1("wiimote debugger 1", props, &inputManager, 1);
 	wiimoteDebugger1.init();	
 	
-	
-	
 	OrthoCamera overlayCamera(vec3(width/2.0f, height/2.0f, 0), vec3(0, 0, -1), vec3(0, 1, 0));
-	overlayCamera.setWidthHeightDepth(width, height, 1.0f);
+	overlayCamera.setWidthHeightDepth(width/2.0f, height/2.0f, 1.0f);
 	overlayCamera.updateMatrixes();
 	
 	
