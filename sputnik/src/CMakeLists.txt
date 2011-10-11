@@ -14,6 +14,13 @@ if(NOT Boost_FOUND)
 	message(WARNING "Boost not found!")
 endif()
 
+# FIXME: remove freetype dependecy from sputnik
+# clean freetype include from fontRenderer file.
+find_package(Freetype REQUIRED)
+if(NOT FREETYPE_FOUND)
+	message(WARNING "Freetype not found!")
+endif()
+
 include_directories(
 	${PROJECT_SOURCE_DIR}/src
     ${PROJECT_SOURCE_DIR}/external/kocmoc-core/include
@@ -24,6 +31,9 @@ include_directories(
 	${PROJECT_SOURCE_DIR}/external/kocmoc-core/external/glm/include
 	${PROJECT_SOURCE_DIR}/external/rtmidi/include
 	${PROJECT_SOURCE_DIR}/external/wiic/include
+	
+	${FREETYPE_INCLUDE_DIR_ft2build}
+	${FREETYPE_INCLUDE_DIR_freetype2}
 )
 
 link_directories(

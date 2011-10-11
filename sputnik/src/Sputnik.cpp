@@ -20,11 +20,15 @@
 #include <kocmoc-core/scene/OrthoCamera.hpp>
 #include <kocmoc-core/time/Timer.hpp>
 #include <kocmoc-core/component/CameraController.hpp>
+#include <kocmoc-core/scene/FontRenderer.hpp>
+
+#include <component/WiimoteDebugger.hpp>
 
 using namespace sputnik;
 using namespace kocmoc::core::types;
 using namespace kocmoc::core::input;
 using namespace kocmoc::core::component;
+using namespace kocmoc::core::renderer;
 
 using namespace sputnik::component;
 
@@ -36,6 +40,8 @@ using kocmoc::core::renderer::Shader;
 using kocmoc::core::scene::FilmCamera;
 using kocmoc::core::scene::OrthoCamera;
 using kocmoc::core::time::Timer;
+using kocmoc::core::scene::FontRenderer;
+
 
 using sputnik::output::MIDIOut;
 
@@ -56,11 +62,14 @@ Sputnik::Sputnik(Properties* _props)
 	kocmoc::core::util::parser::parseConfigXMLFileIntoProperties(configFile, props);
 	kocmoc::core::util::parser::parseConfigXMLFileIntoProperties(coreConfigFile, props);
 	props->dumpCache();
+	
+	int width = props->getFloat(symbolize("width"));
+	int height = props->getFloat(symbolize("height"));
 
 #warning FIXME: context somehow fucks up working directory, therfore must be after config file loading
 	// this only occurs in the Xcode debugger, not when build with make and run
 	// from the command line.
-	context = new Context();
+	context = new Context(props);
 	context->getInfo();
 	
 	input::WiimoteInputManager inputManager(context->getWindowHandle());
@@ -80,10 +89,26 @@ Sputnik::Sputnik(Properties* _props)
 	monkey = new Monkey("the player ship", props, &inputManager);
 	monkey->init();
 	
+//	FontRenderer fontRenderer(props);
+//	fontRenderer.render("P.AY");
+	
+	
+	
+	
+	WiimoteDebugger wiimoteDebugger("wiimote debugger", props, &inputManager);
+	wiimoteDebugger.init();
+	
+	
+	
+	
+	OrthoCamera overlayCamera(vec3(width/2.0f, height/2.0f, 0), vec3(0, 0, -1), vec3(0, 1, 0));
+	overlayCamera.setWidthHeightDepth(width, height, 1.0f);
+	overlayCamera.updateMatrixes();
+	
 	
 	
 	FilmCamera* camera = new FilmCamera(vec3(0, 0, 4), vec3(0, 0, 0), vec3(0, 1, 0));
-	camera->setGateInPixel(960, 540);
+	camera->setGateInPixel(width, height);
 	camera->setFilterMarginInPixel(0, 0);
 	camera->setAngleOfView(1.5f);
 	
@@ -94,23 +119,27 @@ Sputnik::Sputnik(Properties* _props)
 	
 	while (running == true && context->isAlive())
 	{	
-		float deltaT = timer->getDeltaT();
-		
 		// pre update
 		timer->tick();
+		float deltaT = timer->getDeltaT();
+		float t = timer ->getLastT();
+		
 		cameraController.onUpdate(deltaT);
 		inputManager.poll();
 		inputManager.pollWiimote();
 		
 		// update
-		monkey->update(deltaT);
+		monkey->update(deltaT, t);
 		
 		
 		// post update
 		camera->updateMatrixes();
 		
-		// render
-		monkey->render(camera);
+		// render normal
+		monkey->render(RP_NORMAL, camera);
+		
+		// render overlays
+		wiimoteDebugger.render(RP_OVERLAY, &overlayCamera);
 		
 		// post render
 		context->swapBuffers();
