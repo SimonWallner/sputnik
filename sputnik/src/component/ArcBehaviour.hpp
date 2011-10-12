@@ -1,9 +1,11 @@
-#ifndef SPUTNIK_COMPONENT_ARCH_BEHAVIOUR_HPP
-#define SPUTNIK_COMPONENT_ARCH_BEHAVIOUR_HPP
+#ifndef SPUTNIK_COMPONENT_ARC_BEHAVIOUR_HPP
+#define SPUTNIK_COMPONENT_ARC_BEHAVIOUR_HPP
 
 #include <kocmoc-core/componentSystem/Component.hpp>
 
 #include <glm/glm.hpp>
+
+#include <input/WiimoteInputManager.hpp>
 
 namespace kocmoc
 {
@@ -25,11 +27,11 @@ namespace sputnik
 {
 	namespace component
 	{
-		class ArchBehaviour : public kocmoc::core::componentSystem::Component
+		class ArcBehaviour : public kocmoc::core::componentSystem::Component
 		{
 		public:
 			
-			ArchBehaviour(kocmoc::core::util::Properties* props,
+			ArcBehaviour(kocmoc::core::util::Properties* props,
 				 unsigned int instanceCount);
 
 			void onRender(kocmoc::core::renderer::RenderPass pass,
@@ -52,6 +54,20 @@ namespace sputnik
 			kocmoc::core::util::Properties* props;
 			unsigned int instanceCount;
 			glm::vec3 start, end;
+			
+			class InputCallback : public input::WiimoteEventListener
+			{
+			public:
+				InputCallback(ArcBehaviour* _p)
+					: p(_p)
+				{}
+				
+				void wiimoteAnalogEventCallback(kocmoc::core::types::Symbol name, input::WiimoteAnalogEvent event) {}
+				void wiimoteButtonEventCallback(kocmoc::core::types::Symbol name, input::WiimoteButtonEvent event) {}
+				
+			private:
+				ArcBehaviour* p;
+			} ic;
 		};
 	}
 }

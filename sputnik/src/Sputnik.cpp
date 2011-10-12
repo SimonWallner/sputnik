@@ -23,7 +23,7 @@
 #include <kocmoc-core/scene/FontRenderer.hpp>
 
 #include <component/WiimoteDebugger.hpp>
-#include <object/Arch.hpp>
+#include <object/Arc.hpp>
 
 using namespace sputnik;
 using namespace kocmoc::core::types;
@@ -94,7 +94,7 @@ Sputnik::Sputnik(Properties* _props)
 //	fontRenderer.render("P.AY");
 	
 	
-	Arch arch(props);
+	Arc arc(props);
 	
 	
 	WiimoteDebugger wiimoteDebugger0("wiimote debugger 0", props, &inputManager, 0);
@@ -140,7 +140,7 @@ Sputnik::Sputnik(Properties* _props)
 		monkey->render(RP_NORMAL, camera);
 		
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-		arch.render(RP_NORMAL, camera);
+		arc.render(RP_NORMAL, camera);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 		// render overlays

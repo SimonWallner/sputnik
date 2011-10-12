@@ -1,4 +1,4 @@
-#include <component/ArchBehaviour.hpp>
+#include <component/ArcBehaviour.hpp>
 
 #include <iostream>
 
@@ -18,14 +18,15 @@ using kocmoc::core::component::Renderable;
 using kocmoc::core::util::Properties;
 using kocmoc::core::types::symbolize;
 
-ArchBehaviour::ArchBehaviour(Properties* _props, unsigned int _instanceCount)
+ArcBehaviour::ArcBehaviour(Properties* _props, unsigned int _instanceCount)
 	: props(_props)
 	, instanceCount(_instanceCount)
 	, start(glm::vec3(0))
 	, end(glm::vec3(0, 0, -20))
+	, ic(this)
 {};
 
-void ArchBehaviour::onRender(RenderPass pass, Camera *camera)
+void ArcBehaviour::onRender(RenderPass pass, Camera *camera)
 {	
 	if (pass == kocmoc::core::renderer::RP_NORMAL)
 	{
@@ -35,13 +36,13 @@ void ArchBehaviour::onRender(RenderPass pass, Camera *camera)
 	}
 }
 
-void ArchBehaviour::init()
+void ArcBehaviour::init()
 {
 	AssetLoader loader;
 	loader.addResourcePath(props->getString(symbolize("media-path")));
 	loader.addResourcePath(props->getString(symbolize("core-media-path")));
-	std::string test = props->getString(symbolize("arch-model-name"));
-	std::string shaderPath = props->getString(symbolize("media-path")) + "shaders/arch";
+	std::string test = props->getString(symbolize("arc-model-name"));
+	std::string shaderPath = props->getString(symbolize("media-path")) + "shaders/arc";
 	
 	// FIXME: something mutates my stirngs in the props.
 	// changing it here to c_str() helped, but it is evil

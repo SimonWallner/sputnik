@@ -1,4 +1,4 @@
-#include "Arch.hpp"
+#include "Arc.hpp"
 
 #include <kocmoc-core/util/Properties.hpp>
 
@@ -7,10 +7,10 @@ using namespace sputnik::component;
 
 using kocmoc::core::util::Properties;
 
-Arch::Arch(Properties* _props)
-	: Object("Arch", _props)
+Arc::Arc(Properties* _props)
+	: Object("Arc", _props)
 {
-	behaviour = new ArchBehaviour(props, 100);
+	behaviour = new ArcBehaviour(props, 100);
 	addComponent(behaviour);
 	registerRenderReceiver(behaviour);
 	
