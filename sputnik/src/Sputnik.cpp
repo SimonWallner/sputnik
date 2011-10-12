@@ -94,7 +94,7 @@ Sputnik::Sputnik(Properties* _props)
 //	fontRenderer.render("P.AY");
 	
 	
-	Arc arc(props);
+	Arc arc(props, &inputManager);
 	
 	
 	WiimoteDebugger wiimoteDebugger0("wiimote debugger 0", props, &inputManager, 0);

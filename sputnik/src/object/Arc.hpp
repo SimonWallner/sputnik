@@ -4,6 +4,7 @@
 #include <kocmoc-core/componentSystem/Object.hpp>
 
 #include <component/ArcBehaviour.hpp>
+#include <input/WiimoteInputManager.hpp>
 
 namespace kocmoc
 {
@@ -23,7 +24,8 @@ namespace sputnik
 		class Arc : public kocmoc::core::componentSystem::Object
 		{
 		public:
-			Arc(kocmoc::core::util::Properties* props);
+			Arc(kocmoc::core::util::Properties* props,
+				input::WiimoteInputManager* inputManager);
 
 		private:
 			component::ArcBehaviour* behaviour;

@@ -32,7 +32,8 @@ namespace sputnik
 		public:
 			
 			ArcBehaviour(kocmoc::core::util::Properties* props,
-				 unsigned int instanceCount);
+						 unsigned int instanceCount,
+						 input::WiimoteInputManager* inputManager);
 
 			void onRender(kocmoc::core::renderer::RenderPass pass,
 						kocmoc::core::scene::Camera* camera);
@@ -54,6 +55,7 @@ namespace sputnik
 			kocmoc::core::util::Properties* props;
 			unsigned int instanceCount;
 			glm::vec3 start, end;
+			kocmoc::core::types::Symbol arcPointer;
 			
 			class InputCallback : public input::WiimoteEventListener
 			{
@@ -62,11 +64,12 @@ namespace sputnik
 					: p(_p)
 				{}
 				
-				void wiimoteAnalogEventCallback(kocmoc::core::types::Symbol name, input::WiimoteAnalogEvent event) {}
+				void wiimoteAnalogEventCallback(kocmoc::core::types::Symbol name, input::WiimoteAnalogEvent event);
 				void wiimoteButtonEventCallback(kocmoc::core::types::Symbol name, input::WiimoteButtonEvent event) {}
 				
 			private:
 				ArcBehaviour* p;
+
 			} ic;
 		};
 	}

@@ -131,7 +131,7 @@ void WiimoteInputManager::handleEvent(CWiimote& wiimote, unsigned int controller
 			
 			notifyAnalogListeners(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y,
 								  WiimoteAnalogEvent(controllerNumber, relativeX,
-													 relativeY, 0));
+													 1.0f - relativeY, 0));
 		}
 		{
 			// code derived from the sample

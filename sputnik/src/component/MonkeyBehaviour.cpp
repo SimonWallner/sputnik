@@ -42,7 +42,7 @@ void MonkeyBehaviour::InputCallback::wiimoteAnalogEventCallback(Symbol name, Wii
 	{
 		vec2 rel;
 		rel.x = event.x;
-		rel.y = 1.0f - event.y;
+		rel.y = event.y;
 		
 		vec2 newPosition = p->movementDomainSize * rel + p->movementDomainStart;
 		

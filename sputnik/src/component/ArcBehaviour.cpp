@@ -9,6 +9,7 @@
 #include <kocmoc-core/component/Renderable.hpp>
 
 using namespace sputnik::component;
+using namespace sputnik::input;
 
 using kocmoc::core::renderer::RenderPass;
 using kocmoc::core::renderer::RenderPass;
@@ -17,14 +18,21 @@ using kocmoc::core::scene::AssetLoader;
 using kocmoc::core::component::Renderable;
 using kocmoc::core::util::Properties;
 using kocmoc::core::types::symbolize;
+using kocmoc::core::types::Symbol;
 
-ArcBehaviour::ArcBehaviour(Properties* _props, unsigned int _instanceCount)
+ArcBehaviour::ArcBehaviour(Properties* _props,
+						   unsigned int _instanceCount,
+						   WiimoteInputManager* inputManager)
 	: props(_props)
 	, instanceCount(_instanceCount)
 	, start(glm::vec3(0))
 	, end(glm::vec3(0, 0, -20))
+	, arcPointer(kocmoc::core::types::symbolize("arc-pointer"))
 	, ic(this)
-{};
+{
+	inputManager->bindWiimoteEvent(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y, arcPointer);
+	inputManager->registerWiimoteEventListener(arcPointer, &ic);
+}
 
 void ArcBehaviour::onRender(RenderPass pass, Camera *camera)
 {	
@@ -50,4 +58,15 @@ void ArcBehaviour::init()
 #warning XXX: problem with mutable strings in props!
 	Renderable* renderable = loader.load(test.c_str(), shaderPath);
 	instancedMesh = renderable->getFirstMesh();
+}
+
+void ArcBehaviour::InputCallback::wiimoteAnalogEventCallback(Symbol name,
+															 WiimoteAnalogEvent event)
+{
+	if (name == p->arcPointer)
+	{
+		p->setEnd(glm::vec3(40.0f * (event.x - 0.5f),
+							40.0f * (event.y - 0.5f),
+							-20.0f));
+	}
 }

@@ -73,6 +73,6 @@ void WiimoteDebugger::InputCallback::wiimoteAnalogEventCallback(Symbol name,
 	if (name == p->cursorSymbol && event.controlerNumber == p->controllerNumber)
 	{
 		p->cursor->setPosition(glm::vec2(event.x * p->frameWidth,
-										 (1.0f - event.y) * p->frameHeight));
+										 (event.y) * p->frameHeight));
 	}
 }
