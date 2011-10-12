@@ -12,7 +12,7 @@
 
 #include <input/WiimoteInputManager.hpp>
 
-#include "component/Monkey.hpp"
+#include "object/Monkey.hpp"
 
 namespace kocmoc
 {
@@ -56,7 +56,7 @@ namespace sputnik
 		bool running;
 		kocmoc::core::types::Symbol quit, screenShot, note, cursorX, cursorY;
 		
-		component::Monkey* monkey;
+		object::Monkey* monkey;
 		kocmoc::core::scene::ImageLoader imageLoader;
 		
 		class InputCallback : public kocmoc::core::input::ButtonEventListener, public input::WiimoteEventListener

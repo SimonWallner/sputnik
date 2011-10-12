@@ -15,11 +15,11 @@
 
 #include <input/WiimoteInputManager.hpp>
 
-#include "MonkeyBehaviour.hpp"
+#include <component/MonkeyBehaviour.hpp>
 
 namespace sputnik
 {
-	namespace component
+	namespace object
 	{
 		class Monkey : public kocmoc::core::componentSystem::Object
 		{
@@ -30,7 +30,7 @@ namespace sputnik
 			
 		private:
 			kocmoc::core::component::ObjectBehaviour* objectBehaviour;
-			MonkeyBehaviour* monkeyBehaviour;
+			component::MonkeyBehaviour* monkeyBehaviour;
 			kocmoc::core::component::Renderable* renderable;
 			
 			sputnik::input::WiimoteInputManager* inputManager;

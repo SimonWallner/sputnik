@@ -18,7 +18,10 @@ namespace sputnik
 			/**
 			 * create a new selectable with the given diameter.
 			 */
-			Selectable(float radius);
+			Selectable(float _radius)
+			{
+				radius = _radius;
+			}
 			
 			void hover(bool isHovering);
 			void select(bool isSelected);

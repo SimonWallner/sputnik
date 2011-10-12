@@ -24,6 +24,7 @@
 
 #include <component/WiimoteDebugger.hpp>
 #include <object/Arc.hpp>
+#include <object/Sampler.hpp>
 
 using namespace sputnik;
 using namespace kocmoc::core::types;
@@ -110,6 +111,7 @@ Sputnik::Sputnik(Properties* _props)
 	
 	
 	Arc arc(props, &inputManager, camera);
+	Sampler sampler("Sampler one", props);
 	
 	
 	CameraController cameraController(camera, &inputManager);
@@ -136,7 +138,8 @@ Sputnik::Sputnik(Properties* _props)
 		camera->updateMatrixes();
 		
 		// render normal
-		monkey->render(RP_NORMAL, camera);
+//		monkey->render(RP_NORMAL, camera);
+		sampler.render(RP_NORMAL, camera);
 		
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 		arc.render(RP_NORMAL, camera);
