@@ -2,6 +2,7 @@
 #define SPUTNIK_COMPONENT_ARC_BEHAVIOUR_HPP
 
 #include <kocmoc-core/componentSystem/Component.hpp>
+#include <kocmoc-core/scene/FilmCamera.hpp>
 
 #include <glm/glm.hpp>
 
@@ -33,7 +34,8 @@ namespace sputnik
 			
 			ArcBehaviour(kocmoc::core::util::Properties* props,
 						 unsigned int instanceCount,
-						 input::WiimoteInputManager* inputManager);
+						 input::WiimoteInputManager* inputManager,
+						 kocmoc::core::scene::FilmCamera* camera);
 
 			void onRender(kocmoc::core::renderer::RenderPass pass,
 						kocmoc::core::scene::Camera* camera);
@@ -56,6 +58,7 @@ namespace sputnik
 			unsigned int instanceCount;
 			glm::vec3 start, end;
 			kocmoc::core::types::Symbol arcPointer;
+			kocmoc::core::scene::FilmCamera* camera;
 			
 			class InputCallback : public input::WiimoteEventListener
 			{

@@ -19,8 +19,8 @@ varying vec2 uv;
 
 void main(void)
 {
-	float t = instance / 100.0;
-	vec3 translate = start * t + end * (1 - t);
+	float t = instance / 200.0;
+	vec3 translate = end * t + start * (1 - t);
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition + translate, 1);
 
 	normal = inNormal;

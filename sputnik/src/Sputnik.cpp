@@ -94,9 +94,6 @@ Sputnik::Sputnik(Properties* _props)
 //	fontRenderer.render("P.AY");
 	
 	
-	Arc arc(props, &inputManager);
-	
-	
 	WiimoteDebugger wiimoteDebugger0("wiimote debugger 0", props, &inputManager, 0);
 	wiimoteDebugger0.init();
 	WiimoteDebugger wiimoteDebugger1("wiimote debugger 1", props, &inputManager, 1);
@@ -106,12 +103,14 @@ Sputnik::Sputnik(Properties* _props)
 	overlayCamera.setWidthHeightDepth(width/2.0f, height/2.0f, 1.0f);
 	overlayCamera.updateMatrixes();
 	
-	
-	
 	FilmCamera* camera = new FilmCamera(vec3(0, 0, 4), vec3(0, 0, 0), vec3(0, 1, 0));
 	camera->setGateInPixel(width, height);
 	camera->setFilterMarginInPixel(0, 0);
 	camera->setAngleOfView(1.5f);
+	
+	
+	Arc arc(props, &inputManager, camera);
+	
 	
 	CameraController cameraController(camera, &inputManager);
 	inputManager.dumpBindings();	

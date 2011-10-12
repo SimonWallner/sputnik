@@ -25,7 +25,8 @@ namespace sputnik
 		{
 		public:
 			Arc(kocmoc::core::util::Properties* props,
-				input::WiimoteInputManager* inputManager);
+				input::WiimoteInputManager* inputManager,
+				kocmoc::core::scene::FilmCamera* camera);
 
 		private:
 			component::ArcBehaviour* behaviour;
