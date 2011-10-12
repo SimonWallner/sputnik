@@ -15,6 +15,8 @@
 using namespace sputnik;
 namespace po = boost::program_options;
 
+using kocmoc::core::util::Properties;
+
 int main(int argc, char *argv[])
 {	
 
@@ -54,11 +56,11 @@ int main(int argc, char *argv[])
 		
 		// bootstrap kocmoc...
 		{
-			kocmoc::core::util::Properties props;
-			props.add(kocmoc::core::types::symbolize("config-file"), configFile);
-			props.add(kocmoc::core::types::symbolize("core-config-file"), coreConfigFile);
+			Properties* props = new Properties();
+			props->add(kocmoc::core::types::symbolize("config-file"), configFile);
+			props->add(kocmoc::core::types::symbolize("core-config-file"), coreConfigFile);
 			
-			Sputnik sputnik(&props);
+			Sputnik sputnik(props);
 		}
 		
 	}

@@ -26,14 +26,7 @@ namespace sputnik
 		public:
 			Monkey(std::string name,
 				   kocmoc::core::util::Properties* props,
-				   sputnik::input::WiimoteInputManager* _inputManager)
-				: Object(name, props)
-				, inputManager(_inputManager)
-			{}
-			
-			void onMessage(void);
-			
-			void init(void);
+				   sputnik::input::WiimoteInputManager* _inputManager);
 			
 		private:
 			kocmoc::core::component::ObjectBehaviour* objectBehaviour;

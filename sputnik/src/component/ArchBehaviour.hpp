@@ -1,7 +1,7 @@
-#ifndef SPUTNIK_COMPONENT_ARCH_HPP
-#define SPUTNIK_COMPONENT_ARCH_HPP
+#ifndef SPUTNIK_COMPONENT_ARCH_BEHAVIOUR_HPP
+#define SPUTNIK_COMPONENT_ARCH_BEHAVIOUR_HPP
 
-#include <kocmoc-core/componentSystem/Object.hpp>
+#include <kocmoc-core/componentSystem/Component.hpp>
 
 namespace kocmoc
 {
@@ -23,14 +23,14 @@ namespace sputnik
 {
 	namespace component
 	{
-		class Arch : public kocmoc::core::componentSystem::Object
+		class ArchBehaviour : public kocmoc::core::componentSystem::Component
 		{
 		public:
 			
-			Arch(kocmoc::core::util::Properties* props,
+			ArchBehaviour(kocmoc::core::util::Properties* props,
 				 unsigned int instanceCount);
 
-			void render(kocmoc::core::renderer::RenderPass pass,
+			void onRender(kocmoc::core::renderer::RenderPass pass,
 						kocmoc::core::scene::Camera* camera);
 			
 			void init();

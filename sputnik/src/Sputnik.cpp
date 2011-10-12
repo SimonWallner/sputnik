@@ -23,7 +23,7 @@
 #include <kocmoc-core/scene/FontRenderer.hpp>
 
 #include <component/WiimoteDebugger.hpp>
-#include <component/Arch.hpp>
+#include <object/Arch.hpp>
 
 using namespace sputnik;
 using namespace kocmoc::core::types;
@@ -32,6 +32,7 @@ using namespace kocmoc::core::component;
 using namespace kocmoc::core::renderer;
 
 using namespace sputnik::component;
+using namespace sputnik::object;
 
 using std::string;
 
@@ -63,9 +64,10 @@ Sputnik::Sputnik(Properties* _props)
 	kocmoc::core::util::parser::parseConfigXMLFileIntoProperties(configFile, props);
 	kocmoc::core::util::parser::parseConfigXMLFileIntoProperties(coreConfigFile, props);
 	props->dumpCache();
-	
+
 	int width = props->getFloat(symbolize("width"));
 	int height = props->getFloat(symbolize("height"));
+	
 
 #warning FIXME: context somehow fucks up working directory, therfore must be after config file loading
 	// this only occurs in the Xcode debugger, not when build with make and run
@@ -86,16 +88,13 @@ Sputnik::Sputnik(Properties* _props)
 	inputManager.bindWiimoteEvent(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y, cursorX);
 
 	
-//	init();
 	monkey = new Monkey("the player ship", props, &inputManager);
-	monkey->init();
 	
 //	FontRenderer fontRenderer(props);
 //	fontRenderer.render("P.AY");
 	
 	
-	Arch arch(props, 100);
-	arch.init();
+	Arch arch(props);
 	
 	
 	WiimoteDebugger wiimoteDebugger0("wiimote debugger 0", props, &inputManager, 0);
@@ -139,7 +138,9 @@ Sputnik::Sputnik(Properties* _props)
 		
 		// render normal
 		monkey->render(RP_NORMAL, camera);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 		arch.render(RP_NORMAL, camera);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 		// render overlays
 		wiimoteDebugger0.render(RP_OVERLAY, &overlayCamera);
@@ -173,11 +174,6 @@ void Sputnik::printIntro()
 	<< "   .                                                                 *         " << std::endl
 	<< "                                      .                                       " << std::endl
 	<< "//// sputnik //////////////////////////////////////////////////////////////////" << std::endl;
-}
-
-void Sputnik::init()
-{
-	;
 }
 
 Sputnik::~Sputnik()

@@ -16,11 +16,15 @@ using namespace kocmoc::core::component;
 using kocmoc::core::scene::AssetLoader;
 using kocmoc::core::types::symbolize;
 
-void Monkey::init()
+Monkey::Monkey(std::string name,
+	   kocmoc::core::util::Properties* props,
+	   sputnik::input::WiimoteInputManager* _inputManager)
+: Object(name, props)
+, inputManager(_inputManager)
 {
 	objectBehaviour = new ObjectBehaviour();
 	monkeyBehaviour = new MonkeyBehaviour(inputManager);
-
+	
 	AssetLoader loader;
 	loader.addResourcePath(props->getString(symbolize("media-path")));
 	loader.addResourcePath(props->getString(symbolize("core-media-path")));

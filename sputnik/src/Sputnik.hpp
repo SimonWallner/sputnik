@@ -42,13 +42,13 @@ namespace sputnik
 		 *			like command line arguments and so on
 		 */
 		Sputnik(kocmoc::core::util::Properties* props);
-		Sputnik(void);
-		~Sputnik(void);
+		Sputnik();
+		~Sputnik();
 		
 		/**
 		 * print the awesome ASCII art intro.
 		 */
-		void printIntro(void);
+		void printIntro();
 
 	private:
 		kocmoc::core::renderer::Context* context;
@@ -87,8 +87,6 @@ namespace sputnik
 		private:
 			Sputnik* p;
 		} ic;
-		
-		void init(void);
 		
 		output::MIDIOut midiOut;
 

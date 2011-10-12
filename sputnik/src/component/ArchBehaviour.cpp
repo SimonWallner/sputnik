@@ -1,4 +1,6 @@
-#include <component/Arch.hpp>
+#include <component/ArchBehaviour.hpp>
+
+#include <iostream>
 
 #include <kocmoc-core/renderer/RenderMesh.hpp>
 #include <kocmoc-core/scene/AssetLoader.hpp>
@@ -16,22 +18,23 @@ using kocmoc::core::component::Renderable;
 using kocmoc::core::util::Properties;
 using kocmoc::core::types::symbolize;
 
-Arch::Arch(Properties* _props, unsigned int _instanceCount)
-	: Object("Arch", _props)
-	, props(_props)
+ArchBehaviour::ArchBehaviour(Properties* _props, unsigned int _instanceCount)
+	: props(_props)
 	, instanceCount(_instanceCount)
 {};
 
-void Arch::render(RenderPass pass, Camera *camera)
-{
-	Object::render(pass, camera);
-	
+void ArchBehaviour::onRender(RenderPass pass, Camera *camera)
+{	
 	if (pass == kocmoc::core::renderer::RP_NORMAL)
-		instancedMesh->drawInstanced(camera, glm::mat4(1), 100);
+		instancedMesh->drawInstanced(camera, glm::mat4(1), instanceCount);
 }
 
-void Arch::init()
+void ArchBehaviour::init()
 {
+	std::cout << " ----------------------------------------------------------" << std::endl;
+	props->dumpCache();
+std::cout << " ----------------------------------------------------------" << std::endl;	
+	
 	AssetLoader loader;
 	loader.addResourcePath(props->getString(symbolize("media-path")));
 	loader.addResourcePath(props->getString(symbolize("core-media-path")));

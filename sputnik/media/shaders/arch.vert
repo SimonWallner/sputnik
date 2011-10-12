@@ -16,7 +16,7 @@ varying vec2 uv;
 
 void main(void)
 {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition + vec3(0, 0, -instance), 1);
+	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition + vec3(0, 0, -100 + instance), 1);
 
 	normal = inNormal;
 	uv = inUv;
