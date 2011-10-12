@@ -22,6 +22,7 @@
 	<string name="media-path" value="${KOCMOC_MEDIA_PATH}" />
 	<string name="test-model-name" value="models/monkey.blend" />
 	<string name="arc-model-name" value="models/arcParticle-small.blend" />
+	<string name="sphere1-model-name" value="models/sphere1.blend" />
 	<!-- <string name="test-model-name" value="models/icosphere.blend" /> -->
 
 </properties>

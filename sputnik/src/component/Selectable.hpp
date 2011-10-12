@@ -9,9 +9,17 @@ namespace sputnik
 {
 	namespace component
 	{
+		/**
+		 * A selectable object with a boundith sphere.
+		 */
 		class Selectable : public kocmoc::core::componentSystem::Component
 		{
 		public:
+			/**
+			 * create a new selectable with the given diameter.
+			 */
+			Selectable(float radius);
+			
 			void hover(bool isHovering);
 			void select(bool isSelected);
 			
@@ -20,6 +28,12 @@ namespace sputnik
 			 * @param acceleration vector in m/s
 			 */
 			void drag(glm::vec3 acceleration);
+			
+		private:
+			/**
+			 * radious of the bounding sphere
+			 */
+			float radius;
 		};
 	}
 }
