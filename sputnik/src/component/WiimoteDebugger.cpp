@@ -66,7 +66,7 @@ void WiimoteDebugger::InputCallback::wiimoteAnalogEventCallback(Symbol name,
 		if (name == dots[i] && event.controlerNumber == p->controllerNumber)
 		{
 			p->markers[i]->setScale(glm::vec2(event.z) * 4.0f);
-			p->markers[i]->setPosition(glm::vec2(event.x, event.y));
+			p->markers[i]->setPosition(glm::vec2(p->frameWidth - event.x, event.y));
 		}
 	}
 	
