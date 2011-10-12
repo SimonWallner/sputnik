@@ -21,20 +21,22 @@ using kocmoc::core::types::symbolize;
 ArchBehaviour::ArchBehaviour(Properties* _props, unsigned int _instanceCount)
 	: props(_props)
 	, instanceCount(_instanceCount)
+	, start(glm::vec3(0))
+	, end(glm::vec3(0, 0, -20))
 {};
 
 void ArchBehaviour::onRender(RenderPass pass, Camera *camera)
 {	
 	if (pass == kocmoc::core::renderer::RP_NORMAL)
+	{
+		instancedMesh->setShaderParam("start", start);
+		instancedMesh->setShaderParam("end", end);
 		instancedMesh->drawInstanced(camera, glm::mat4(1), instanceCount);
+	}
 }
 
 void ArchBehaviour::init()
 {
-	std::cout << " ----------------------------------------------------------" << std::endl;
-	props->dumpCache();
-std::cout << " ----------------------------------------------------------" << std::endl;	
-	
 	AssetLoader loader;
 	loader.addResourcePath(props->getString(symbolize("media-path")));
 	loader.addResourcePath(props->getString(symbolize("core-media-path")));

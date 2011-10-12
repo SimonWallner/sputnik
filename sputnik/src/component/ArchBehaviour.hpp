@@ -3,6 +3,8 @@
 
 #include <kocmoc-core/componentSystem/Component.hpp>
 
+#include <glm/glm.hpp>
+
 namespace kocmoc
 {
 	namespace core
@@ -34,11 +36,22 @@ namespace sputnik
 						kocmoc::core::scene::Camera* camera);
 			
 			void init();
+			
+			void setStart(glm::vec3 _start)
+			{
+				start = _start;
+			}
+			
+			void setEnd(glm::vec3 _end)
+			{
+				end = _end;
+			}
 		
 		private:
 			kocmoc::core::renderer::RenderMesh* instancedMesh;
 			kocmoc::core::util::Properties* props;
 			unsigned int instanceCount;
+			glm::vec3 start, end;
 		};
 	}
 }

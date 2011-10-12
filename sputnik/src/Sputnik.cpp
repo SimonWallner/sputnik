@@ -138,6 +138,7 @@ Sputnik::Sputnik(Properties* _props)
 		
 		// render normal
 		monkey->render(RP_NORMAL, camera);
+		
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 		arch.render(RP_NORMAL, camera);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
