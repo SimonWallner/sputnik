@@ -22,6 +22,7 @@ using kocmoc::core::component::Renderable;
 using kocmoc::core::util::Properties;
 using kocmoc::core::types::symbolize;
 using kocmoc::core::types::Symbol;
+using kocmoc::core::input::ButtonEvent;
 
 using glm::vec3;
 using glm::vec4;
@@ -29,17 +30,26 @@ using glm::vec4;
 ArcBehaviour::ArcBehaviour(Properties* _props,
 						   unsigned int _instanceCount,
 						   WiimoteInputManager* inputManager,
-						   kocmoc::core::scene::FilmCamera* _camera)
+						   kocmoc::core::scene::FilmCamera* _camera,
+						   scene::SelectableWorld* _world)
 	: props(_props)
 	, instanceCount(_instanceCount)
 	, start(glm::vec3(0))
 	, end(glm::vec3(0, 0, -20))
 	, arcPointer(kocmoc::core::types::symbolize("arc-pointer"))
+	, arcB(kocmoc::core::types::symbolize("arc-B"))
 	, camera(_camera)
+	, world(_world)
+	, hover(NULL)
+	, selection(NULL)
 	, ic(this)
 {
 	inputManager->bindWiimoteEvent(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y, arcPointer);
 	inputManager->registerWiimoteEventListener(arcPointer, &ic);
+	
+	inputManager->bindWiimoteEvent(WIIMOTE_EVENT_BUTTON_B_PRESSED, arcB);
+	inputManager->bindWiimoteEvent(WIIMOTE_EVENT_BUTTON_B_RELEASED, arcB);
+	inputManager->registerWiimoteEventListener(arcB, &ic);
 }
 
 void ArcBehaviour::onRender(RenderPass pass, Camera *camera)
@@ -72,15 +82,39 @@ void ArcBehaviour::InputCallback::wiimoteAnalogEventCallback(Symbol name,
 															 WiimoteAnalogEvent event)
 {
 	if (name == p->arcPointer)
-	{
-		vec3 normalizedPointer = vec3((event.x - 0.5f) * 2.0f,
-									  (event.y - 0.5f) * 2.0f, 1.0f);
-									  
-		vec4 end = vec4(normalizedPointer * vec3(40.0f, 30.0f, -40.0f), 1.0f);
+	{		
 		vec4 start = vec4(0, -1.5, -2, 1);
-		
 		glm::mat4 inverseViewMatrix = glm::core::function::matrix::inverse(p->camera->getViewMatrix());
-		p->setStart(vec3(inverseViewMatrix * end));
-		p->setEnd(vec3(inverseViewMatrix * start));
+		p->setStart(vec3(inverseViewMatrix * start));
+		
+		p->hover = p->world->rayIntersection(p->start, p->end);	
+		
+		if (p->selection)
+		{
+			p->setEnd(p->selection->getPosition());
+		}
+		else
+		{
+			vec3 normalizedPointer = vec3((event.x - 0.5f) * 2.0f,
+										  (event.y - 0.5f) * 2.0f, 1.0f);
+			vec4 end = vec4(normalizedPointer * vec3(40.0f, 30.0f, -40.0f), 1.0f);
+			p->setEnd(vec3(inverseViewMatrix * end));
+		}
+	}
+}
+
+void ArcBehaviour::InputCallback::wiimoteButtonEventCallback(Symbol name,
+															 WiimoteButtonEvent event)
+{
+	if (name == p->arcB && event.state == ButtonEvent::PRESSED)
+	{
+		p->selection = p->hover;
+		std::cout << "B pressed ----------------" << std::endl;
+	}
+	
+	else if (name == p->arcB && event.state == ButtonEvent::RELEASED)
+	{
+		p->selection = NULL;
+		std::cout << "---------------- B released" << std::endl;
 	}
 }

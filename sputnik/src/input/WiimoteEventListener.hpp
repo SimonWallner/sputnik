@@ -27,11 +27,12 @@ namespace sputnik
 		struct WiimoteButtonEvent
 		{
 			unsigned int controlerNumber;
-			bool isPressed;
+			kocmoc::core::input::ButtonEvent::State state;
 			
-			WiimoteButtonEvent(unsigned int _controlerNumber, bool _isPressed)
-			: controlerNumber(_controlerNumber)
-			, isPressed(_isPressed)
+			WiimoteButtonEvent(unsigned int _controlerNumber,
+							   kocmoc::core::input::ButtonEvent::State _state)
+				: controlerNumber(_controlerNumber)
+				, state(_state)
 			{}
 		};
 

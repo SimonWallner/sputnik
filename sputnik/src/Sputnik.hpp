@@ -59,7 +59,7 @@ namespace sputnik
 		object::Monkey* monkey;
 		kocmoc::core::scene::ImageLoader imageLoader;
 		
-		class InputCallback : public kocmoc::core::input::ButtonEventListener, public input::WiimoteEventListener
+		class InputCallback : public kocmoc::core::input::ButtonEventListener
 		{
 		public:
 			InputCallback(Sputnik* _p)
@@ -68,21 +68,11 @@ namespace sputnik
 			
 			void buttonEventCallback(kocmoc::core::types::Symbol name, kocmoc::core::input::ButtonEvent event)
 			{
-				if (name == p->quit && event.isPressed == true)
+				if (name == p->quit)
 					p->running = false;
-				else if (name == p->screenShot && event.isPressed == true)
+				else if (name == p->screenShot && event.state == kocmoc::core::input::ButtonEvent::PRESSED)
 					p->imageLoader.screenShot();
 			}
-			
-			void wiimoteAnalogEventCallback(kocmoc::core::types::Symbol name, input::WiimoteAnalogEvent event)
-			{
-//				GLFWwindow windowHadle = p->context->getWindowHandle();
-//				if (name == p->cursorX)
-//					glfwSetMousePos(windowHadle, event.x * 720.0f, event.y * 400);
-			}
-			
-			void wiimoteButtonEventCallback(kocmoc::core::types::Symbol name, input::WiimoteButtonEvent event)
-			{}
 			
 		private:
 			Sputnik* p;

@@ -17,11 +17,13 @@ using kocmoc::core::types::symbolize;
 
 using std::string;
 
-sputnik::object::Sampler::Sampler(string name, kocmoc::core::util::Properties* props)
+sputnik::object::Sampler::Sampler(string name, kocmoc::core::util::Properties* props,
+								  scene::SelectableWorld* world)
 : Object(name, props)
 {
-	sputnik::component::Selectable* selectable = new sputnik::component::Selectable(1.0f);
+	sputnik::component::Selectable* selectable = new sputnik::component::Selectable(3.0f);
 	addComponent(selectable);
+	world->add(selectable);
 	
 	ObjectBehaviour* objectBehaviour = new ObjectBehaviour();
 	objectBehaviour->position = glm::vec3(10, 0, -10);

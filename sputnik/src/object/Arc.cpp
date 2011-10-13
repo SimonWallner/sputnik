@@ -7,11 +7,12 @@ using namespace sputnik::component;
 
 using kocmoc::core::util::Properties;
 
-Arc::Arc(Properties* _props, input::WiimoteInputManager* inputManager,
-		 kocmoc::core::scene::FilmCamera* camera)
-	: Object("Arc", _props)
+Arc::Arc(Properties* props, input::WiimoteInputManager* inputManager,
+		 kocmoc::core::scene::FilmCamera* camera,
+		 scene::SelectableWorld* world)
+	: Object("Arc", props)
 {
-	behaviour = new ArcBehaviour(props, 200, inputManager, camera);
+	ArcBehaviour* behaviour = new ArcBehaviour(props, 200, inputManager, camera, world);
 	addComponent(behaviour);
 	registerRenderReceiver(behaviour);
 	

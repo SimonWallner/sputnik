@@ -26,7 +26,7 @@ namespace sputnik
 			 *	distance from the startPoint and is not further away than
 			 *	endPoint. If no intersectin object is found NULL is returned
 			 */
-			component::Selectable* rayIntersction(glm::vec3 startPoint,
+			component::Selectable* rayIntersection(glm::vec3 startPoint,
 												  glm::vec3 endPoint);
 			
 		private:

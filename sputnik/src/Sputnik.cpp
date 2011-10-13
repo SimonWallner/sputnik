@@ -25,6 +25,7 @@
 #include <component/WiimoteDebugger.hpp>
 #include <object/Arc.hpp>
 #include <object/Sampler.hpp>
+#include <scene/SelectableWorld.hpp>
 
 using namespace sputnik;
 using namespace kocmoc::core::types;
@@ -34,6 +35,7 @@ using namespace kocmoc::core::renderer;
 
 using namespace sputnik::component;
 using namespace sputnik::object;
+using namespace sputnik::scene;
 
 using std::string;
 
@@ -85,11 +87,8 @@ Sputnik::Sputnik(Properties* _props)
 	inputManager.registerButtonEventListener(screenShot, &ic);
 	inputManager.bindKeyToButtonEvent(',', screenShot);
 	
-	inputManager.registerWiimoteEventListener(cursorX, &ic);
-	inputManager.bindWiimoteEvent(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y, cursorX);
-
 	
-	monkey = new Monkey("the player ship", props, &inputManager);
+	monkey = new Monkey("it's a duck!", props, &inputManager);
 	
 //	FontRenderer fontRenderer(props);
 //	fontRenderer.render("P.AY");
@@ -110,8 +109,11 @@ Sputnik::Sputnik(Properties* _props)
 	camera->setAngleOfView(1.5f);
 	
 	
-	Arc arc(props, &inputManager, camera);
-	Sampler sampler("Sampler one", props);
+	
+	SelectableWorld selectableWorld;
+	
+	Arc arc(props, &inputManager, camera, &selectableWorld);
+	Sampler sampler("Sampler one", props, &selectableWorld);
 	
 	
 	CameraController cameraController(camera, &inputManager);

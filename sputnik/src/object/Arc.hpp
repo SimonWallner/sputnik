@@ -5,6 +5,7 @@
 
 #include <component/ArcBehaviour.hpp>
 #include <input/WiimoteInputManager.hpp>
+#include <scene/SelectableWorld.hpp>
 
 namespace kocmoc
 {
@@ -26,10 +27,10 @@ namespace sputnik
 		public:
 			Arc(kocmoc::core::util::Properties* props,
 				input::WiimoteInputManager* inputManager,
-				kocmoc::core::scene::FilmCamera* camera);
+				kocmoc::core::scene::FilmCamera* camera,
+				scene::SelectableWorld* world);
 
 		private:
-			component::ArcBehaviour* behaviour;
 		};
 	}
 }
