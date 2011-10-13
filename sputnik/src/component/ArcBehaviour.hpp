@@ -53,12 +53,17 @@ namespace sputnik
 			{
 				end = _end;
 			}
+			
+			void setMid(glm::vec3 _mid)
+			{
+				midpoint = _mid;
+			}
 		
 		private:
 			kocmoc::core::renderer::RenderMesh* instancedMesh;
 			kocmoc::core::util::Properties* props;
 			unsigned int instanceCount;
-			glm::vec3 start, end;
+			glm::vec3 start, end, midpoint;
 			kocmoc::core::types::Symbol arcPointer, arcB;
 			kocmoc::core::scene::FilmCamera* camera;
 			scene::SelectableWorld* world;

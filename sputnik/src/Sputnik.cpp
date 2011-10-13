@@ -107,6 +107,7 @@ Sputnik::Sputnik(Properties* _props)
 	camera->setGateInPixel(width, height);
 	camera->setFilterMarginInPixel(0, 0);
 	camera->setAngleOfView(1.5f);
+	camera->updateMatrixes();
 	
 	
 	
