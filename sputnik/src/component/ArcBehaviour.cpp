@@ -80,40 +80,43 @@ void ArcBehaviour::init()
 	instancedMesh = renderable->getFirstMesh();
 }
 
+void ArcBehaviour::moveArc(float x, float y)
+{
+	vec4 origin = vec4(0, -1.5, -2, 1);
+	float length = 40.0f;
+	glm::mat4 inverseViewMatrix = glm::core::function::matrix::inverse(camera->getViewMatrix());
+	
+	setStart(vec3(inverseViewMatrix * origin));
+	
+	vec3 normalizedPointer = vec3((x - 0.5f) * 2.0f,
+								  (y - 0.5f) * 2.0f, 1.0f);
+	
+	vec3 directionBounds = vec3(1, 0.75, -1);
+	
+	if (selection)
+	{
+		vec3 pos = selection->getPosition();
+		setMid((vec3(start) + pos) / 2.0f);
+		setEnd(pos);					  
+	}
+	else
+	{
+		vec3 arcDirection = glm::normalize((normalizedPointer * directionBounds));
+		vec4 end = vec4(arcDirection * length, 1.0f);
+		vec4 mid = (origin + end) / 2.0f;
+		
+		setMid(vec3(inverseViewMatrix * mid));
+		setEnd(vec3(inverseViewMatrix * end));
+	}
+	
+	hover = world->rayIntersection(start, end);	
+}
+
 void ArcBehaviour::InputCallback::wiimoteAnalogEventCallback(Symbol name,
 															 WiimoteAnalogEvent event)
 {
 	if (name == p->arcPointer)
-	{		
-		vec4 start = vec4(0, -1.5, -2, 1);
-		float length = 40.0f;
-		glm::mat4 inverseViewMatrix = glm::core::function::matrix::inverse(p->camera->getViewMatrix());
-				
-		p->setStart(vec3(inverseViewMatrix * start));
-		
-		vec3 normalizedPointer = vec3((event.x - 0.5f) * 2.0f,
-									  (event.y - 0.5f) * 2.0f, 1.0f);
-		
-		vec3 directionBounds = vec3(1, 0.75, -1);
-		
-		if (p->selection)
-		{
-			vec3 pos = p->selection->getPosition();
-			p->setMid((vec3(start) + pos) / 2.0f);
-			p->setEnd(pos);					  
-		}
-		else
-		{
-			vec3 arcDirection = glm::normalize((normalizedPointer * directionBounds));
-			vec4 end = vec4(arcDirection * length, 1.0f);
-			vec4 mid = (start + end) / 2.0f;
-			
-			p->setMid(vec3(inverseViewMatrix * mid));
-			p->setEnd(vec3(inverseViewMatrix * end));
-		}
-		
-		p->hover = p->world->rayIntersection(p->start, p->end);	
-	}
+		p->moveArc(event.x, event.y);
 }
 
 void ArcBehaviour::InputCallback::wiimoteButtonEventCallback(Symbol name,

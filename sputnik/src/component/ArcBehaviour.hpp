@@ -71,6 +71,12 @@ namespace sputnik
 			Selectable* hover;
 			Selectable* selection;
 			
+			/**
+			 * move the arc, according to the user input
+			 * user input is supposed to lie in [0, 1]x[0, 1]
+			 */
+			void moveArc(float x, float y);
+			
 			class InputCallback : public input::WiimoteEventListener
 			{
 			public:
