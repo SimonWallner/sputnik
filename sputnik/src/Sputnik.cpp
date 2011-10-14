@@ -23,6 +23,7 @@
 #include <kocmoc-core/scene/FontRenderer.hpp>
 
 #include <component/WiimoteDebugger.hpp>
+#include <component/WiimoteCameraController.hpp>
 #include <object/Arc.hpp>
 #include <object/Sampler.hpp>
 #include <scene/SelectableWorld.hpp>
@@ -118,6 +119,9 @@ Sputnik::Sputnik(Properties* _props)
 	
 	
 	CameraController cameraController(camera, &inputManager);
+	WiimoteCameraController wiimoteCameraController(camera, &inputManager, props);
+	camera->tumble(0.1f, 0.1f);
+	
 	inputManager.dumpBindings();	
 	
 	Timer* timer = new Timer();
@@ -130,6 +134,8 @@ Sputnik::Sputnik(Properties* _props)
 		float t = timer ->getLastT();
 		
 		cameraController.onUpdate(deltaT);
+		wiimoteCameraController.onUpdate(deltaT);
+		
 		inputManager.poll();
 		inputManager.pollWiimote();
 		
