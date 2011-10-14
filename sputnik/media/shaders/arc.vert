@@ -26,11 +26,11 @@ void main(void)
 	vec3 translate;
 	if (t < 0.5)
 	{
-		translate = start * t + midpoint * (1 - t);		
+		translate = start * t * 2 + midpoint * (1 - t * 2);		
 	}
 	else 
 	{
-		translate = midpoint * t + end * (1 - t);		
+		translate = midpoint * t * 2 + end * (1 - t * 2);		
 	}
 	
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition + translate, 1);

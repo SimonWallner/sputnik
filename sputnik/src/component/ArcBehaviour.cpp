@@ -82,34 +82,39 @@ void ArcBehaviour::init()
 
 void ArcBehaviour::moveArc(float x, float y)
 {
-	vec4 origin = vec4(0, -1.5, -2, 1);
-	float length = 40.0f;
+	vec3 originViewSpace = vec3(0, -1.5, -2);
+	float arcMaxLength = 40.0f;
 	glm::mat4 inverseViewMatrix = glm::core::function::matrix::inverse(camera->getViewMatrix());
 	
-	setStart(vec3(inverseViewMatrix * origin));
+	setStart(vec3(inverseViewMatrix * vec4(originViewSpace, 1)));
 	
 	vec3 normalizedPointer = vec3((x - 0.5f) * 2.0f,
 								  (y - 0.5f) * 2.0f, 1.0f);
 	
 	vec3 directionBounds = vec3(1, 0.75, -1);
 	
+	vec3 pointerDirectionViewSpace = glm::normalize((normalizedPointer * directionBounds));
+	vec3 endViewSpace = pointerDirectionViewSpace * arcMaxLength;
+	
+	vec3 arcDirectionViewSpace = glm::normalize(endViewSpace - originViewSpace);
+	
 	if (selection)
 	{
-		vec3 pos = selection->getPosition();
-		setMid((vec3(start) + pos) / 2.0f);
-		setEnd(pos);					  
+		vec3 posWorldSpace = selection->getPosition();
+		setEnd(posWorldSpace);
+		
+		float midLength = glm::length(this->start - this->end) / 2.0f;
+		vec3 midViewSpace = originViewSpace + arcDirectionViewSpace * midLength;
+		
+		setMid(vec3(inverseViewMatrix * vec4(midViewSpace, 1.0f)));
 	}
 	else
 	{
-		vec3 arcDirection = glm::normalize((normalizedPointer * directionBounds));
-		vec4 end = vec4(arcDirection * length, 1.0f);
-		vec4 mid = (origin + end) / 2.0f;
-		
-		setMid(vec3(inverseViewMatrix * mid));
-		setEnd(vec3(inverseViewMatrix * end));
+		setEnd(vec3(inverseViewMatrix * vec4(endViewSpace, 1.0f)));
+		setMid((this->start + this->end) / 2.0f);
 	}
 	
-	hover = world->rayIntersection(start, end);	
+	hover = world->rayIntersection(this->start, this->end);	
 }
 
 void ArcBehaviour::InputCallback::wiimoteAnalogEventCallback(Symbol name,
@@ -125,12 +130,12 @@ void ArcBehaviour::InputCallback::wiimoteButtonEventCallback(Symbol name,
 	if (name == p->arcB && event.state == ButtonEvent::PRESSED)
 	{
 		p->selection = p->hover;
-		std::cout << "B pressed ----------------" << std::endl;
+//		std::cout << "B pressed ----------------" << std::endl;
 	}
 	
 	else if (name == p->arcB && event.state == ButtonEvent::RELEASED)
 	{
 		p->selection = NULL;
-		std::cout << "---------------- B released" << std::endl;
+//		std::cout << "---------------- B released" << std::endl;
 	}
 }
