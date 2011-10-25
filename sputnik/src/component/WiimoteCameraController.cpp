@@ -15,6 +15,8 @@ WiimoteCameraController::WiimoteCameraController(kocmoc::core::scene::FilmCamera
 												 input::WiimoteInputManager* inputManager,
 												 Properties* props)
 	: camera(_camera)
+	, pointer(symbolize("wiimote-pointer"))
+	, analogStick(symbolize("nunchuck-analog-stick"))
 	, ic(this)
 {
 	float deadX = props->getFloat(symbolize("wiimote-dead-zone-x"));
@@ -24,13 +26,23 @@ WiimoteCameraController::WiimoteCameraController(kocmoc::core::scene::FilmCamera
 	
 	inputManager->registerWiimoteEventListener(pointer, &ic);
 	inputManager->bindWiimoteEvent(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y, pointer);
+	inputManager->registerWiimoteEventListener(analogStick, &ic);
+	inputManager->bindWiimoteEvent(WIIMOTE_EVENT_NUNCHUCK_ANALOG_X_Y, analogStick);
 }
 
 void WiimoteCameraController::InputCallback::wiimoteAnalogEventCallback(Symbol name,
 																	   WiimoteAnalogEvent event)
 {
-	if (name == p-> pointer)
+	if (name == p->pointer)
 		p->pointerMoved(event.x, event.y);
+	
+	if (name == p->analogStick)
+		p->nunchuckAnalog(event.x, event.y);
+}
+
+void WiimoteCameraController::nunchuckAnalog(float x, float y)
+{
+	camera->dolly(glm::vec3(x, y, 0) * lastDeltaT * 4.0f);
 }
 
 void WiimoteCameraController::pointerMoved(float x, float y)

@@ -1,6 +1,7 @@
 #include "WiimoteInputManager.hpp"
 
 #include <kocmoc-core/compiler.h>
+#include <kocmoc-core/math/math.hpp>
 
 using namespace sputnik::input;
 using namespace kocmoc::core;
@@ -18,7 +19,7 @@ WiimoteInputManager::WiimoteInputManager(GLFWwindow window)
 	printf("Searching for wiimotes... Turn them on!\n");
 	
 	//Find the wiimote
-	int numFound = wii.Find(5);
+	int numFound = wii.Find(2);
 	printf("Found %d Wiimotes\n", numFound);
 	
 	// Connect to the Wiimotes
@@ -34,7 +35,7 @@ WiimoteInputManager::WiimoteInputManager(GLFWwindow window)
 	{
 		it->SetLEDs(LED_MAP[index]);
 		it->SetMotionSensingMode(CWiimote::ON);
-		it->EnableMotionPlus(CWiimote::ON);
+//		it->EnableMotionPlus(CWiimote::ON);
 		it->IR.SetMode(CIR::ON);
 		it->IR.SetVres(10000, 10000);
 	}
@@ -232,9 +233,30 @@ void WiimoteInputManager::handleEvent(CWiimote& wiimote, unsigned int controller
     int exType = wiimote.ExpansionDevice.GetType();
     if(exType == wiimote.ExpansionDevice.TYPE_NUNCHUK)
     {
-
+        CNunchuk &nc = wiimote.ExpansionDevice.Nunchuk;
+		
+        if(nc.Buttons.isPressed(CNunchukButtons::BUTTON_C))
+			notifyButtonListeners(WIIMOTE_EVENT_BUTTON_C_PRESSED, ButtonEvent(ButtonEvent::PRESSED), controllerNumber);
+		if(nc.Buttons.isPressed(CNunchukButtons::BUTTON_Z))
+			notifyButtonListeners(WIIMOTE_EVENT_BUTTON_Z_PRESSED, ButtonEvent(ButtonEvent::PRESSED), controllerNumber);
+		
+		if(nc.Buttons.isReleased(CNunchukButtons::BUTTON_C))
+			notifyButtonListeners(WIIMOTE_EVENT_BUTTON_C_RELEASED, ButtonEvent(ButtonEvent::RELEASED), controllerNumber);
+		if(nc.Buttons.isReleased(CNunchukButtons::BUTTON_Z))
+			notifyButtonListeners(WIIMOTE_EVENT_BUTTON_Z_RELEASED, ButtonEvent(ButtonEvent::RELEASED), controllerNumber);
+		
+		if(nc.Buttons.isHeld(CNunchukButtons::BUTTON_C))
+			notifyButtonListeners(WIIMOTE_EVENT_BUTTON_C_HELD, ButtonEvent(ButtonEvent::HELD), controllerNumber);
+		if(nc.Buttons.isHeld(CNunchukButtons::BUTTON_Z))
+			notifyButtonListeners(WIIMOTE_EVENT_BUTTON_Z_HELD, ButtonEvent(ButtonEvent::HELD), controllerNumber);
+		
+		float angle, magnitude;
+        nc.Joystick.GetPosition(angle, magnitude);
+		glm::vec2 direction = math::pol2Cart(math::deg2Rad(angle), magnitude);
+		notifyAnalogListeners(WIIMOTE_EVENT_NUNCHUCK_ANALOG_X_Y,
+							  WiimoteAnalogEvent(controllerNumber, direction.x,
+												 direction.y, magnitude));
     }
- 
 }
 
 void WiimoteInputManager::handleStatus(CWiimote &wiimote, unsigned int controllerNumber)

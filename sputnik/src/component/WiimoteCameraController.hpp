@@ -33,7 +33,7 @@ namespace sputnik
 		private:
 			kocmoc::core::scene::FilmCamera* camera;
 			
-			kocmoc::core::types::Symbol pointer;
+			kocmoc::core::types::Symbol pointer, analogStick;
 			
 			float lastDeltaT;
 			
@@ -43,6 +43,7 @@ namespace sputnik
 			 * the pointer moved to the given position in [0, 1]x[0, 1]
 			 */
 			void pointerMoved(float x, float y);
+			void nunchuckAnalog(float x, float y);
 			
 			/**
 			 * Map a value to the dead zone

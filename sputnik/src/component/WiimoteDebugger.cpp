@@ -36,6 +36,7 @@ void WiimoteDebugger::init()
 	{
 		addComponent(markers[i]);
 		registerRenderReceiver(markers[i]);
+		markers[i]->setScale(glm::vec2(8.0f));
 	}
 	
 	cursor = new OverlayQuad(props);
