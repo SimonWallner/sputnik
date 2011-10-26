@@ -21,18 +21,25 @@ varying vec2 uv;
 
 void main(void)
 {
-	float t = float(instance) / float(totalInstances);
+	// cure params
+	const float tension = 2;
 	
-	vec3 translate;
+	
+	float t = float(instance) / float(totalInstances); // [0, 1]
+	
+	vec3 direction = end - start;
+	vec3 movedMid = midpoint - (direction - 2);
+	
+	float r = pow(t * 2 - 1, tension); //[0, 1]
+	
+	vec3 translate = (start + direction * t) * r + (movedMid + direction * t) * (1-r);
+	translate = (movedMid + direction * t);
+	
 	if (t < 0.5)
-	{
-		translate = start * t * 2 + midpoint * (1 - t * 2);		
-	}
+		translate = start * (t * 2) + midpoint * (1 - t*2);
 	else 
-	{
-		translate = midpoint * t * 2 + end * (1 - t * 2);		
-	}
-	
+		translate = midpoint * (t*2 - 1) + end * (2 - t*2);
+		
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition + translate, 1);
 
 	normal = inNormal;
