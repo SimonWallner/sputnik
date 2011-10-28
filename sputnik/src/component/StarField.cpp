@@ -12,12 +12,11 @@ using namespace kocmoc::core;
 
 void StarField::init()
 {
-	TriangleMesh* stars = generator::generateStars(1000.0f, 2.0f, 10000);
+	TriangleMesh* stars = generator::generateStars(600.0f, 1.5f, 10000);
 	
-	std::string coreMediaPath = props->getString(types::symbolize("core-media-path"));
-	std::string sputnikMediaPath = props->getString(types::symbolize("media-path"));
+	std::string mediaPath = props->getString(types::symbolize("media-path"));
 	
-	Shader* shader = new Shader(coreMediaPath + "shaders/base.vert", sputnikMediaPath + "shaders/stars.frag");
+	Shader* shader = new Shader(mediaPath + "shaders/base.vert", mediaPath + "shaders/stars.frag");
 	
 	mesh = new RenderMesh21(stars, shader);
 }

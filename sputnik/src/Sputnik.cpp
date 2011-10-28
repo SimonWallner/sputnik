@@ -113,7 +113,7 @@ Sputnik::Sputnik(Properties* _props)
 	FilmCamera* camera = new FilmCamera(vec3(0, 0, 4), vec3(0, 0, 0), vec3(0, 1, 0));
 	camera->setGateInPixel(width, height);
 	camera->setFilterMarginInPixel(0, 0);
-	camera->setAngleOfView(1.7f);
+	camera->setAngleOfView(2.0f);
 	camera->updateMatrixes();
 	
 	
