@@ -28,6 +28,7 @@
 
 #include <component/WiimoteDebugger.hpp>
 #include <component/WiimoteCameraController.hpp>
+#include <component/StarField.hpp>
 #include <object/Arc.hpp>
 #include <object/Sampler.hpp>
 #include <scene/SelectableWorld.hpp>
@@ -128,6 +129,9 @@ Sputnik::Sputnik(Properties* _props)
 	Arc arc(props, &inputManager, camera, &selectableWorld);
 	Sampler sampler("Sampler one", props, &selectableWorld);
 	
+	StarField starField(props);
+	starField.init();
+	
 	
 	CameraController cameraController(camera, &inputManager);
 	WiimoteCameraController wiimoteCameraController(camera, &inputManager, props);
@@ -166,6 +170,7 @@ Sputnik::Sputnik(Properties* _props)
 		{
 			// render normal
 			sampler.render(RP_NORMAL, camera);
+			starField.onRender(RP_NORMAL, camera);
 			
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 			arc.render(RP_NORMAL, camera);
