@@ -15,12 +15,16 @@
 #include <kocmoc-core/util/util.hpp>
 #include <kocmoc-core/types/Symbol.hpp>
 #include <kocmoc-core/renderer/Shader.hpp>
+#include <kocmoc-core/renderer/FrameBuffer21.hpp>
 #include <kocmoc-core/input/InputManager.hpp>
 #include <kocmoc-core/scene/FilmCamera.hpp>
 #include <kocmoc-core/scene/OrthoCamera.hpp>
+#include <kocmoc-core/scene/FontRenderer.hpp>
 #include <kocmoc-core/time/Timer.hpp>
 #include <kocmoc-core/component/CameraController.hpp>
-#include <kocmoc-core/scene/FontRenderer.hpp>
+
+#include <kocmoc-core/gl.h>
+
 
 #include <component/WiimoteDebugger.hpp>
 #include <component/WiimoteCameraController.hpp>
@@ -43,6 +47,7 @@ using std::string;
 using kocmoc::core::util::Properties;
 using kocmoc::core::renderer::Context;
 using kocmoc::core::renderer::Shader;
+using kocmoc::core::renderer::FrameBuffer21;
 using kocmoc::core::scene::FilmCamera;
 using kocmoc::core::scene::OrthoCamera;
 using kocmoc::core::time::Timer;
@@ -107,9 +112,15 @@ Sputnik::Sputnik(Properties* _props)
 	FilmCamera* camera = new FilmCamera(vec3(0, 0, 4), vec3(0, 0, 0), vec3(0, 1, 0));
 	camera->setGateInPixel(width, height);
 	camera->setFilterMarginInPixel(0, 0);
-	camera->setAngleOfView(1.5f);
+	camera->setAngleOfView(1.7f);
 	camera->updateMatrixes();
 	
+	
+	FrameBuffer21* frameBuffer = new FrameBuffer21(width * 1.1f, height * 1.1f,
+												   width, height,
+												   width, height,
+												   camera->getAngleOfView(),
+												   props);
 	
 	
 	SelectableWorld selectableWorld;
@@ -146,13 +157,26 @@ Sputnik::Sputnik(Properties* _props)
 		// post update
 		camera->updateMatrixes();
 		
-		// render normal
-//		monkey->render(RP_NORMAL, camera);
-		sampler.render(RP_NORMAL, camera);
 		
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-		arc.render(RP_NORMAL, camera);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
+		// -------------------- rendering ---------------------------
+		glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer->getFBOHandle());
+		glViewport(0, 0, frameBuffer->frameWidth, frameBuffer->frameHeight);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		{
+			// render normal
+			sampler.render(RP_NORMAL, camera);
+			
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+			arc.render(RP_NORMAL, camera);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		}
+		
+		// draw framebuffer
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glViewport(0, 0, width, height);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		frameBuffer->drawFBO();
 		
 		// render overlays
 		wiimoteDebugger0.render(RP_OVERLAY, &overlayCamera);
