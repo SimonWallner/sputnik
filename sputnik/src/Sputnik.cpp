@@ -190,7 +190,6 @@ Sputnik::Sputnik(Properties* _props)
 			sampler.render(RP_NORMAL, camera);
 			starField.onRender(RP_NORMAL, camera);
 
-			
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 			arc.render(RP_NORMAL, camera);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -199,7 +198,6 @@ Sputnik::Sputnik(Properties* _props)
 		// draw framebuffer
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		glViewport(0, 0, width, height);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		frameBuffer->drawFBO();
 		
 		// render overlays
