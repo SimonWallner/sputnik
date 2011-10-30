@@ -16,12 +16,14 @@
 #include <kocmoc-core/types/Symbol.hpp>
 #include <kocmoc-core/renderer/Shader.hpp>
 #include <kocmoc-core/renderer/FrameBuffer21.hpp>
+#include <kocmoc-core/component/OverlayQuad.hpp>
 #include <kocmoc-core/input/InputManager.hpp>
 #include <kocmoc-core/scene/FilmCamera.hpp>
 #include <kocmoc-core/scene/OrthoCamera.hpp>
 #include <kocmoc-core/scene/FontRenderer.hpp>
 #include <kocmoc-core/time/Timer.hpp>
 #include <kocmoc-core/component/CameraController.hpp>
+
 
 #include <kocmoc-core/gl.h>
 
@@ -58,6 +60,7 @@ using kocmoc::core::scene::FontRenderer;
 using sputnik::output::MIDIOut;
 
 using glm::vec3;
+using glm::vec2;
 
 
 Sputnik::Sputnik(Properties* _props)
@@ -132,6 +135,14 @@ Sputnik::Sputnik(Properties* _props)
 	StarField starField(props);
 	starField.init();
 	
+	string mediaPath = props->getString(symbolize("media-path"));
+	Shader clearShader(mediaPath + "shaders/clear.vert",
+					   mediaPath + "shaders/clear.frag");
+	OverlayQuad background(props, &clearShader);
+	background.setPosition(vec2(-1.0f, -1.0f));
+	background.setScale(vec2(2.0f, 2.0f));
+	background.init();
+	
 	
 	CameraController cameraController(camera, &inputManager);
 	WiimoteCameraController wiimoteCameraController(camera, &inputManager, props);
@@ -161,16 +172,24 @@ Sputnik::Sputnik(Properties* _props)
 		// post update
 		camera->updateMatrixes();
 		
-		
+		// MRT setup
+		GLenum buffers[] = {GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1};
+
 		
 		// -------------------- rendering ---------------------------
 		glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer->getFBOHandle());
 		glViewport(0, 0, frameBuffer->frameWidth, frameBuffer->frameHeight);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		{
 			// render normal
+			glDrawBuffers(2, buffers);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glDepthMask(GL_FALSE);
+			background.onRender(RP_OVERLAY, NULL);
+			glDepthMask(GL_TRUE);
+
 			sampler.render(RP_NORMAL, camera);
 			starField.onRender(RP_NORMAL, camera);
+
 			
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 			arc.render(RP_NORMAL, camera);

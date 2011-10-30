@@ -18,14 +18,14 @@ void main(void)
 	vec3 lightDirection = normalize(vec3(1, 1, 1));
 
 	vec4 color = texture2D(sDiffuse, uv);
-	vec4 specColor = texture2D(sSpecular, uv);
+	// vec4 specColor = texture2D(sSpecular, uv);
 	
 	float diffuseFactor = max(0.0, dot(normal, lightDirection));
 	float ambient = 0.1;
 	
-	gl_FragColor = diffuseFactor * color + color * ambient + specColor * 0.5;
-	gl_FragColor.a = 1.0;
+	vec4 c = diffuseFactor * color + color * ambient;// + specColor * 0.5;
+	c.a = 1.0;
 	
-	gl_FragColor = gl_FragColor * fogFactor + fogColor * (1-fogFactor);
+	gl_FragData[0] = c * fogFactor + fogColor * (1-fogFactor);
 
 }

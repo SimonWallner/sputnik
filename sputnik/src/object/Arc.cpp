@@ -12,7 +12,7 @@ Arc::Arc(Properties* props, input::WiimoteInputManager* inputManager,
 		 scene::SelectableWorld* world)
 	: Object("Arc", props)
 {
-	ArcBehaviour* behaviour = new ArcBehaviour(props, 500, inputManager, camera, world);
+	ArcBehaviour* behaviour = new ArcBehaviour(props, 1000, inputManager, camera, world);
 	addComponent(behaviour);
 	registerRenderReceiver(behaviour);
 	
