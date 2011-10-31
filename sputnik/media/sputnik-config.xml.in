@@ -16,10 +16,12 @@
 <properties>
 	<!-- <float name="width" value="720" />
 	<float name="height" value="432" /> -->
-	<float name="width" value="960" />
-	<float name="height" value="540" />
-	<!-- <float name="width" value="96" />
-	<float name="height" value="54" /> -->
+	<!-- <float name="width" value="960" />
+	<float name="height" value="540" /> -->
+	<!-- <float name="width" value="1280" />
+	<float name="height" value="800" /> -->
+	<float name="width" value="256" />
+	<float name="height" value="160" />
 
 	<string name="media-path" value="${KOCMOC_MEDIA_PATH}" />
 	<string name="test-model-name" value="models/monkey.blend" />

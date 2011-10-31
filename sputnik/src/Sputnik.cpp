@@ -87,6 +87,12 @@ Sputnik::Sputnik(Properties* _props)
 	// from the command line.
 	context = new Context(props);
 	context->getInfo();
+
+	
+	
+	FontRenderer fontRenderer(props);
+		fontRenderer.render("The quick brown fox jumps over the layz dog.");
+	
 	
 	input::WiimoteInputManager inputManager(context->getWindowHandle());
 	
@@ -96,12 +102,6 @@ Sputnik::Sputnik(Properties* _props)
 
 	inputManager.registerButtonEventListener(screenShot, &ic);
 	inputManager.bindKeyToButtonEvent(',', screenShot);
-	
-	
-	monkey = new Monkey("it's a duck!", props, &inputManager);
-	
-//	FontRenderer fontRenderer(props);
-//	fontRenderer.render("P.AY");
 	
 	
 	WiimoteDebugger wiimoteDebugger0("wiimote debugger 0", props, &inputManager, 0);
@@ -168,7 +168,6 @@ Sputnik::Sputnik(Properties* _props)
 		inputManager.pollWiimote();
 		
 		// update
-		monkey->update(deltaT, t);
 		
 		
 		// post update
