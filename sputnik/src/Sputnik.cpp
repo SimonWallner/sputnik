@@ -40,6 +40,7 @@ using namespace kocmoc::core::types;
 using namespace kocmoc::core::input;
 using namespace kocmoc::core::component;
 using namespace kocmoc::core::renderer;
+using namespace kocmoc::core::scene;
 
 using namespace sputnik::component;
 using namespace sputnik::object;
@@ -89,9 +90,33 @@ Sputnik::Sputnik(Properties* _props)
 	context->getInfo();
 
 	
+	string mediaPath = props->getString(symbolize("media-path"));
+	string coreMediaPath = props->getString(symbolize("core-media-path"));
+
 	
-	FontRenderer fontRenderer(props);
-		fontRenderer.render("The quick brown fox jumps over the layz dog.");
+	// ---------- SPLASH ----------------
+	OrthoCamera splashCamera(vec3(0, 0, 0), vec3(0, 0, -1), vec3(0, 1, 0));
+	splashCamera.setWidthHeightDepth(width/2.0f, height/2.0f, 1.0f);
+	splashCamera.updateMatrixes();
+	
+	FontRenderer fontRenderer(props, 60);
+	Tex tex = fontRenderer.render("sputnik");
+
+	Shader startShader(coreMediaPath + "shaders/overlay.vert",
+					   coreMediaPath + "shaders/text.frag");
+	
+	OverlayQuad start(props, &startShader, tex.handle);
+	start.setScale(vec2(tex.width, tex.height));
+	start.setPosition(vec2(tex.width / -2.0f, tex.height / -2.0f));
+	start.init();
+	
+	glClearColor(1, 1, 1, 1);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	start.onRender(RP_OVERLAY, &splashCamera);
+	context->swapBuffers();
+	
+	
+	
 	
 	
 	input::WiimoteInputManager inputManager(context->getWindowHandle());
@@ -135,7 +160,7 @@ Sputnik::Sputnik(Properties* _props)
 	StarField starField(props);
 	starField.init();
 	
-	string mediaPath = props->getString(symbolize("media-path"));
+					  
 	Shader clearShader(mediaPath + "shaders/clear.vert",
 					   mediaPath + "shaders/clear.frag");
 	OverlayQuad background(props, &clearShader);
