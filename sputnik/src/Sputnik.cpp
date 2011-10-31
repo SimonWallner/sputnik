@@ -150,14 +150,16 @@ Sputnik::Sputnik(Properties* _props)
 	
 	inputManager.dumpBindings();	
 	
-	Timer* timer = new Timer();
+	Timer* timer = new Timer(context->getWindowHandle());
 	
 	while (running == true && context->isAlive())
 	{	
 		// pre update
 		timer->tick();
+		timer->print();
 		float deltaT = timer->getDeltaT();
 		float t = timer ->getLastT();
+		
 		
 		cameraController.onUpdate(deltaT);
 		wiimoteCameraController.onUpdate(deltaT);
