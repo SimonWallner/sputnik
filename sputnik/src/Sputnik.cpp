@@ -11,6 +11,8 @@
 #include <iostream>
 #include <string>
 
+#include <glm/gtx/quaternion.hpp>
+
 #include <kocmoc-core/util/Properties.hpp>
 #include <kocmoc-core/util/util.hpp>
 #include <kocmoc-core/types/Symbol.hpp>
@@ -24,9 +26,7 @@
 #include <kocmoc-core/time/Timer.hpp>
 #include <kocmoc-core/component/CameraController.hpp>
 
-
 #include <kocmoc-core/gl.h>
-
 
 #include <component/WiimoteDebugger.hpp>
 #include <component/WiimoteCameraController.hpp>
@@ -62,6 +62,7 @@ using sputnik::output::MIDIOut;
 
 using glm::vec3;
 using glm::vec2;
+using glm::gtx::quaternion::angleAxis;
 
 
 Sputnik::Sputnik(Properties* _props)
@@ -155,8 +156,9 @@ Sputnik::Sputnik(Properties* _props)
 	SelectableWorld selectableWorld;
 	
 	Arc arc(props, &inputManager, camera, &selectableWorld);
-	Sampler sampler("sampler one", props, &selectableWorld);
+	Sampler sampler("\"Finally, ...\"", props, &selectableWorld);
 	sampler.setPosition(vec3(10, 0, -10));
+	sampler.setRotation(angleAxis(3.0f, 0.0f, 0.0f, 1.0f));
 	
 	StarField starField(props);
 	starField.init();

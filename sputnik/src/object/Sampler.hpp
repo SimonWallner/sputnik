@@ -19,6 +19,11 @@ namespace sputnik
 			{
 				objectBehaviour->position = position;
 			}
+			
+			void setRotation(glm::quat rotation)
+			{
+				objectBehaviour->rotation = rotation;
+			}
 		
 		private:
 			kocmoc::core::component::ObjectBehaviour* objectBehaviour;
