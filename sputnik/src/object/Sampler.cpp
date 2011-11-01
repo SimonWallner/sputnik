@@ -1,6 +1,5 @@
 #include "Sampler.hpp"
 
-#include <kocmoc-core/component/ObjectBehaviour.hpp>
 #include <kocmoc-core/types/Symbol.hpp>
 #include <kocmoc-core/scene/AssetLoader.hpp>
 #include <kocmoc-core/component/Renderable.hpp>
@@ -26,8 +25,7 @@ sputnik::object::Sampler::Sampler(string name, kocmoc::core::util::Properties* p
 	addComponent(selectable);
 	world->add(selectable);
 	
-	ObjectBehaviour* objectBehaviour = new ObjectBehaviour();
-	objectBehaviour->position = glm::vec3(10, 0, -10);
+	objectBehaviour = new ObjectBehaviour();
 	addComponent(objectBehaviour);
 	
 	AssetLoader loader;

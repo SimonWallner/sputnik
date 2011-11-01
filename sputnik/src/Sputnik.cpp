@@ -100,7 +100,7 @@ Sputnik::Sputnik(Properties* _props)
 	splashCamera.updateMatrixes();
 	
 	FontRenderer fontRenderer(props, 100);
-	Tex tex = fontRenderer.render("sputnik");
+	Tex tex = fontRenderer.render("Hello, sputnik!");
 
 	Shader startShader(coreMediaPath + "shaders/overlay.vert",
 					   coreMediaPath + "shaders/text.frag");
@@ -155,7 +155,8 @@ Sputnik::Sputnik(Properties* _props)
 	SelectableWorld selectableWorld;
 	
 	Arc arc(props, &inputManager, camera, &selectableWorld);
-	Sampler sampler("sampler", props, &selectableWorld);
+	Sampler sampler("sampler one", props, &selectableWorld);
+	sampler.setPosition(vec3(10, 0, -10));
 	
 	StarField starField(props);
 	starField.init();
