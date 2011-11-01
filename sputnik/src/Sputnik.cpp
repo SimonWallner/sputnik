@@ -158,7 +158,7 @@ Sputnik::Sputnik(Properties* _props)
 	Arc arc(props, &inputManager, camera, &selectableWorld);
 	Sampler sampler("\"Finally, ...\"", props, &selectableWorld);
 	sampler.setPosition(vec3(10, 0, -10));
-	sampler.setRotation(angleAxis(3.0f, 0.0f, 0.0f, 1.0f));
+	sampler.setRotation(angleAxis(45.0f, 0.0f, 0.0f, 1.0f));
 	
 	StarField starField(props);
 	starField.init();

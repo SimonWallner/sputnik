@@ -5,7 +5,7 @@
 
 #include <kocmoc-core/componentSystem/Component.hpp>
 #include <kocmoc-core/gl.h>
-#include <kocmoc-core/component/PointSprite.hpp>
+#include <kocmoc-core/scene/Quad.hpp>
 #include <kocmoc-core/component/ObjectBehaviour.hpp>
 #include <kocmoc-core/util/Properties.hpp>
 
@@ -30,7 +30,7 @@ namespace sputnik
 			kocmoc::core::util::Properties* props;
 			std::string text;
 			
-			kocmoc::core::component::PointSprite* sprite;
+			kocmoc::core::scene::Quad* quad;
 			kocmoc::core::component::ObjectBehaviour* objectBehaviour;
 		};
 	}

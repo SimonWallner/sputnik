@@ -26,19 +26,20 @@ void TextLabel::init()
 	Shader* shader = new Shader(mediaPath+ "shaders/textLabel.vert",
 					   mediaPath + "shaders/textLabel.frag");
 	
-	sprite = new PointSprite(shader, tex.handle);
-	sprite->init();	
-	sprite->setSize(vec2((tex.width / tex.height) * size, size));
+	quad = new Quad(shader, tex.handle);
+	quad->init();	
+	quad->setSize(vec2((tex.width / tex.height) * size, size));
 }
 
 void TextLabel::onUpdate(float deltaT, float t)
 {
 	UNUSED deltaT;
 	UNUSED t;
-	sprite->setPosition(objectBehaviour->position);
+	quad->setPosition(objectBehaviour->position);
+	quad->setRotation(objectBehaviour->rotation);
 }
 
 void TextLabel::onRender(RenderPass pass, Camera *camera)
 {
-	sprite->onRender(pass, camera);
+	quad->draw(camera);
 }
