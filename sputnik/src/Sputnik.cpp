@@ -99,7 +99,7 @@ Sputnik::Sputnik(Properties* _props)
 	splashCamera.setWidthHeightDepth(width/2.0f, height/2.0f, 1.0f);
 	splashCamera.updateMatrixes();
 	
-	FontRenderer fontRenderer(props, 60);
+	FontRenderer fontRenderer(props, 100);
 	Tex tex = fontRenderer.render("sputnik");
 
 	Shader startShader(coreMediaPath + "shaders/overlay.vert",
@@ -110,7 +110,7 @@ Sputnik::Sputnik(Properties* _props)
 	start.setPosition(vec2(tex.width / -2.0f, tex.height / -2.0f));
 	start.init();
 	
-	glClearColor(1, 1, 1, 1);
+	glClearColor(0.5, 0.5, 0.5, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	start.onRender(RP_OVERLAY, &splashCamera);
 	context->swapBuffers();
@@ -155,7 +155,7 @@ Sputnik::Sputnik(Properties* _props)
 	SelectableWorld selectableWorld;
 	
 	Arc arc(props, &inputManager, camera, &selectableWorld);
-	Sampler sampler("Sampler one", props, &selectableWorld);
+	Sampler sampler("sampler", props, &selectableWorld);
 	
 	StarField starField(props);
 	starField.init();
@@ -193,6 +193,7 @@ Sputnik::Sputnik(Properties* _props)
 		inputManager.pollWiimote();
 		
 		// update
+		sampler.update(deltaT, t);
 		
 		
 		// post update

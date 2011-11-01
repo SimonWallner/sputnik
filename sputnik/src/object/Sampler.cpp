@@ -6,6 +6,7 @@
 #include <kocmoc-core/component/Renderable.hpp>
 
 #include <component/Selectable.hpp>
+#include <component/TextLabel.hpp>
 
 using namespace sputnik::object;
 using namespace sputnik::component;
@@ -34,13 +35,18 @@ sputnik::object::Sampler::Sampler(string name, kocmoc::core::util::Properties* p
 	std::string test = props->getString(symbolize("sphere1-model-name"));
 	std::string shaderPath = props->getString(symbolize("media-path")) + "shaders/base";
 	
-	// FIXME: something mutates my stirngs in the props.
+	// FIXME: something mutates my strings in the props.
 	// changing it here to c_str() helped, but it is evil
 	// XXX:
 #warning XXX: problem with mutable strings in props!
 	kocmoc::core::component::Renderable* renderable = loader.load(test.c_str(), shaderPath);
 	addComponent(renderable);	
 	registerRenderReceiver(renderable);
+	
+	TextLabel* textLabel = new TextLabel(props, name);
+	addComponent(textLabel);
+	registerRenderReceiver(textLabel);
+	registerUpdateReceiver(textLabel);
 	
 	initComponents();
 }
