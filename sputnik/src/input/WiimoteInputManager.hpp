@@ -110,6 +110,8 @@ namespace sputnik
 			CWii wii; // Defaults to 4 remotes
 			std::vector<CWiimote> wiimotes;
 			
+			float lastPointerX, lastPointerY;
+			
 			void handleEvent(CWiimote& wiimote, unsigned int controllerNumber);
 			void handleStatus(CWiimote& wiimote, unsigned int controllerNumber);
 			

@@ -13,6 +13,8 @@ using std::endl;
 
 WiimoteInputManager::WiimoteInputManager(GLFWwindow window)
 	: InputManager(window)
+	, lastPointerX(0.5f)
+	, lastPointerY(0.5f)
 {
 	std::cout << "searching wiimotes. Press buttons 1 and 2!" << std::endl;
 	
@@ -59,6 +61,7 @@ WiimoteInputManager::WiimoteInputManager(GLFWwindow window)
 //		it->EnableMotionPlus(CWiimote::ON);
 		it->IR.SetMode(CIR::ON);
 		it->IR.SetVres(10000, 10000);
+		it->IR.SetSensitivity(1);
 		
 		it->SetRumbleMode(CWiimote::ON);
         usleep(100000);
@@ -228,6 +231,16 @@ void WiimoteInputManager::handleEvent(CWiimote& wiimote, unsigned int controller
 			
 			float relativeX = (float)x / 10000.0f;
 			float relativeY = (float)y / 10000.0f;
+			
+			float eps = 0.01;
+			if (relativeX < eps || relativeY < eps)
+			{
+				relativeX = lastPointerX;
+				relativeY = lastPointerY;
+			}
+			
+			lastPointerX = relativeX;
+			lastPointerY = relativeY;
 			
 			notifyAnalogListeners(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y,
 								  WiimoteAnalogEvent(controllerNumber, relativeX,
