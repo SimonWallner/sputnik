@@ -8,37 +8,117 @@ using namespace kocmoc::core;
 
 using kocmoc::core::input::ButtonEvent;
 using kocmoc::core::input::AnalogEvent;
+using std::cout;
+using std::endl;
 
 WiimoteInputManager::WiimoteInputManager(GLFWwindow window)
 	: InputManager(window)
 {
-	std::cout << "searching wiimotes. Press buttons 1 and 2!" << std::endl;
-	
-	// code derived from the wiic tutorial
-	
-	printf("Searching for wiimotes... Turn them on!\n");
-	
-	//Find the wiimote
-	int numFound = wii.Find(2);
-	printf("Found %d Wiimotes\n", numFound);
-	
-	// Connect to the Wiimotes
-	wiimotes = &wii.Connect();
-	printf("Connected to %d wiimotes\n", (int) wiimotes->size());
-	
-	// Writing to the Wiimotes
-	int LED_MAP[4] = {CWiimote::LED_1, CWiimote::LED_2, CWiimote::LED_3, CWiimote::LED_4};
-	unsigned int index = 0;
-	for (std::vector<CWiimote >::iterator it = wiimotes->begin();
-		it != wiimotes->end();
-		it++, index++)
-	{
-		it->SetLEDs(LED_MAP[index]);
-		it->SetMotionSensingMode(CWiimote::ON);
+//	std::cout << "searching wiimotes. Press buttons 1 and 2!" << std::endl;
+//	
+//	// code derived from the wiic tutorial
+//	
+//	printf("Searching for wiimotes... Turn them on!\n");
+//	
+//	//Find the wiimote
+//	int numFound = wii.Find(2);
+//	printf("Found %d Wiimotes\n", numFound);
+//	
+//	// Connect to the Wiimotes
+//	wiimotes = &wii.Connect();
+//	printf("Connected to %d wiimotes\n", (int) wiimotes->size());
+//	
+//	// Writing to the Wiimotes
+//	int LED_MAP[4] = {CWiimote::LED_1, CWiimote::LED_2, CWiimote::LED_3, CWiimote::LED_4};
+//	unsigned int index = 0;
+//	for (std::vector<CWiimote >::iterator it = wiimotes->begin();
+//		it != wiimotes->end();
+//		it++, index++)
+//	{
+//		it->SetLEDs(LED_MAP[index]);
+//		it->SetMotionSensingMode(CWiimote::ON);
 //		it->EnableMotionPlus(CWiimote::ON);
-		it->IR.SetMode(CIR::ON);
-		it->IR.SetVres(10000, 10000);
-	}
+//		it->IR.SetMode(CIR::ON);
+//		it->IR.SetVres(10000, 10000);
+//		
+//		it->SetRumbleMode(CWiimote::ON);
+//        usleep(100000);
+//        it->SetRumbleMode(CWiimote::OFF);
+//	}
+
+    std::vector<CWiimote>::iterator i;
+    int numFound;
+    int index;
+	
+    cout << "Searching for wiimotes... Turn them on!" << endl;
+	
+    //Find the wiimote
+    numFound = wii.Find(5);
+	
+    // Search for up to five seconds;
+	
+    cout << "Found " << numFound << " wiimotes" << endl;
+    cout << "Connecting to wiimotes..." << endl;
+	
+    // Connect to the wiimote
+    wiimotes = wii.Connect();
+	
+	cout << "Connected to " << (unsigned int)wiimotes.size() << " wiimotes" << endl;
+	
+	// --------------------- IMPORTADO! ---------------------------------------
+	cout << "forcing nunchuck handshake completion" << std::endl;
+	while (wiimotes[0].ExpansionDevice.GetType() != wiimotes[0].ExpansionDevice.TYPE_NUNCHUK)
+		wii.Poll();
+	
+	
+	while (wiimotes[0].ExpansionDevice.GetType() != wiimotes[0].ExpansionDevice.TYPE_NUNCHUK)
+		wii.Poll();
+	
+	int LED_MAP[4] = {CWiimote::LED_1, CWiimote::LED_2, CWiimote::LED_3, CWiimote::LED_4};
+    // Setup the wiimotes
+    for(index = 0, i = wiimotes.begin(); i != wiimotes.end(); ++i, ++index)
+    {
+        // Use a reference to make working with the iterator handy.
+        CWiimote & wiimote = *i;
+		
+        //Set Leds
+        wiimote.SetLEDs(LED_MAP[index]);
+		
+        //Rumble for 0.2 seconds as a connection ack
+        wiimote.SetRumbleMode(CWiimote::ON);
+        usleep(200000);
+        wiimote.SetRumbleMode(CWiimote::OFF);
+    }
+	
+	cout << "\nPress PLUS (MINUS) to enable (disable) Motion Sensing Report (only accelerometers)" << endl;
+	cout << "Press RIGHT (LEFT) to enable (disable) Motion Plus (requires Motion Sensing enabled)" << endl;
+	cout << "Press UP (DOWN) to enable (disable) IR camera (requires some IR led)" << endl;
+	
+//    do
+//    {		
+//
+//		usleep(100 * 1000);
+//        //Poll the wiimotes to get the status like pitch or roll
+//        if(wii.Poll())
+//        {
+//            for(i = wiimotes.begin(); i != wiimotes.end(); ++i)
+//            {
+//                // Use a reference to make working with the iterator handy.
+//                CWiimote & wiimote = *i;
+//                switch(wiimote.GetEvent())
+//                {
+//						
+//                    case CWiimote::EVENT_EVENT:
+//                        handleEvent(wiimote, 0);
+//                        break;
+//												
+//                    default:
+//                        break;
+//                }
+//            }
+//        }
+//		
+//    } while(wiimotes.size()); // Go so long as there are wiimotes left to poll
 }
 
 void WiimoteInputManager::dumpBindings()
@@ -51,8 +131,8 @@ void WiimoteInputManager::pollWiimote()
 	if (wii.Poll())
 	{
 		unsigned int controllerNumber = 0;
-		for (std::vector<CWiimote >::iterator it = wiimotes->begin();
-			 it != wiimotes->end();
+		for (std::vector<CWiimote >::iterator it = wiimotes.begin();
+			 it != wiimotes.end();
 			 it++, controllerNumber++)
 		{
 			switch (it->GetEvent())
@@ -63,6 +143,10 @@ void WiimoteInputManager::pollWiimote()
 					
 				case CWiimote::EVENT_STATUS:
 					handleStatus(*it, controllerNumber);
+					break;
+				
+				case CWiimote::EVENT_NUNCHUK_INSERTED:
+					std::cout << "nunchuck inserted" << std::endl;
 					break;
 
 				default:

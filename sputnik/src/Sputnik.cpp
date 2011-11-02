@@ -108,14 +108,14 @@ Sputnik::Sputnik(Properties* _props)
 	
 	OverlayQuad start(props, &startShader, tex.handle);
 	start.setScale(vec2(tex.width, tex.height));
-	start.setPosition(vec2(tex.width / -2.0f, tex.height / -2.0f));
+	start.setPosition(vec2((tex.width >> 1) * -1.0f, (tex.height >> 1) * -1.0f + 10));
 	start.init();
 	
 	FontRenderer smallFont(props, 30);
 	Tex small = smallFont.render("press 1 & 2 on your controller");
 	OverlayQuad smallQuad(props, &startShader, small.handle);
 	smallQuad.setScale(vec2(small.width, small.height));
-	smallQuad.setPosition(vec2(small.width / -2.0f, -130.0f));
+	smallQuad.setPosition(vec2((small.width >> 1) * -1.0f, -130.0f));
 	smallQuad.init();
 	
 	

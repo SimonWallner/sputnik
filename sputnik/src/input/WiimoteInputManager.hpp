@@ -108,7 +108,7 @@ namespace sputnik
 			WiimoteBindings wiimoteEventBindings;
 			
 			CWii wii; // Defaults to 4 remotes
-			std::vector<CWiimote>* wiimotes;
+			std::vector<CWiimote> wiimotes;
 			
 			void handleEvent(CWiimote& wiimote, unsigned int controllerNumber);
 			void handleStatus(CWiimote& wiimote, unsigned int controllerNumber);
