@@ -101,7 +101,7 @@ Sputnik::Sputnik(Properties* _props)
 	splashCamera.updateMatrixes();
 	
 	FontRenderer fontRenderer(props, 100);
-	Tex tex = fontRenderer.render("Hello, sputnik!");
+	Tex tex = fontRenderer.render("sputnik");
 
 	Shader startShader(coreMediaPath + "shaders/overlay.vert",
 					   coreMediaPath + "shaders/text.frag");
@@ -111,9 +111,18 @@ Sputnik::Sputnik(Properties* _props)
 	start.setPosition(vec2(tex.width / -2.0f, tex.height / -2.0f));
 	start.init();
 	
+	FontRenderer smallFont(props, 30);
+	Tex small = smallFont.render("press 1 & 2 on your controller");
+	OverlayQuad smallQuad(props, &startShader, small.handle);
+	smallQuad.setScale(vec2(small.width, small.height));
+	smallQuad.setPosition(vec2(small.width / -2.0f, -130.0f));
+	smallQuad.init();
+	
+	
 	glClearColor(0.5, 0.5, 0.5, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	start.onRender(RP_OVERLAY, &splashCamera);
+	smallQuad.onRender(RP_OVERLAY, &splashCamera);
 	context->swapBuffers();
 	
 	
