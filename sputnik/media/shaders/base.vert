@@ -5,7 +5,6 @@
 attribute vec3 inPosition;
 attribute vec3 inNormal;
 attribute vec2 inUv;
-attribute vec3 inTangent;
 
 uniform mat4 modelMatrix;
 uniform mat4 viewMatrix;
@@ -13,7 +12,6 @@ uniform mat4 projectionMatrix;
 
 varying vec3 normal;
 varying vec2 uv;
-varying vec3 tangent;
 varying float fogFactor;
 
 void main(void)
@@ -29,5 +27,4 @@ void main(void)
 	
 	normal = inNormal;
 	uv = inUv;
-	tangent = inTangent;
 }
