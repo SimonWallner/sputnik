@@ -42,9 +42,12 @@ namespace sputnik
 			
 			/**
 			 * Drag the selectable
-			 * @param acceleration vector in m/s
+			 * @param F dragging force in newton
 			 */
-			void drag(glm::vec3 acceleration);
+			void drag(glm::vec3 F)
+			{
+				objectBehaviour->drag = F;	
+			}
 			
 			glm::vec3 getPosition() const
 			{

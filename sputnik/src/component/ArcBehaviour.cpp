@@ -7,12 +7,14 @@
 #include <kocmoc-core/util/Properties.hpp>
 #include <kocmoc-core/types/Symbol.hpp>
 #include <kocmoc-core/component/Renderable.hpp>
+#include <kocmoc-core/math/math.hpp>
 
 #include <glm/gtc/matrix_transform.hpp>
 
 
 using namespace sputnik::component;
 using namespace sputnik::input;
+using namespace kocmoc::core;
 
 using kocmoc::core::renderer::RenderPass;
 using kocmoc::core::renderer::RenderPass;
@@ -86,7 +88,8 @@ void ArcBehaviour::moveArc(float x, float y)
 	float arcMaxLength = 40.0f;
 	glm::mat4 inverseViewMatrix = glm::core::function::matrix::inverse(camera->getViewMatrix());
 	
-	setStart(vec3(inverseViewMatrix * vec4(originViewSpace, 1)));
+	vec3 arcStartWorldSpace = vec3(inverseViewMatrix * vec4(originViewSpace, 1));
+	setStart(arcStartWorldSpace);
 	
 	vec3 normalizedPointer = vec3((x - 0.5f) * 2.0f,
 								  (y - 0.5f) * 2.0f, 1.0f);
@@ -95,25 +98,11 @@ void ArcBehaviour::moveArc(float x, float y)
 	
 	vec3 pointerDirectionViewSpace = glm::normalize((normalizedPointer * directionBounds));
 	vec3 endViewSpace = pointerDirectionViewSpace * arcMaxLength;
+	vec3 arcEndWorldSpace = vec3(inverseViewMatrix * vec4(endViewSpace, 1.0f));
 	
 	vec3 arcDirectionViewSpace = glm::normalize(endViewSpace - originViewSpace);
-	
-	if (selection)
-	{
-		vec3 posWorldSpace = selection->getPosition();
-		setEnd(posWorldSpace);
-		
-		float midLength = glm::length(this->start - this->end) / 2.0f;
-		vec3 midViewSpace = originViewSpace + arcDirectionViewSpace * midLength;
-		
-		setMid(vec3(inverseViewMatrix * vec4(midViewSpace, 1.0f)));
-	}
-	else
-	{
-		setEnd(vec3(inverseViewMatrix * vec4(endViewSpace, 1.0f)));
-		setMid((this->start + this->end) / 2.0f);
-	}
-	
+	vec3 arcDirectionWorldSpace = glm::normalize(arcEndWorldSpace - arcStartWorldSpace);
+
 	
 	Selectable* prevHover = hover;
 	hover = world->rayIntersection(this->start, this->end);
@@ -129,8 +118,30 @@ void ArcBehaviour::moveArc(float x, float y)
 			prevHover->setHovering(false);
 		hover->setHovering(true);
 	}
+
 	
-	
+	if (selection)
+	{
+		vec3 posWorldSpace = selection->getPosition();
+		setEnd(posWorldSpace);
+		
+		float midLength = glm::length(this->start - this->end) / 2.0f;
+		vec3 midViewSpace = originViewSpace + arcDirectionViewSpace * midLength;
+		
+		setMid(vec3(inverseViewMatrix * vec4(midViewSpace, 1.0f)));
+		
+		// apply force
+		vec3 intersection = math::planeRayIntersection(posWorldSpace,
+													   camera->getViewVector(),
+													   arcStartWorldSpace,
+													   arcDirectionWorldSpace);
+		selection->drag(intersection - posWorldSpace);
+	}
+	else
+	{
+		setEnd(arcEndWorldSpace);
+		setMid((this->start + this->end) / 2.0f);
+	}
 }
 
 void ArcBehaviour::InputCallback::wiimoteAnalogEventCallback(Symbol name,

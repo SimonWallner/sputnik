@@ -27,6 +27,7 @@ sputnik::object::Sampler::Sampler(string name, kocmoc::core::util::Properties* p
 	world->add(selectable);
 	
 	objectBehaviour = new ObjectBehaviour();
+	registerUpdateReceiver(objectBehaviour);
 	addComponent(objectBehaviour);
 	
 	AssetLoader loader;
