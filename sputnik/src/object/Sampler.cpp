@@ -6,6 +6,7 @@
 
 #include <component/Selectable.hpp>
 #include <component/TextLabel.hpp>
+#include <component/SamplerBehaviour.hpp>
 
 using namespace sputnik::object;
 using namespace sputnik::component;
@@ -36,7 +37,7 @@ sputnik::object::Sampler::Sampler(string name, kocmoc::core::util::Properties* p
 	// FIXME: something mutates my strings in the props.
 	// changing it here to c_str() helped, but it is evil
 	// XXX:
-#warning XXX: problem with mutable strings in props!
+//#warning XXX: problem with mutable strings in props!
 	kocmoc::core::component::Renderable* renderable = loader.load(test.c_str(), shaderPath);
 	addComponent(renderable);	
 	registerRenderReceiver(renderable);
@@ -45,6 +46,10 @@ sputnik::object::Sampler::Sampler(string name, kocmoc::core::util::Properties* p
 	addComponent(textLabel);
 	registerRenderReceiver(textLabel);
 	registerUpdateReceiver(textLabel);
+	
+	SamplerBehaviour* samplerBehaviour = new SamplerBehaviour();
+	addComponent(samplerBehaviour);
+	registerUpdateReceiver(samplerBehaviour);
 	
 	initComponents();
 }

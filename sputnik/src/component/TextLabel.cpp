@@ -42,4 +42,5 @@ void TextLabel::onUpdate(float deltaT, float t)
 void TextLabel::onRender(RenderPass pass, Camera *camera)
 {
 	quad->draw(camera);
+	UNUSED pass;
 }

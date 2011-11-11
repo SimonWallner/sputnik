@@ -36,7 +36,11 @@ namespace sputnik
 				}
 				
 				void wiimoteAnalogEventCallback(kocmoc::core::types::Symbol name, input::WiimoteAnalogEvent event);
-				void wiimoteButtonEventCallback(kocmoc::core::types::Symbol name, input::WiimoteButtonEvent event) {};
+				void wiimoteButtonEventCallback(kocmoc::core::types::Symbol name, input::WiimoteButtonEvent event)
+				{
+					UNUSED name;
+					UNUSED event;
+				}
 				
 			private:
 				WiimoteDebugger* p;

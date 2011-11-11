@@ -48,14 +48,20 @@ namespace sputnik
 				
 				void buttonEventCallback(kocmoc::core::types::Symbol name, 
 										 kocmoc::core::input::ButtonEvent event)
-				{}
+				{
+					UNUSED name;
+					UNUSED event;
+				}
 				
 				void wiimoteAnalogEventCallback(kocmoc::core::types::Symbol name, 
 												input::WiimoteAnalogEvent event);
 				
 				void wiimoteButtonEventCallback(kocmoc::core::types::Symbol name, 
 												input::WiimoteButtonEvent event)
-				{}
+				{
+					UNUSED name;
+					UNUSED event;
+				}
 				
 			private:
 				MonkeyBehaviour* p;

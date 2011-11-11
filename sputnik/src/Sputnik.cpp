@@ -84,7 +84,7 @@ Sputnik::Sputnik(Properties* _props)
 	int height = props->getFloat(symbolize("height"));
 	
 
-#warning FIXME: context somehow fucks up working directory, therfore must be after config file loading
+//#warning FIXME: context somehow fucks up working directory, therfore must be after config file loading
 	// this only occurs in the Xcode debugger, not when build with make and run
 	// from the command line.
 	context = new Context(props);
@@ -166,8 +166,14 @@ Sputnik::Sputnik(Properties* _props)
 	
 	Arc arc(props, &inputManager, camera, &selectableWorld);
 	Sampler sampler("\"Finally, ...\"", props, &selectableWorld);
-	sampler.setPosition(vec3(10, 0, -10));
-	sampler.setRotation(angleAxis(45.0f, 0.0f, 0.0f, 1.0f));
+	sampler.setPosition(vec3(0, 0, -10));
+	
+	Sampler sampler2("\"...we should go to the moon!\"", props, &selectableWorld);
+	sampler2.setPosition(vec3(-10, 2, -30));
+	
+	Sampler sampler3("\"...as did the sputnik in 1957\"", props, &selectableWorld);
+	sampler3.setPosition(vec3(-50, -20, -100));
+
 	
 	StarField starField(props);
 	starField.init();
@@ -206,6 +212,8 @@ Sputnik::Sputnik(Properties* _props)
 		
 		// update
 		sampler.update(deltaT, t);
+		sampler2.update(deltaT, t);
+		sampler3.update(deltaT, t);
 		
 		
 		// post update
@@ -226,7 +234,10 @@ Sputnik::Sputnik(Properties* _props)
 			background.onRender(RP_OVERLAY, NULL);
 			glDepthMask(GL_TRUE);
 
-			sampler.render(RP_NORMAL, camera);
+//			sampler.render(RP_NORMAL, camera);
+			sampler2.render(RP_NORMAL, camera);
+			sampler3.render(RP_NORMAL, camera);
+			
 			starField.onRender(RP_NORMAL, camera);
 
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE);

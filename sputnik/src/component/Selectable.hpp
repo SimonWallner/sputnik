@@ -20,14 +20,25 @@ namespace sputnik
 			 * create a new selectable with the given diameter.
 			 */
 			Selectable(float _radius)
-			{
-				radius = _radius;
-			}
+				: radius(_radius)
+				, selected(false)
+				, hovering(false)
+			{}
 			
 			void init();
 			
-			void hover(bool isHovering);
-			void select(bool isSelected);
+			inline void setHovering(bool isHovering)
+			{
+				hovering = isHovering;
+			}
+			
+			inline void setSelected(bool isSelected)
+			{
+				selected = isSelected;
+			}
+			
+			inline bool isSelected() {return selected;}
+			inline bool isHovering() {return hovering;}
 			
 			/**
 			 * Drag the selectable
@@ -51,6 +62,9 @@ namespace sputnik
 			 */
 			float radius;
 			kocmoc::core::component::ObjectBehaviour* objectBehaviour;
+			
+			bool selected;
+			bool hovering;
 		};
 	}
 }

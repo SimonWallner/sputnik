@@ -1,5 +1,11 @@
 # cmake list for src/
 
+# g++ compiler settings
+add_definitions(-Wall -Wextra -pedantic -Werror -Winit-self -Wno-long-long)
+add_definitions(-g -O0)
+
+
+
 # -- git revision number magic -----------------------------------------------
 # configure header file and append it to the other header files
 configure_file("${PROJECT_SOURCE_DIR}/src/version.hpp.in" "${PROJECT_BINARY_DIR}/src/version.hpp")

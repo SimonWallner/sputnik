@@ -35,7 +35,7 @@ Monkey::Monkey(std::string name,
 	// FIXME: something mutates my stirngs in the props.
 	// changing it here to c_str() helped, but it is evil
 	// XXX:
-#warning XXX: problem with mutable strings in props!
+//#warning XXX: problem with mutable strings in props!
 	renderable = loader.load(test.c_str(), shaderPath);
 	props->dumpCache();
 	

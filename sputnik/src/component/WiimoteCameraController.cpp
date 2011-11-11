@@ -59,6 +59,8 @@ void WiimoteCameraController::InputCallback::buttonEventCallback(Symbol name,
 	
 	if (name == p->nunchuckZ)
 		p->camera->dolly(vec3(0, -rate, 0) * p->lastDeltaT);
+	
+	UNUSED event;
 }
 
 void WiimoteCameraController::nunchuckAnalog(float x, float y)

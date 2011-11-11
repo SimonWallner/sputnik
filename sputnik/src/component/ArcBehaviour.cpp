@@ -75,7 +75,7 @@ void ArcBehaviour::init()
 	// FIXME: something mutates my stirngs in the props.
 	// changing it here to c_str() helped, but it is evil
 	// XXX:
-#warning XXX: problem with mutable strings in props!
+//#warning XXX: problem with mutable strings in props!
 	Renderable* renderable = loader.load(test.c_str(), shaderPath);
 	instancedMesh = renderable->getFirstMesh();
 }
@@ -114,7 +114,23 @@ void ArcBehaviour::moveArc(float x, float y)
 		setMid((this->start + this->end) / 2.0f);
 	}
 	
-	hover = world->rayIntersection(this->start, this->end);	
+	
+	Selectable* prevHover = hover;
+	hover = world->rayIntersection(this->start, this->end);
+	
+	if (hover == NULL)
+	{
+		if (prevHover != NULL)
+			prevHover->setHovering(false);
+	}
+	else if (prevHover != hover)
+	{
+		if (prevHover != NULL)
+			prevHover->setHovering(false);
+		hover->setHovering(true);
+	}
+	
+	
 }
 
 void ArcBehaviour::InputCallback::wiimoteAnalogEventCallback(Symbol name,
@@ -130,12 +146,14 @@ void ArcBehaviour::InputCallback::wiimoteButtonEventCallback(Symbol name,
 	if (name == p->arcB && event.state == ButtonEvent::PRESSED)
 	{
 		p->selection = p->hover;
-//		std::cout << "B pressed ----------------" << std::endl;
+		if (p->selection != NULL)
+			p->selection->setSelected(true);
 	}
 	
 	else if (name == p->arcB && event.state == ButtonEvent::RELEASED)
 	{
+		if (p->selection != NULL)
+			p->selection->setSelected(false);
 		p->selection = NULL;
-//		std::cout << "---------------- B released" << std::endl;
 	}
 }
