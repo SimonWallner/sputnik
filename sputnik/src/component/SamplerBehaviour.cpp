@@ -20,11 +20,10 @@ void SamplerBehaviour::onUpdate(float deltaT, float t)
 	if (selectable->isSelected())
 	{
 		ob->scale = vec3(1.5f);
-		ob->lambda = math::decayConst(0.5f);
 	}
 	else
 	{
-		ob->lambda = math::decayConst(0.05f);
+		ob->drag = vec3(0);
 		
 		if (selectable->isHovering())
 			ob->scale = vec3(1.2f);

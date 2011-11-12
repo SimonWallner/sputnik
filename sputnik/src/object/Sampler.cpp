@@ -4,12 +4,14 @@
 #include <kocmoc-core/scene/AssetLoader.hpp>
 #include <kocmoc-core/component/Renderable.hpp>
 
+
 #include <component/Selectable.hpp>
 #include <component/TextLabel.hpp>
 #include <component/SamplerBehaviour.hpp>
 
 using namespace sputnik::object;
 using namespace sputnik::component;
+using namespace kocmoc::core;
 
 using kocmoc::core::component::Renderable;
 using kocmoc::core::component::ObjectBehaviour;
@@ -27,6 +29,7 @@ sputnik::object::Sampler::Sampler(string name, kocmoc::core::util::Properties* p
 	world->add(selectable);
 	
 	objectBehaviour = new ObjectBehaviour();
+	objectBehaviour->lambda = math::decayConst(0.5f);
 	registerUpdateReceiver(objectBehaviour);
 	addComponent(objectBehaviour);
 	
