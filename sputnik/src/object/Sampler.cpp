@@ -8,6 +8,7 @@
 #include <component/Selectable.hpp>
 #include <component/TextLabel.hpp>
 #include <component/SamplerBehaviour.hpp>
+#include <component/SpeedToMidi.hpp>
 
 using namespace sputnik::object;
 using namespace sputnik::component;
@@ -54,6 +55,10 @@ sputnik::object::Sampler::Sampler(string name, kocmoc::core::util::Properties* p
 	SamplerBehaviour* samplerBehaviour = new SamplerBehaviour();
 	addComponent(samplerBehaviour);
 	registerUpdateReceiver(samplerBehaviour);
+	
+	SpeedToMidi* speed2Midi = new SpeedToMidi(1);
+	addComponent(speed2Midi);
+	registerUpdateReceiver(speed2Midi);
 	
 	initComponents();
 }

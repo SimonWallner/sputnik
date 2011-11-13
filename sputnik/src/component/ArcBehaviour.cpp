@@ -85,7 +85,7 @@ void ArcBehaviour::init()
 void ArcBehaviour::moveArc(float x, float y)
 {
 	vec3 originViewSpace = vec3(0, -1.5, -2);
-	float arcMaxLength = 40.0f;
+	float arcMaxLength = 100.0f;
 	glm::mat4 inverseViewMatrix = glm::core::function::matrix::inverse(camera->getViewMatrix());
 	
 	vec3 arcStartWorldSpace = vec3(inverseViewMatrix * vec4(originViewSpace, 1));

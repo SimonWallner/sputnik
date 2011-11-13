@@ -29,7 +29,7 @@ void MIDIOut::sendCC(int number, float value)
 	message.push_back(176); // CC???
 	message.push_back(number);
 	
-	unsigned char normlisedValue = min(max(value * 255.0f, 0.0f), 255.0f);
+	unsigned char normlisedValue = min(max(value * 127.0f, 0.0f), 127.0f);
 	message.push_back(normlisedValue);
 	
 	midiOut->sendMessage(&message);
@@ -41,7 +41,7 @@ void MIDIOut::sendNote(int note, float velocity)
 	message.push_back(144); // note on???
 	message.push_back(note);
 	
-	unsigned char normlisedVelocity = min(max(velocity * 255.0f, 0.0f), 255.0f);
+	unsigned char normlisedVelocity = min(max(velocity * 127.0f, 0.0f), 127.0f);
 	message.push_back(normlisedVelocity);
 
 	midiOut->sendMessage(&message);
