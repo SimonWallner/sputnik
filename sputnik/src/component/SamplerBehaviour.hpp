@@ -27,6 +27,8 @@ namespace sputnik
 
 		private:
 			kocmoc::core::component::ObjectBehaviour* ob;
+			bool isHovering;
+			bool isSelected;
 		};
 	}
 }

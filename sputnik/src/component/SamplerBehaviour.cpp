@@ -22,26 +22,34 @@ void SamplerBehaviour::init()
 
 void SamplerBehaviour::onUpdate(float deltaT, float t)
 {
+	
+	if (isSelected)
+	{
+		ob->scale = vec3(1.5f);
+	}
+	else
+	{	
+		if (isHovering)
+			ob->scale = vec3(1.2f);
+		else
+			ob->scale = vec3(1.0f);
+	}
+
 	UNUSED deltaT;
 	UNUSED t;
-
-	//...
 }
 
 void SamplerBehaviour::setHovering(bool isHovering)
 {
-	if (isHovering)
-		ob->scale = vec3(1.2f);
-	else
-		ob->scale = vec3(1.0f);
+	this->isHovering = isHovering;
 }
 
 void SamplerBehaviour::setSelected(bool isSelected)
 {
-	if (isSelected)
-		ob->scale = vec3(1.5f);
-	else
-		ob->drag = vec3(0);
+	this->isSelected = isSelected;
+
+	if (!isSelected)
+		ob->drag = vec3(0);	
 }
 
 void SamplerBehaviour::drag(vec3 F)
