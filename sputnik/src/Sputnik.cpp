@@ -34,8 +34,11 @@
 #include <object/Text.hpp>
 #include <object/Arc.hpp>
 #include <object/Sampler.hpp>
+#include <object/Player.hpp>
+#include <object/TapeMachine.hpp>
 #include <scene/SelectableWorld.hpp>
 #include <output/MIDIout.hpp>
+
 
 using namespace sputnik;
 using namespace kocmoc::core::types;
@@ -176,17 +179,25 @@ Sputnik::Sputnik(Properties* _props)
 	Sampler sampler("\"Space achievment, ...\"", props, &selectableWorld, &inputManager, mOut, 1);
 	sampler.setPosition(vec3(0, 0, -10));
 	
-	Sampler sampler2("\"adventure\"", props, &selectableWorld, &inputManager,mOut, 2, "sphere2-model-name");
+	Sampler sampler2("\"adventure\"", props, &selectableWorld, &inputManager,mOut, 2);
 	sampler2.setPosition(vec3(-10, 10, -50));
 	sampler2.setRotation(angleAxis(10.0f, -1.0f, 1.0f, -1.0f));
 	
-	Sampler sampler3("\"we go into space\"", props, &selectableWorld, &inputManager,mOut, 3);
+	Sampler sampler3("\"I believe, we should go to the moon\"", props, &selectableWorld, &inputManager,mOut, 3);
 	sampler3.setPosition(vec3(-100, -20, -100));
 	sampler3.setRotation(angleAxis(40.0f, 0.2f ,0.8f, 0.2f));
 	
 	Sampler sampler4("\"sputnik\"", props, &selectableWorld, &inputManager,mOut, 4);
-	sampler4.setPosition(vec3(30, 0, 0));
-	sampler4.setRotation(angleAxis(90.0f, 0.0f ,1.0f, 0.0f));
+	sampler4.setPosition(vec3(40, 0, 0));
+	sampler4.setRotation(angleAxis(-90.0f, 0.0f ,1.0f, 0.0f));
+	
+	Player player("music", props, &selectableWorld, &inputManager, mOut, 10);
+	player.setPosition(vec3(-20, -20, -70));
+	player.setRotation(angleAxis(-30.0f, 1.0f, 0.0f, 0.0f));
+	
+	TapeMachine tapeMachine("JFK", props, &selectableWorld, mOut, 11);
+	tapeMachine.setPosition(vec3(30, 30, -30));
+	
 
 
 	
@@ -249,6 +260,9 @@ Sputnik::Sputnik(Properties* _props)
 		sampler3.update(deltaT, t);
 		sampler4.update(deltaT, t);
 		
+		player.update(deltaT, t);
+		tapeMachine.update(deltaT, t);
+		
 		
 		// post update
 		camera->updateMatrixes();
@@ -272,6 +286,9 @@ Sputnik::Sputnik(Properties* _props)
 			sampler2.render(RP_NORMAL, camera);
 			sampler3.render(RP_NORMAL, camera);
 			sampler4.render(RP_NORMAL, camera);
+			
+			player.render(RP_NORMAL, camera);
+			tapeMachine.render(RP_NORMAL, camera);
 			
 			text1.render(RP_NORMAL, camera);
 			text2.render(RP_NORMAL, camera);

@@ -166,7 +166,10 @@ void ArcBehaviour::InputCallback::wiimoteButtonEventCallback(Symbol name,
 	else if (name == p->arcB && event.state == ButtonEvent::RELEASED)
 	{
 		if (p->selection != NULL)
+		{
 			p->selection->setSelected(false);
+			p->selection->drag(vec3(0.0f));
+		}
 		p->selection = NULL;
 	}
 }
