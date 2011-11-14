@@ -6,6 +6,7 @@
 
 #include <scene/SelectableWorld.hpp>
 #include <output/MIDIout.hpp>
+#include <input/WiimoteInputManager.hpp>
 
 namespace sputnik
 {
@@ -17,6 +18,7 @@ namespace sputnik
 			Sampler(std::string name,
 					kocmoc::core::util::Properties* props,
 					scene::SelectableWorld* world,
+					input::WiimoteInputManager* inputManager,
 					output::MIDIOut* mOut,
 					unsigned int cc,
 					std::string modelName = "sphere1-model-name");

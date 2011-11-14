@@ -371,3 +371,26 @@ void WiimoteInputManager::notifyAnalogListeners(int wiimoteEventSymbolicConstant
 		}
 	}
 }
+
+/**
+ * Bind a wiimote event to a name.
+ */
+void WiimoteInputManager::bindWiimoteEvent(int wiimoteEventSymbolicConstant, kocmoc::core::types::Symbol name)
+{
+	bool found = false;
+	
+	// fetch bindings
+	std::pair<WiimoteBindings::const_iterator, WiimoteBindings::const_iterator> bounds =
+	wiimoteEventBindings.equal_range(wiimoteEventSymbolicConstant);
+	
+	for (WiimoteBindings::const_iterator ci = bounds.first;
+		 ci != bounds.second;
+		 ci++)
+	{
+		if (ci->second == name)
+			found = true;
+	}
+	
+	if (found != true)
+		wiimoteEventBindings.insert(WiimoteBindingPair(wiimoteEventSymbolicConstant, name));
+}

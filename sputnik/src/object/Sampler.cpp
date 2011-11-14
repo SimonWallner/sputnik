@@ -24,6 +24,7 @@ using std::string;
 sputnik::object::Sampler::Sampler(string name,
 								  kocmoc::core::util::Properties* props,
 								  scene::SelectableWorld* world,
+								  input::WiimoteInputManager* inputManager,
 								  output::MIDIOut* mOut,
 								  unsigned int cc,
 								  std::string modelName)
@@ -36,14 +37,14 @@ sputnik::object::Sampler::Sampler(string name,
 	
 	AssetLoader loader;
 	loader.addResourcePath(props->getString(symbolize("media-path")));
-	std::string test = props->getString(symbolize(modelName.c_str()));
+	std::string model = props->getString(symbolize(modelName.c_str()));
 	std::string shaderPath = props->getString(symbolize("media-path")) + "shaders/base";
 	
 	// FIXME: something mutates my strings in the props.
 	// changing it here to c_str() helped, but it is evil
 	// XXX:
 //#warning XXX: problem with mutable strings in props!
-	kocmoc::core::component::Renderable* renderable = loader.load(test.c_str(), shaderPath);
+	kocmoc::core::component::Renderable* renderable = loader.load(model.c_str(), shaderPath);
 	addComponent(renderable);	
 	registerRenderReceiver(renderable);
 	
@@ -52,13 +53,16 @@ sputnik::object::Sampler::Sampler(string name,
 	registerRenderReceiver(textLabel);
 	registerUpdateReceiver(textLabel);
 	
-	SamplerBehaviour* samplerBehaviour = new SamplerBehaviour(world);
+	SamplerBehaviour* samplerBehaviour = new SamplerBehaviour(world,
+															  inputManager,
+															  mOut,
+															  cc);
 	addComponent(samplerBehaviour);
 	registerUpdateReceiver(samplerBehaviour);
 	
-	SpeedToMidi* speed2Midi = new SpeedToMidi(mOut, cc);
-	addComponent(speed2Midi);
-	registerUpdateReceiver(speed2Midi);
+//	SpeedToMidi* speed2Midi = new SpeedToMidi(mOut, cc);
+//	addComponent(speed2Midi);
+//	registerUpdateReceiver(speed2Midi);
 	
 	initComponents();
 }

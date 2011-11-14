@@ -83,10 +83,7 @@ namespace sputnik
 			/**
 			 * Bind a wiimote event to a name.
 			 */
-			void bindWiimoteEvent(int wiimoteEventSymbolicConstant, kocmoc::core::types::Symbol name)
-			{
-				wiimoteEventBindings.insert(WiimoteBindingPair(wiimoteEventSymbolicConstant, name));
-			}
+			void bindWiimoteEvent(int wiimoteEventSymbolicConstant, kocmoc::core::types::Symbol name);
 			
 			/**
 			 * poll the wiimotes and fire the callbacks

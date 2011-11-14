@@ -31,6 +31,7 @@
 #include <component/WiimoteDebugger.hpp>
 #include <component/WiimoteCameraController.hpp>
 #include <component/StarField.hpp>
+#include <object/Text.hpp>
 #include <object/Arc.hpp>
 #include <object/Sampler.hpp>
 #include <scene/SelectableWorld.hpp>
@@ -172,18 +173,43 @@ Sputnik::Sputnik(Properties* _props)
 	
 	MIDIOut* mOut = new MIDIOut();
 	
-	Sampler sampler("\"Finally, ...\"", props, &selectableWorld, mOut, 1);
+	Sampler sampler("\"Space achievment, ...\"", props, &selectableWorld, &inputManager, mOut, 1);
 	sampler.setPosition(vec3(0, 0, -10));
 	
-	Sampler sampler2("\"...we should go to the moon!\"", props, &selectableWorld, mOut, 2, "sphere2-model-name");
-	sampler2.setPosition(vec3(-10, 2, -30));
+	Sampler sampler2("\"adventure\"", props, &selectableWorld, &inputManager,mOut, 2, "sphere2-model-name");
+	sampler2.setPosition(vec3(-10, 10, -50));
+	sampler2.setRotation(angleAxis(10.0f, -1.0f, 1.0f, -1.0f));
 	
-	Sampler sampler3("\"...as did the sputnik in 1957\"", props, &selectableWorld, mOut, 3);
-	sampler3.setPosition(vec3(-50, -20, -100));
+	Sampler sampler3("\"we go into space\"", props, &selectableWorld, &inputManager,mOut, 3);
+	sampler3.setPosition(vec3(-100, -20, -100));
+	sampler3.setRotation(angleAxis(40.0f, 0.2f ,0.8f, 0.2f));
+	
+	Sampler sampler4("\"sputnik\"", props, &selectableWorld, &inputManager,mOut, 4);
+	sampler4.setPosition(vec3(30, 0, 0));
+	sampler4.setRotation(angleAxis(90.0f, 0.0f ,1.0f, 0.0f));
+
 
 	
 	StarField starField(props);
 	starField.init();
+	
+	Text text1(props, "user study!");
+	text1.setPosition(vec3(50, 20, -150));
+	text1.setRotation(angleAxis(-30.f, 0.0f, 1.0f, 0.0f));
+	text1.update(0, 0);
+
+	Text text2(props, "@SimonWallner");
+	text2.setPosition(vec3(50, 17, -150));
+	text2.setRotation(angleAxis(-30.f, 0.0f, 1.0f, 0.0f));
+	text2.update(0, 0);
+	
+	Text text3(props, "http://simonwallner.at");
+	text3.setPosition(vec3(50, 14, -150));
+	text3.setRotation(angleAxis(-30.f, 0.0f, 1.0f, 0.0f));
+	text3.update(0, 0);
+	
+	
+	
 	
 					  
 	Shader clearShader(mediaPath + "shaders/clear.vert",
@@ -220,7 +246,8 @@ Sputnik::Sputnik(Properties* _props)
 		// update
 		sampler.update(deltaT, t);
 		sampler2.update(deltaT, t);
-//		sampler3.update(deltaT, t);
+		sampler3.update(deltaT, t);
+		sampler4.update(deltaT, t);
 		
 		
 		// post update
@@ -243,7 +270,12 @@ Sputnik::Sputnik(Properties* _props)
 
 			sampler.render(RP_NORMAL, camera);
 			sampler2.render(RP_NORMAL, camera);
-//			sampler3.render(RP_NORMAL, camera);
+			sampler3.render(RP_NORMAL, camera);
+			sampler4.render(RP_NORMAL, camera);
+			
+			text1.render(RP_NORMAL, camera);
+			text2.render(RP_NORMAL, camera);
+			text3.render(RP_NORMAL, camera);
 			
 			starField.onRender(RP_NORMAL, camera);
 
