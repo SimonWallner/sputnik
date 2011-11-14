@@ -3,7 +3,6 @@
 #include <kocmoc-core/math/math.hpp>
 
 using namespace sputnik::scene;
-using namespace sputnik::component;
 
 using kocmoc::core::math::pointToRayDistance;
 using kocmoc::core::math::min;

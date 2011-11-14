@@ -68,8 +68,8 @@ namespace sputnik
 			kocmoc::core::scene::FilmCamera* camera;
 			scene::SelectableWorld* world;
 			
-			Selectable* hover;
-			Selectable* selection;
+			scene::Selectable* hover;
+			scene::Selectable* selection;
 			
 			/**
 			 * move the arc, according to the user input

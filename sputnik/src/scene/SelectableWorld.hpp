@@ -1,7 +1,7 @@
 #ifndef SPUTNIK_SCENE_SELECTABLE_WORLD_HPP
 #define SPUTNIK_SCENE_SELECTABLE_WORLD_HPP
 
-#include <component/Selectable.hpp>
+#include <scene/Selectable.hpp>
 
 #include <vector>
 
@@ -15,7 +15,7 @@ namespace sputnik
 			/**
 			 * Add selectable object to the world
 			 */
-			void add(component::Selectable* selectable)
+			void add(Selectable* selectable)
 			{
 				world.push_back(selectable);
 			}
@@ -26,11 +26,11 @@ namespace sputnik
 			 *	distance from the startPoint and is not further away than
 			 *	endPoint. If no intersectin object is found NULL is returned
 			 */
-			component::Selectable* rayIntersection(glm::vec3 startPoint,
+			Selectable* rayIntersection(glm::vec3 startPoint,
 												  glm::vec3 endPoint);
 			
 		private:
-			typedef std::vector<component::Selectable* > SelectableList;
+			typedef std::vector<Selectable* > SelectableList;
 			SelectableList world;
 		};
 	}

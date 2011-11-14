@@ -2,8 +2,10 @@
 #define SPUTNIK_OBJECT_SAMPLER_HPP
 
 #include <kocmoc-core/componentSystem/Object.hpp>
-#include <scene/SelectableWorld.hpp>
 #include <kocmoc-core/component/ObjectBehaviour.hpp>
+
+#include <scene/SelectableWorld.hpp>
+#include <output/MIDIout.hpp>
 
 namespace sputnik
 {
@@ -12,8 +14,12 @@ namespace sputnik
 		class Sampler : public kocmoc::core::componentSystem::Object
 		{		
 		public:
-			Sampler(std::string name, kocmoc::core::util::Properties* props,
-					scene::SelectableWorld* world);
+			Sampler(std::string name,
+					kocmoc::core::util::Properties* props,
+					scene::SelectableWorld* world,
+					output::MIDIOut* mOut,
+					unsigned int cc,
+					std::string modelName = "sphere1-model-name");
 			
 			void setPosition(glm::vec3 position)
 			{

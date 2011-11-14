@@ -14,7 +14,7 @@ void SpeedToMidi::init()
 void SpeedToMidi::onUpdate(float deltaT, float t)
 {
 	float speed = glm::length(ob->speed);
-	mOut.sendCC(cc, pow(speed/40.0f, 0.5f));
+	mOut->sendCC(cc, pow(speed/40.0f, 0.5f));
 	
 	UNUSED t;
 	UNUSED deltaT;

@@ -16,8 +16,9 @@ namespace sputnik
 			/**
 			 * @param _cc cc output channel
 			 */
-			SpeedToMidi(unsigned int _cc)
+			SpeedToMidi(output::MIDIOut* _mOut, unsigned int _cc)
 				: cc(_cc)
+				, mOut(_mOut)
 			{}
 			
 			void init();
@@ -26,7 +27,7 @@ namespace sputnik
 		private:
 			unsigned int cc;
 			kocmoc::core::component::ObjectBehaviour* ob;
-			output::MIDIOut mOut;
+			output::MIDIOut* mOut;
 		};
 	}
 }

@@ -34,6 +34,7 @@
 #include <object/Arc.hpp>
 #include <object/Sampler.hpp>
 #include <scene/SelectableWorld.hpp>
+#include <output/MIDIout.hpp>
 
 using namespace sputnik;
 using namespace kocmoc::core::types;
@@ -162,17 +163,23 @@ Sputnik::Sputnik(Properties* _props)
 												   props);
 	
 	
+	
+	// ------------------- CONTENT ------------------------------------------
+	
 	SelectableWorld selectableWorld;
 	
 	Arc arc(props, &inputManager, camera, &selectableWorld);
-	Sampler sampler("\"Finally, ...\"", props, &selectableWorld);
+	
+	MIDIOut* mOut = new MIDIOut();
+	
+	Sampler sampler("\"Finally, ...\"", props, &selectableWorld, mOut, 1);
 	sampler.setPosition(vec3(0, 0, -10));
 	
-//	Sampler sampler2("\"...we should go to the moon!\"", props, &selectableWorld);
-//	sampler2.setPosition(vec3(-10, 2, -30));
-//	
-//	Sampler sampler3("\"...as did the sputnik in 1957\"", props, &selectableWorld);
-//	sampler3.setPosition(vec3(-50, -20, -100));
+	Sampler sampler2("\"...we should go to the moon!\"", props, &selectableWorld, mOut, 2, "sphere2-model-name");
+	sampler2.setPosition(vec3(-10, 2, -30));
+	
+	Sampler sampler3("\"...as did the sputnik in 1957\"", props, &selectableWorld, mOut, 3);
+	sampler3.setPosition(vec3(-50, -20, -100));
 
 	
 	StarField starField(props);
@@ -212,7 +219,7 @@ Sputnik::Sputnik(Properties* _props)
 		
 		// update
 		sampler.update(deltaT, t);
-//		sampler2.update(deltaT, t);
+		sampler2.update(deltaT, t);
 //		sampler3.update(deltaT, t);
 		
 		
@@ -235,7 +242,7 @@ Sputnik::Sputnik(Properties* _props)
 			glDepthMask(GL_TRUE);
 
 			sampler.render(RP_NORMAL, camera);
-//			sampler2.render(RP_NORMAL, camera);
+			sampler2.render(RP_NORMAL, camera);
 //			sampler3.render(RP_NORMAL, camera);
 			
 			starField.onRender(RP_NORMAL, camera);

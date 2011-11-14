@@ -14,6 +14,8 @@
 
 using namespace sputnik::component;
 using namespace sputnik::input;
+using namespace sputnik::scene;
+
 using namespace kocmoc::core;
 
 using kocmoc::core::renderer::RenderPass;
