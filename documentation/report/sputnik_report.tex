@@ -10,10 +10,10 @@
 
 \setlength{\parskip}{0.5em}
 
-\author{Simon Wallner\\\small{\texttt{me@simonwallner.at}}}
-\title{\emph{Sputnik} Project Report}
-\subtitle{HCC Project Seminar}
 
+\title{Sputnik}
+\subtitle{Project Report HCC Project Seminar 2011}
+\author{Simon Wallner\footnote{\texttt{me@simonwallner.at}}}
 
 \begin{document}
 \maketitle
@@ -23,7 +23,34 @@ Abstract
 \end{abstract}
 
 \section{Introduction}
-1 page
+The aim of this project is to create a \emph{New Interface for Musical Expression} (\emph{NIME}) in a two part endeavour: on the one hand it is about creating a more general system for interacting with a 3D scene through the means of a \emph{light arc} metaphor, on the other hand it is about using this system to create a \emph{new, intuitive, meaningful} and \emph{expressive} musical instrument.
+
+\subsection{Scene Interaction}
+Users can interact with a 3D scene by a metaphorical \emph{arc of light}. It is controlled by a \emph{wiimote controller} and it seems as if this arc is coming directly out of the wiimote and acts as an extension of the user into the scene. The arc follows the user's actions immediately. 
+
+Through this arc, users can \emph{point} at objects, \emph{grab} them and \emph{drag} them around the 3D scene. Objects in the 3D scene behave like \emph{real} physical bodies. They feature distinctive weight, and friction resistance causing them to come the a gentle halt if let loose. Both values can be set per object and therefore impact how the user perceives the scene.
+
+
+\subsection{Music Instrument}
+This 3D scene and the interaction with it, is the foundation for creating new musical instruments with it. These instruments should be \emph{intuitive, meaningful} and \emph{ expressive}.
+
+\subparagraph{Intuitive}
+The system should be usable even for untrained users within minutes. Navigating the 3D scene and using the \emph{light arc} should feel natural and intuitive.
+
+\subparagraph{Meaningful}
+The interaction with the music instruments should be \emph{meaningful}, i.e. users should quickly be able to create mental models of the instruments and correlate their actions with the output of the instrument. 
+
+For example, larger movements should result in louder sounds or the movement speed of an object corresponds to the sounds pitch.
+
+Besides the performer herself, interaction should also be meaningful for the potential audience. They should be able to construct a mental model of the instrument just by watching someone play it.
+
+\subparagraph{Expressive}
+Additionally the instrument should be \emph{expressive}. Expressiveness in a sense that it is "[...] learnable, repeatable, and sufficiently refined to enable control of the sound that is both intimate (finely detailed) and complex (diverse, and not overly simplistic)." \cite{Dobrian2006}
+
+\subsection{Sound Generation}
+Generation of sounds and music is handled by the external audio program \emph{pure data}\footnote{\texttt{http://puredata.info/}}. Communication between \emph{sputnik} and \emph{pd} is handled over the MIDI protocol. Actual sound generation is realized in pd and the mapping logic is split between sputnik and pd.
+
+
 
 \section{Literature Review}
 2 pages
@@ -34,13 +61,13 @@ Abstract
 Description of the Implementation according to the learning goals:
 
 \begin{enumerate}
-\item Create a system that allows the user to interact with an virtual world through the wiimote. This syststem should be intuitive even for untrained users, and have a very low barrier of entry.
+\item Create a system that allows the user to interact with an virtual world through the wiimote. This system should be intuitive even for untrained users, and have a very low barrier of entry.
 
 \item Explore the technical capabilities of the wiimote and nunchuck controller and put it to good use.
 
 \item Create a meaningful mapping form the virtual world to the sound generation system.
 
-\item Create a sound generation system that allows nuanced an rich musical expression. 5. Develop an architecture streamlines the three stages input - processing - output.
+\item Create a sound generation system that allows nuanced and rich musical expression. 5. Develop an architecture that streamlines the three stages input - processing - output.
 \end{enumerate}
 
 \section{Evaluation}
@@ -67,7 +94,7 @@ wrap up the project, summarise findings, and outline future work
 
 
 
-% \bibliographystyle{apalike}
-% \bibliography{related-work}
+\bibliographystyle{apalike}
+\bibliography{related-work}
 
 \end{document}

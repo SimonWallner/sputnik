@@ -183,7 +183,7 @@ Sputnik::Sputnik(Properties* _props)
 	sampler2.setPosition(vec3(-10, 10, -50));
 	sampler2.setRotation(angleAxis(10.0f, -1.0f, 1.0f, -1.0f));
 	
-	Sampler sampler3("\"I believe, we should go to the moon\"", props, &selectableWorld, &inputManager,mOut, 3);
+	Sampler sampler3("\"I believe, we should go to the moon!\"", props, &selectableWorld, &inputManager,mOut, 3);
 	sampler3.setPosition(vec3(-100, -20, -100));
 	sampler3.setRotation(angleAxis(40.0f, 0.2f ,0.8f, 0.2f));
 	
@@ -204,7 +204,7 @@ Sputnik::Sputnik(Properties* _props)
 	StarField starField(props);
 	starField.init();
 	
-	Text text1(props, "user study!");
+	Text text1(props, "user study, mid december!");
 	text1.setPosition(vec3(50, 20, -150));
 	text1.setRotation(angleAxis(-30.f, 0.0f, 1.0f, 0.0f));
 	text1.update(0, 0);
