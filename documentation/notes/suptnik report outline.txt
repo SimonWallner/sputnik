@@ -23,6 +23,8 @@ Problem Statement
  - more complex mapping with simple interface, not just mapping of axis.
  - have a virtual interface
 
+
+
 Questions:
  - How well does the arc of light/fishing rod metaphor perform in terms of:
 	- user performance, how easy is it to interact?
@@ -45,4 +47,12 @@ Questions:
 
  - modell/naturalism/affordance
 	- can users create a mental model of the object, both physical and musical
+
+ - music
+	- how well suited is it to control music
+	- is it/what is needed to be expressive
+	- what possible instruments/uses?
+
+ - other uses
+	- what other uses can you envision?
 
