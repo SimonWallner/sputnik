@@ -1,0 +1,48 @@
+open:
+
+ - problem statement
+ - research questions
+	 - contribution?
+
+ - solution roadmap
+
+ - project history, changing goals
+
+
+
+target audience
+ - HCI/HCC Researchers
+ - scientific paper
+ - game devs, general public --> blog
+
+------------------------------------------------------------------------------
+Problem Statement
+ - how to create an expressive virtual instrument that can be used in live and impromptu settings
+ - make it visually pleasing, for both the performer and the audience
+ - rather simple and accessible interface, 
+ - more complex mapping with simple interface, not just mapping of axis.
+ - have a virtual interface
+
+Questions:
+ - How well does the arc of light/fishing rod metaphor perform in terms of:
+	- user performance, how easy is it to interact?
+	- feel of the virtual environment, can certain object properties be felt?
+	- precision: how precise is the control
+	- improvements?
+	- does is feel powerfull/controlable/?
+
+ - Can this interface be considered tangible?
+
+ - visually pleasing?
+	- is the scene visually pleasing?
+	- would this improve a live performance?
+	- improvements?
+
+ - narrative/immersion?
+	- what is it?
+	- what story does it tell?
+	- do you feel immersed into the scene?
+
+ - modell/naturalism/affordance
+	- can users create a mental model of the object, both physical and musical
+
