@@ -31,7 +31,7 @@ namespace sputnik
 			
 			void drag(glm::vec3 F)
 			{
-				ob->drag = F;
+				ob->drag += F;
 			}
 			
 		private:

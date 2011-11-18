@@ -7,7 +7,7 @@
 
 #include <component/TextLabel.hpp>
 #include <component/SamplerBehaviour.hpp>
-#include <component/SpeedToMidi.hpp>
+#include <component/OriginDrag.hpp>
 
 using namespace sputnik::object;
 using namespace sputnik::component;
@@ -60,9 +60,9 @@ sputnik::object::Sampler::Sampler(string name,
 	addComponent(samplerBehaviour);
 	registerUpdateReceiver(samplerBehaviour);
 	
-//	SpeedToMidi* speed2Midi = new SpeedToMidi(mOut, cc);
-//	addComponent(speed2Midi);
-//	registerUpdateReceiver(speed2Midi);
+	originDrag = new OriginDrag(glm::vec3(0));
+	addComponent(originDrag);
+	registerUpdateReceiver(originDrag);
 	
 	initComponents();
 }

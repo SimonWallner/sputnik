@@ -71,7 +71,7 @@ void SamplerBehaviour::setSelected(bool isSelected)
 
 void SamplerBehaviour::drag(vec3 F)
 {
-	ob->drag = F;
+	ob->drag += F;
 }
 
 glm::vec3 SamplerBehaviour::getPosition() const
