@@ -29,6 +29,7 @@
 	<string name="sphere1-model-name" value="models/sphere1.blend" />
 	<string name="sphere2-model-name" value="models/sphere2.blend" />
 	<string name="sphere3-model-name" value="models/sphere3.blend" />
+	<string name="sphere4-model-name" value="models/sphere4.blend" />
 
 	<float name="wiimote-dead-zone-x" value="0.05" />
 	<float name="wiimote-dead-zone-y" value="0.05" />

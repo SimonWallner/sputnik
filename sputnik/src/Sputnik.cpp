@@ -31,11 +31,14 @@
 #include <component/WiimoteDebugger.hpp>
 #include <component/WiimoteCameraController.hpp>
 #include <component/StarField.hpp>
+
 #include <object/Text.hpp>
 #include <object/Arc.hpp>
 #include <object/Sampler.hpp>
 #include <object/Player.hpp>
 #include <object/TapeMachine.hpp>
+#include <object/WayPoint.hpp>
+
 #include <scene/SelectableWorld.hpp>
 #include <output/MIDIout.hpp>
 
@@ -198,6 +201,9 @@ Sputnik::Sputnik(Properties* _props)
 	TapeMachine tapeMachine("JFK", props, &selectableWorld, mOut, 11);
 	tapeMachine.setPosition(vec3(30, 30, -30));
 	
+	WayPoint wayPoint(props, &selectableWorld, mOut, 21);
+	wayPoint.setPosition(vec3(0, 0, -5));
+	
 
 
 	
@@ -263,6 +269,8 @@ Sputnik::Sputnik(Properties* _props)
 		player.update(deltaT, t);
 		tapeMachine.update(deltaT, t);
 		
+//		wayPoint.update(deltaT, t);
+		
 		
 		// post update
 		camera->updateMatrixes();
@@ -289,6 +297,8 @@ Sputnik::Sputnik(Properties* _props)
 			
 			player.render(RP_NORMAL, camera);
 			tapeMachine.render(RP_NORMAL, camera);
+			
+			wayPoint.render(RP_NORMAL, camera);
 			
 			text1.render(RP_NORMAL, camera);
 			text2.render(RP_NORMAL, camera);

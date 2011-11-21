@@ -7,7 +7,6 @@
 
 #include <component/TextLabel.hpp>
 #include <component/SamplerBehaviour.hpp>
-#include <component/OriginDrag.hpp>
 
 using namespace sputnik::object;
 using namespace sputnik::component;

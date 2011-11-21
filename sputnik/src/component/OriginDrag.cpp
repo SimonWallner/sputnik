@@ -4,8 +4,8 @@ using namespace sputnik::component;
 using namespace kocmoc::core::component;
 
 OriginDrag::OriginDrag(glm::vec3 _origin, float _force)
-: origin(_origin)
-, force(_force)
+	: origin(_origin)
+	, force(_force)
 {}
 
 void OriginDrag::init()
