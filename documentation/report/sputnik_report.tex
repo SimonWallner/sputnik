@@ -19,7 +19,7 @@
 \maketitle
 
 \begin{abstract}
-This project aims to develop and evaluate a 3D environment with which the user can freely interact through an elastic \emph{arc of light/fishing rod} metaphor, to explore, create and interact with virtual \emph{sound objects}. These sound objects are placed in the scene and react to the user's input by sending MIDI commands to an external audio program thus creating or manipulating the sound.
+This paper evaluates \emph{sputnik} a 3D environment with which the user can freely interact through an elastic \emph{arc of light/fishing rod} metaphor, to explore, create and interact with virtual \emph{sound objects}. These sound objects are placed in the scene and react to the user's input by sending MIDI commands to an external audio program thus creating or manipulating the sound.
 
 \end{abstract}
 
@@ -33,16 +33,31 @@ etc...
 
 
 \section{Introduction}
-Computer music is around us for some time now and through the use of the computer musicians have sheer endless possibilities of musical expression. With this comes the need to constrain and control it to harness its expressive potential. Over the recent years many standard and non-standard interface have been developed, ranging from the ordinary button-fader-nob MIDI interface to more elaborate interfaces and systems like the \emph{reactable}\cite{Jorda2007}, \emph{mixiTUI}\cite{Pedersen2009} or commercial solutions like the \emph{Novation Launchpad}\footnote{\texttt{http://www.novationmusic.com/products/midi\_controllers/launchpad}} or \emph{Native Instruments Maschine}\footnote{\texttt{http://www.native-instruments.com/\#/en/products/producer/maschine/}}.
 
-With the advent of motion based controllers in consumer entertainment systems, marked by the release of the \emph{Wii}\footnote{\texttt{http://de.wikipedia.org/wiki/Wii}} console in late 2006, motion controller became widely and cheaply available. This makes them the ideal tools to explore the realm of \emph{new interfaces for musical expression}.
+% setting the scene
+Computer music is around us for some time now and through the use of the computer musicians have sheer endless possibilities of musical expression. With this plethora of possibilities comes the need for constraints and control to harness this expressive potential. Over the recent years many standard and non-standard interface have been developed, ranging from the ordinary button-fader-nob MIDI interface to more elaborate interfaces and systems like the \emph{reactable}\cite{Jorda2007}, \emph{mixiTUI}\cite{Pedersen2009} or commercial solutions like the \emph{Novation Launchpad}\footnote{\texttt{http://www.novationmusic.com/products/midi\_controllers/launchpad}} or \emph{Native Instruments Maschine}\footnote{\texttt{http://www.native-instruments.com/\#/en/products/producer/maschine/}} to name but a few.
 
-A common problem of computer music interfaces is that often the process of sound creation is not readily comprehensible. Seeing a performer on stage behind their laptop twisting knobs and adjusting faders might be ambiguous. It can be hard to relate the artist's action to the resulting sounds. This can hinder experience and might go as far as to the point where the audience suspects that an artist just pressed play as interviews show in \cite{Pedersen2009}.
+With the advent of motion based controllers in consumer entertainment systems, marked by the release of the \emph{Wii}\footnote{\texttt{http://de.wikipedia.org/wiki/Wii}} console in late 2006, motion controllers became widely and cheaply available. This and their interface capabilities make them the ideal tools to explore the realm of \emph{new interfaces for musical expression}.
 
+
+% problem statement
+A common problem of computer music interfaces is that often the process of sound creation is not readily comprehensible. Seeing a performer on stage behind their laptop twisting knobs and adjusting faders might be ambiguous to an uninformed observer. It can be hard to relate the artist's action to the resulting sounds. This can hinder the experience and might go as far as to the point where the audience suspects that an artist just pressed play, as interviews conducted by \cite{Pedersen2009} show.
+
+% sputnik description
+This paper introduces \emph{sputnik}, a system that uses a \emph{Wiimote} controller to interact with a dynamic 3D scene. In the scene, a variety of sound creating objects are placed that send MIDI signals to an external audio program upon the user's interaction. 
+
+Users can freely navigate the 3D scene and interact with it through an elastic \emph{arc of light/fishing rod} metaphor. It seems as if the \emph{arc of light} was coming out of the Wiimote and reaches into the scene, acting as an extension of the user's body into the virtual space. With this bodily extension users can \emph{grab} and \emph{drag} objects around the 3D scene.
+
+
+
+% contribution
+In this paper I evaluate the qualities of the \emph{arc or light} metaphor and how the design decisions/constraints of the system influence its expressive potential both visually and musically. This evaluation is grounded in a user study of XXX users.
+
+Based on these findings and the theoretical framework of \cite{Ullmer2000} the similarities and differences between \emph{sputnik} and tangible user interfaces are discussed. 
 
 
 \section{Paper Outline}
-what to find where
+The following section gives an overview over related work in the field of \emph{New Interfaces for Musical Expression} and tangible user interfaces. Section \ref{} goes into detail about sputnik, both on a conceptual and a technical level. Section \ref{} describes the performed user study and the paper is finally concluded in section \ref{} where the findings are discussed.
 
 
 \section{Related Work}
@@ -79,6 +94,8 @@ Discuss the results form the evaluation and answer the research questions.
 \item How can the arc of light/fishing rod metaphor be used for intuitive interaction. How does lag impact the system?
 \item What meaningful mappings can be derived from the interaction with and the visualisation of the virtual scene.
 \end{enumerate}
+
+\section{Future Work}
 
 \section{Conclusion}
 0.5 pages
