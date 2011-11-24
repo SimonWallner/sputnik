@@ -269,7 +269,7 @@ Sputnik::Sputnik(Properties* _props)
 		player.update(deltaT, t);
 		tapeMachine.update(deltaT, t);
 		
-//		wayPoint.update(deltaT, t);
+		wayPoint.update(deltaT, t);
 		
 		
 		// post update

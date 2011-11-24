@@ -18,6 +18,8 @@ WiimoteCameraController::WiimoteCameraController(kocmoc::core::scene::FilmCamera
 	: camera(_camera)
 	, pointer(symbolize("wiimote-pointer"))
 	, analogStick(symbolize("nunchuck-analog-stick"))
+	, nunchuckC(symbolize("nunchuck-C"))
+	, nunchuckZ(symbolize("nunchuck-Z"))
 	, ic(this)
 {
 	float deadX = props->getFloat(symbolize("wiimote-dead-zone-x"));
