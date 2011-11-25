@@ -35,10 +35,11 @@ Questions:
 
  - Can this interface be considered tangible?
 
- - visually pleasing?
+ - visually
 	- is the scene visually pleasing?
 	- would this improve a live performance?
 	- improvements?
+	- what is the visual expression? --> narrative
 
  - narrative/immersion?
 	- what is it?
@@ -52,6 +53,7 @@ Questions:
 	- how well suited is it to control music
 	- is it/what is needed to be expressive
 	- what possible instruments/uses?
+	- rate the level of perceived mastery form 1 to 10. this is a corrollary to the perceived potential. high potential should correlate with low mastery.
 
  - other uses
 	- what other uses can you envision?
