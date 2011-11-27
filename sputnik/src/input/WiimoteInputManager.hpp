@@ -72,6 +72,8 @@ namespace sputnik
 		public:
 			WiimoteInputManager(GLFWwindow);
 			
+			~WiimoteInputManager();
+			
 			/**
 			 * register a callback, for a given name.
 			 */
@@ -104,7 +106,7 @@ namespace sputnik
 			WiimoteEventListenerMultiMap wiimoteEventListeners;
 			WiimoteBindings wiimoteEventBindings;
 			
-			CWii wii; // Defaults to 4 remotes
+			CWii* wii; // Defaults to 4 remotes
 			std::vector<CWiimote> wiimotes;
 			
 			float lastPointerX, lastPointerY;

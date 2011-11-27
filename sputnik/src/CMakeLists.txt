@@ -2,7 +2,7 @@
 
 # g++ compiler settings
 add_definitions(-Wall -Wextra -pedantic -Werror -Winit-self -Wno-long-long)
-add_definitions(-g -O0)
+add_definitions(-g -O0 -fstack-protector-all)
 
 
 

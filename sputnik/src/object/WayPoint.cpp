@@ -42,10 +42,10 @@ WayPoint::WayPoint(util::Properties* props,
 	addComponent(originDistToMidi);
 	registerUpdateReceiver(originDistToMidi);
 	
-	Selectable selectable(1.3f);
-	addComponent(&selectable);
-	registerUpdateReceiver(&selectable);
-	world->add(&selectable);
+	Selectable* selectable = new Selectable(1.3f);
+	addComponent(selectable);
+	registerUpdateReceiver(selectable);
+	world->add(selectable);
 	
 	initComponents();
 }

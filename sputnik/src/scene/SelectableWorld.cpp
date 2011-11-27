@@ -20,7 +20,10 @@ Selectable* SelectableWorld::rayIntersection(vec3 startPoint,
 		 it != world.end();
 		 it++)
 	{
-		float rayDistance = pointToRayDistance((*it)->getPosition(), startPoint, direction);
+		Selectable* sel = (*it);
+		vec3 pos = sel->getPosition();
+		
+		float rayDistance = pointToRayDistance(sel->getPosition(), startPoint, direction);
 		
 		if (rayDistance == -1)
 			continue;

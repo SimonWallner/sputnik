@@ -16,19 +16,20 @@ WiimoteInputManager::WiimoteInputManager(GLFWwindow window)
 	, lastPointerX(0.5f)
 	, lastPointerY(0.5f)
 {
+	wii = new CWii();
+	
 	std::cout << "searching wiimotes. Press buttons 1 and 2!" << std::endl;
-	
 	// code derived from the wiic tutorial
-	
-	printf("Searching for wiimotes... Turn them on!\n");
+	std::cout << "Searching for wiimotes... Turn them on!" << std::endl;
 	
 	//Find the wiimote
-	int numFound = wii.Find(2);
-	printf("Found %d Wiimotes\n", numFound);
+	int numFound = wii->Find(2);
+
+	std::cout << "Found n Wiimotes: " <<  numFound << std::endl;
 	
 	// Connect to the Wiimotes
-	wiimotes = wii.Connect();
-	printf("Connected to %d wiimotes\n", (int) wiimotes.size());
+	wiimotes = wii->Connect();
+	std::cout << "connected to n wiimotes: " << (int) wiimotes.size() << std::endl;
 	
 	/**
 	 * ---------------------------- IMPORTANT! ---------------------------------
@@ -44,7 +45,7 @@ WiimoteInputManager::WiimoteInputManager(GLFWwindow window)
 	{
 		cout << "forcing nunchuck handshake completion" << std::endl;
 		while (wiimotes[0].ExpansionDevice.GetType() != wiimotes[0].ExpansionDevice.TYPE_NUNCHUK)
-			wii.Poll();
+			wii->Poll();
 	}
 	
 	
@@ -69,6 +70,11 @@ WiimoteInputManager::WiimoteInputManager(GLFWwindow window)
 	}
 }
 
+WiimoteInputManager::~WiimoteInputManager()
+{
+	delete wii;
+}
+
 void WiimoteInputManager::dumpBindings()
 {
 	InputManager::dumpBindings();
@@ -76,7 +82,7 @@ void WiimoteInputManager::dumpBindings()
 
 void WiimoteInputManager::pollWiimote()
 {
-	if (wii.Poll())
+	if (wii->Poll())
 	{
 		unsigned int controllerNumber = 0;
 		for (std::vector<CWiimote >::iterator it = wiimotes.begin();
