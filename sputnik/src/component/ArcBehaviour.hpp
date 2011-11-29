@@ -71,6 +71,9 @@ namespace sputnik
 			scene::Selectable* hover;
 			scene::Selectable* selection;
 			
+			bool grabHeld;
+			bool justHooked;
+			
 			/**
 			 * move the arc, according to the user input
 			 * user input is supposed to lie in [0, 1]x[0, 1]

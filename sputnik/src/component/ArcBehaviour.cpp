@@ -46,6 +46,8 @@ ArcBehaviour::ArcBehaviour(Properties* _props,
 	, world(_world)
 	, hover(NULL)
 	, selection(NULL)
+	, grabHeld(false)
+	, justHooked(false)
 	, ic(this)
 {
 	inputManager->bindWiimoteEvent(WIIMOTE_EVENT_CURSOR_RELATIVE_X_Y, arcPointer);
@@ -120,6 +122,16 @@ void ArcBehaviour::moveArc(float x, float y)
 			prevHover->setHovering(false);
 		hover->setHovering(true);
 	}
+	
+	if (grabHeld && !justHooked)
+	{
+		selection = hover;
+		if (selection != NULL)
+		{
+			selection->setSelected(true);
+			justHooked = true;
+		}
+	}
 
 	
 	if (selection)
@@ -158,13 +170,14 @@ void ArcBehaviour::InputCallback::wiimoteButtonEventCallback(Symbol name,
 {
 	if (name == p->arcB && event.state == ButtonEvent::PRESSED)
 	{
-		p->selection = p->hover;
-		if (p->selection != NULL)
-			p->selection->setSelected(true);
+		p->grabHeld = true;
 	}
 	
 	else if (name == p->arcB && event.state == ButtonEvent::RELEASED)
 	{
+		p->grabHeld = false;
+		p->justHooked = false;
+		
 		if (p->selection != NULL)
 		{
 			p->selection->setSelected(false);
