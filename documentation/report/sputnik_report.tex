@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{subfig}
 \usepackage{graphicx}
+\usepackage[british]{babel}
 
 \setlength{\parskip}{0.5em}
 
@@ -61,28 +62,29 @@ The following section gives an overview over related work in the field of \emph{
 
 
 \section{Related Work}
-Only a few projects exist that go into a similar direction as sputnik. The \emph{Virtual Xylophone}\cite{Maki-Patola2005} is a virtual reality system in which the users can place bars of different pitch in the scene and then struck them with a virtual mallet. By translating the configuration and mapping of the real instrument into the VR environment, new modes of play emerge.
-\cite{Zappi2010} created a virtual controller for \emph{Ableton Live} that allows users to create simple proxy objects in a VR environment, bind them to certain controls and use them effectively as virtual sliders. \cite{Rodet2005} created a virtual environment for an exhibition setting. User interaction is limited but is done through a 6DOF motion tracker with tactile feedback.
+\paragraph{Practical Work}
+Only a few projects exist that go into a similar direction as sputnik. The \emph{Virtual Xylophone}\cite{Maki-Patola2005} is a virtual reality system in which the user can place xylophone bars of different pitch in the scene and then struck them with a virtual mallet. By translating the configuration and mapping of the real instrument into the VR environment, new modes of play emerge.
+\cite{Zappi2010} created a virtual controller for \emph{Ableton Live} that allows users to create simple proxy objects in a VR environment, bind them to certain controls and use them effectively as virtual sliders. \cite{Rodet2005} created a virtual environment for an exhibition setting. Users interact with the system via a 6-DOF motion tracker with tactile feedback. However, the user's actions in the system are highly constrained.
 
-More projects exist in the realm of Tangible user interfaces. With mixiTUI \cite{Pedersen2009} created a table top tangible interface for a sequencer that aimed not only to be functional but also to visually enrich the artists performance. Interviews with musicians and an extensive user study have been performed. \cite{Jorda2007} created the famous \emph{reacTable}, also a table top tangible interface that allows the creation and manipulation of music by composing various objects on a surface. 
+More projects can be found in the realm of Tangible User Interfaces. With \emph{mixiTUI} \cite{Pedersen2009} created a table top tangible interface for a sequencer that aimed not only to be functional but also to visually enrich the artists performance. Interviews with musicians and an extensive user study have been performed. \cite{Jorda2007} created the famous \emph{reacTable}, also a table top tangible interface that allows the creation and manipulation of music by composing various objects on its surface. 
 
-\cite{Kiefer2008} assess the general qualities of the Wiimote as a musical controller and \cite{Miller2010} uses the Wiimote and sensor bar to create the \emph{Wiiolin}, a virtual violin that mimics the real instrument and can be played either in an upright position like a cello or horizontally like a violin. It only uses audio feedback. 
+After the release of the Wii in late 2006, the Wiimote motion controller received some attention in and outside the field of musical interfaces: 
+\cite{Kiefer2008} assess the general qualities of the Wiimote as a musical controller and \cite{Miller2010} uses the Wiimote and sensor bar to create the \emph{Wiiolin}, a virtual violin that mimics the real instrument and can be played either in an upright position like a cello or horizontally like a violin. It senses the button presses and tracks the movement of the \emph{bow}, i.e. the sensor bar to create the sounds.
 
-A bit farther away, \cite{Miyama2010} uses an low resolution distance sensor array to control the many parameters of a synthesizer. A small gui application is merely used for monitoring the system state, and sound creation is done in pd.
+Not a Wiimote but still impressive, \cite{Miyama2010} uses an low resolution distance sensor array to control the many parameters of a synthesizer. A small gui application is merely used for monitoring the system's state, and sound creation is done in pd.
 
 
-The field of Tangible User Interfaces provides part of the theoretical background for this work. Work of \cite{Fitzmaurice1995} and then later \cite{Ishii1997} introduced this term. \cite{Shaer2009} Gives a very good overview over this field as well as the history of TUI studies.
+\paragraph{Theoretical Work}
+The field of \emph{Tangible User Interfaces (TUI)} provides part of the theoretical background for this work. Work of \cite{Fitzmaurice1995} and then later \cite{Ishii1997} introduced this term and the wider concept. \cite{Shaer2009} Gives a very good overview over this field as well as the history of TUI studies. \cite{Ullmer2000} introduced \emph{MCRpd}, a formal model for describing and analysing TUIs that will be used in section \ref{}.
 
 \cite{Sharlin2004} introduced \emph{spacial TUIs} that focuses on \emph{I/O unification} by tightly coupling the action and perception spaces and embodying a clear state representation across all sensory modalities.
 
-\cite{Ullmer2000} introduced \emph{MCRpd}, a formal model for descibing and analysing TUIs that will be used in section \ref{}
 
+Entering the musical realm \cite{Fels2011} give a good overview and general introduction into the field of \emph{NIMEs (New Interfaces for Musical Expression)}. \cite{Cook2001} shares 13 general principles for designing computer music controllers that resulted from his long lasting experience in this field. \cite{Dobrian2006} asks the question of virtuosity and expression by pointing out the elephant in the room, e.g. the lack thereof and also the lack of a comparable standard repertoire. 
 
-Entering the musical realm \cite{Fels2011} give a good overview and general introduction into the field of NIMEs. \cite{Cook2001} shares 13 general principles for designing computer music controllers that resulted from his yearlong experience in this field. \cite{Dobrian2006} asks the question of virtuosity and expression by pointing at the elephant in the room, e.g. the lack thereof and also the lack of a comparable standard repertoire. 
+In contrary to that \cite{Gurevich2007} question the hegemonic \emph{composer--interpret--listener} relation in favour of a more holistic \emph{ecological} view of musical expression. Later work by \cite{Gurevich2010} evaluated a highly constrained, prototypical one-button instrument that spurred a wide variety of play styles in test users.
 
-In contrary to that \cite{Gurevich2007} question the hegemonial \emph{composer--interpret--listener} relation in favour of a more holistic \emph{ecological} view of musical expression. Later work by \cite{Gurevich2010} evaluated a hightly constrained, prototypical one-button instrument that spurred a wide variety of play styles.
-
-Closing the loop back to design and HCI, \cite{Magnusson2010} gives a good overview over the field of \emph{affordance} and elaborates on \emph{contraints} from different viewing angles and how they impact and support creativity. Finally, \cite{Wanderley2002} goes in to depth about evaluating input devices for musical expression in the context of HCI. 
+Closing the loop to design and HCI, \cite{Magnusson2010} gives a good overview over the field of \emph{affordance} and elaborates on \emph{contraints} from different viewing angles and how they impact and support creativity. Finally, \cite{Wanderley2002} goes into depth over evaluating input devices for musical expression in the context of HCI. 
 
 
 

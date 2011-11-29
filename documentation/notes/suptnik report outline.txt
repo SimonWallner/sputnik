@@ -72,8 +72,3 @@ related work section:
  - affordance and constraints, expression --> Dobrian, Magnusson
  - tangible UI
 
-
-
-
-
-even though this project is stricly speaking not a tangible interface, it shares some similarities and qualities of TUIs. ... 
