@@ -61,33 +61,79 @@ The following section gives an overview over related work in the field of \emph{
 
 
 \section{Related Work}
-\cite{Magnusson2010} gives a good overview over the field of \emph{affordance} and elaborates on \emph{constraints} from different viewing anlges and how constraints impact and support creativity.
+Only a few projects exist that go into a similar direction as sputnik. The \emph{Virtual Xylophone}\cite{Maki-Patola2005} is a virtual reality system in which the users can place bars of different pitch in the scene and then struck them with a virtual mallet. By translating the configuration and mapping of the real instrument into the VR environment, new modes of play emerge.
+\cite{Zappi2010} created a virtual controller for \emph{Ableton Live} that allows users to create simple proxy objects in a VR environment, bind them to certain controls and use them effectively as virtual sliders. \cite{Rodet2005} created a virtual environment for an exhibition setting. User interaction is limited but is done through a 6DOF motion tracker with tactile feedback.
 
-\cite{Ullmer2000} introduces a formal model for tangible user interfaces and compares it to the prevalent MVC (Model View Controller) model. Different qualities of TUIs are stated and a few existing applications are assessed with it.
+More projects exist in the realm of Tangible user interfaces. With mixiTUI \cite{Pedersen2009} created a table top tangible interface for a sequencer that aimed not only to be functional but also to visually enrich the artists performance. Interviews with musicians and an extensive user study have been performed. \cite{Jorda2007} created the famous \emph{reacTable}, also a table top tangible interface that allows the creation and manipulation of music by composing various objects on a surface. 
 
-\cite{Ishii1997} Introduced the term \emph{Tangible User Interface} (\emph{TUI}
+\cite{Kiefer2008} assess the general qualities of the Wiimote as a musical controller and \cite{Miller2010} uses the Wiimote and sensor bar to create the \emph{Wiiolin}, a virtual violin that mimics the real instrument and can be played either in an upright position like a cello or horizontally like a violin. It only uses audio feedback. 
 
-\cite{Kiefer2008} Assessing the potential of the wiimote as an musical interface and comparing it to a common interface. user study, only very simple mapping + perceptron shape recognition
-
-\cite{Wanderley2002} discusses the problems of how to assess interfaces for musical expression and searches the depths of HCI studies for a possible answer. no answer given
-
-\cite{Dobrian2006} dives tries to answer what constitutes an expressive musical interface, and how does the lack of virtuoso performers impacts the whole discussion. It highlights the role of a repertoire and the role of the performer. This is a bit contradicting to what \cite{Magnusson2010} writes.
-
-\cite{Cook2001} provides a few (empiric) design principles for digital musical instruments and richly illustrates them with example projects.
-
-\cite{Fels2011} General introduction and overview to/of the field of NIMEs given as a SIGGRAPH course. The definitive introduction to NIMEs.
-
-\cite{Gurevich2007} introduce an \emph{ecological} view of musical expression that goes against the conservative view of a uni-linear composer--interpret--listener relation.
-
-\cite{Gurevich2010} evaluate a highly constrainted one-button instrument in terms of the style and variations these constraints induce.
-
-\cite{Maki-Patola2005} built four virtual reality instruments for a cave like environment, one of them being a virtual mallet, where users can hit the pads with virtual mallets. This comes closest to sputnik and also a few general thought on virtual scenes and the possible impact on the performance are given.
+A bit farther away, \cite{Miyama2010} uses an low resolution distance sensor array to control the many parameters of a synthesizer. A small gui application is merely used for monitoring the system state, and sound creation is done in pd.
 
 
+The field of Tangible User Interfaces provides part of the theoretical background for this work. Work of \cite{Fitzmaurice1995} and then later \cite{Ishii1997} introduced this term. \cite{Shaer2009} Gives a very good overview over this field as well as the history of TUI studies.
 
+\cite{Sharlin2004} introduced \emph{spacial TUIs} that focuses on \emph{I/O unification} by tightly coupling the action and perception spaces and embodying a clear state representation across all sensory modalities.
+
+\cite{Ullmer2000} introduced \emph{MCRpd}, a formal model for descibing and analysing TUIs that will be used in section \ref{}
+
+
+Entering the musical realm \cite{Fels2011} give a good overview and general introduction into the field of NIMEs. \cite{Cook2001} shares 13 general principles for designing computer music controllers that resulted from his yearlong experience in this field. \cite{Dobrian2006} asks the question of virtuosity and expression by pointing at the elephant in the room, e.g. the lack thereof and also the lack of a comparable standard repertoire. 
+
+In contrary to that \cite{Gurevich2007} question the hegemonial \emph{composer--interpret--listener} relation in favour of a more holistic \emph{ecological} view of musical expression. Later work by \cite{Gurevich2010} evaluated a hightly constrained, prototypical one-button instrument that spurred a wide variety of play styles.
+
+Closing the loop back to design and HCI, \cite{Magnusson2010} gives a good overview over the field of \emph{affordance} and elaborates on \emph{contraints} from different viewing angles and how they impact and support creativity. Finally, \cite{Wanderley2002} goes in to depth about evaluating input devices for musical expression in the context of HCI. 
 
 
 
+
+
+
+% ------------------------------------------------
+
+% \cite{Magnusson2010} gives a good overview over the field of \emph{affordance} and elaborates on \emph{constraints} from different viewing anlges and how constraints impact and support creativity.
+
+% \cite{Ullmer2000} introduces a formal model for tangible user interfaces and compares it to the prevalent MVC (Model View Controller) model. Different qualities of TUIs are stated and a few existing applications are assessed with it.
+
+% \cite{Ishii1997} Introduced the term \emph{Tangible User Interface} (\emph{TUI}
+
+% \cite{Kiefer2008} Assessing the potential of the wiimote as an musical interface and comparing it to a common interface. user study, only very simple mapping + perceptron shape recognition
+
+% \cite{Wanderley2002} discusses the problems of how to assess interfaces for musical expression and searches the depths of HCI studies for a possible answer. no answer given
+
+% \cite{Dobrian2006} tries to answer what constitutes an expressive musical interface, and how does the lack of virtuoso performers impacts the whole discussion. It highlights the role of a repertoire and the role of the performer. This is a bit contradicting to what \cite{Magnusson2010} writes.
+
+% \cite{Cook2001} provides a few (empiric) design principles for digital musical instruments and richly illustrates them with example projects.
+
+% \cite{Fels2011} General introduction and overview to/of the field of NIMEs given as a SIGGRAPH course. The definitive introduction to NIMEs.
+
+% \cite{Gurevich2007} introduce an \emph{ecological} view of musical expression that goes against the conservative view of a uni-linear composer--interpret--listener relation.
+
+% \cite{Gurevich2010} evaluate a highly constrainted one-button instrument in terms of the style and variations these constraints induce.
+
+% \cite{Maki-Patola2005} built four virtual reality instruments for a cave like environment, one of them being a virtual mallet, where users can hit the pads with virtual mallets. This comes closest to sputnik and also a few general thought on virtual scenes and the possible impact on the performance are given.
+
+% \cite{Miller2010} uses the Wiimote and sensor bar to modell a virtual violin. It has no graphical UI and uses recorded sound samples.
+
+% \cite{Miyama2010} IR distance sensor array used to control a pd patch and a simple gui application written in c.
+
+% \cite{Pedersen2009} mixiTUI, tangible sequencer with gui, user study and interviews.
+
+% \cite{Sharlin2004} introduces \emph{spatial TUIs} and discusses I/O unification on a few examples, coupling of action and perception space.
+
+% \cite{Fitzmaurice1995} introduces \emph{graspable user interfaces} with Briks.
+
+% not used
+% \cite{Gamberini2011} introduces \emph{action breakdowns} for quantitative studies of user interfaces.
+
+% \cite{Shaer2009} Give a general introduction into the field of TUIs and provide an historical overview.
+
+% furhter research
+% \cite{Godoey2006} explores the the playing of \emph{air instruments} and what is behind it. 
+
+% \cite{Zappi2010} built a motion tracked 3d virtual environment in which users can create/bind/interact with basic virtual objects to control all aspects of a \emph{live} set. Input done via hand gestures only simple parameter mapping, virtual faders.
+
+% \cite{Rodet2005} haptic feedback to objects in a ve, very simple interaction, no direct scene interaction.
 
 
 

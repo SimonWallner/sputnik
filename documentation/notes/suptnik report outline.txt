@@ -58,3 +58,22 @@ Questions:
  - other uses
 	- what other uses can you envision?
 
+ - wiimote pointer interaction
+	- how easy is it to control the pointer/arc?
+
+
+
+give an overview of similar projects, and provide a literature overview over the field for uninformed readers.
+
+related work section:
+ - directly related work, similar projects and what is different
+ - wiimote related work
+ - design of digital instruments, NIME -->  Cook, Fels
+ - affordance and constraints, expression --> Dobrian, Magnusson
+ - tangible UI
+
+
+
+
+
+even though this project is stricly speaking not a tangible interface, it shares some similarities and qualities of TUIs. ... 
