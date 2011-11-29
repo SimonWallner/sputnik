@@ -119,6 +119,8 @@ namespace sputnik
 									   unsigned int controllerNumber);
 			void notifyAnalogListeners(int wiimoteEventSymbolicConstant,
 									   WiimoteAnalogEvent event);
+			// enable or disable IR tracking on the fly, to avoid spinning
+			bool trackIR;
 		};
 	}
 }

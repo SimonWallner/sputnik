@@ -23,6 +23,15 @@
 	<!-- <float name="width" value="256" />
 	<float name="height" value="160" /> -->
 
+	<!-- macbook windowed full screen -->
+	<float name="width" value="1280" />
+	<float name="height" value="756" />
+
+	<!-- XGA windowed -->
+	<!-- <float name="width" value="1024" />
+	<float name="height" value="724" /> -->
+	
+
 	<string name="media-path" value="${KOCMOC_MEDIA_PATH}" />
 	<string name="test-model-name" value="models/monkey.blend" />
 	<string name="arc-model-name" value="models/arcParticle-small.blend" />

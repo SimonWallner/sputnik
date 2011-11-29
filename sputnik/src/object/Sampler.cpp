@@ -59,9 +59,5 @@ sputnik::object::Sampler::Sampler(string name,
 	addComponent(samplerBehaviour);
 	registerUpdateReceiver(samplerBehaviour);
 	
-	originDrag = new OriginDrag(glm::vec3(0));
-	addComponent(originDrag);
-	registerUpdateReceiver(originDrag);
-	
 	initComponents();
 }

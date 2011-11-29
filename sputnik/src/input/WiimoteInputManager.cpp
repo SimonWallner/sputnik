@@ -15,6 +15,7 @@ WiimoteInputManager::WiimoteInputManager(GLFWwindow window)
 	: InputManager(window)
 	, lastPointerX(0.5f)
 	, lastPointerY(0.5f)
+	, trackIR(false)
 {
 	wii = new CWii();
 	
@@ -145,7 +146,10 @@ void WiimoteInputManager::handleEvent(CWiimote& wiimote, unsigned int controller
 			notifyButtonListeners(WIIMOTE_EVENT_BUTTON_PLUS_PRESSED, ButtonEvent(ButtonEvent::PRESSED), controllerNumber);
 		
 		if(wiimote.Buttons.isJustPressed(CButtons::BUTTON_HOME))
+		{
 			notifyButtonListeners(WIIMOTE_EVENT_BUTTON_HOME_PRESSED, ButtonEvent(ButtonEvent::PRESSED), controllerNumber);
+			trackIR = !trackIR;
+		}
 		
 		// Released
 		if(wiimote.Buttons.isReleased(CButtons::BUTTON_A))
@@ -228,7 +232,7 @@ void WiimoteInputManager::handleEvent(CWiimote& wiimote, unsigned int controller
     }
 	
     // if(IR tracking is on then print the coordinates
-	if(wiimote.isUsingIR())
+	if(wiimote.isUsingIR() && trackIR)
     {
 		{
 			int x, y;

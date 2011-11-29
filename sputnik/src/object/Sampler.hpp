@@ -7,7 +7,6 @@
 #include <scene/SelectableWorld.hpp>
 #include <output/MIDIout.hpp>
 #include <input/WiimoteInputManager.hpp>
-#include <component/OriginDrag.hpp>
 
 namespace sputnik
 {
@@ -27,7 +26,6 @@ namespace sputnik
 			void setPosition(glm::vec3 position)
 			{
 				objectBehaviour->position = position;
-				originDrag->origin = position;
 			}
 			
 			void setRotation(glm::quat rotation)
@@ -37,7 +35,6 @@ namespace sputnik
 		
 		private:
 			kocmoc::core::component::ObjectBehaviour* objectBehaviour;
-			component::OriginDrag* originDrag;
 		};
 	}
 }
