@@ -24,8 +24,8 @@
 	<float name="height" value="160" /> -->
 
 	<!-- macbook windowed full screen -->
-	<float name="width" value="1280" />
-	<float name="height" value="756" />
+	<!-- <float name="width" value="1280" />
+	<float name="height" value="756" /> -->
 
 	<!-- XGA windowed -->
 	<!-- <float name="width" value="1024" />

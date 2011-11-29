@@ -16,8 +16,8 @@ uniform vec3 start;
 uniform vec3 end;
 uniform vec3 midpoint;
 
-varying vec3 normal;
-varying vec2 uv;
+varying float fogFactor;
+
 
 void main(void)
 {
@@ -34,7 +34,4 @@ void main(void)
 	vec3 translate = (end + direction * t) * r + (movedMid + direction * t) * (1 - r);
 		
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition + translate, 1);
-
-	normal = inNormal;
-	uv = inUv;
 }

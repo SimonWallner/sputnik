@@ -180,32 +180,50 @@ Sputnik::Sputnik(Properties* _props)
 	MIDIOut* mOut = new MIDIOut();
 	
 	Sampler sampler("\"Space achievment, ...\"", props, &selectableWorld, &inputManager, mOut, 1);
-	sampler.setPosition(vec3(0, 0, -10));
+	sampler.setPosition(vec3(24.5f, 0.0f, -19.5f));
 	
 	Sampler sampler2("\"adventure\"", props, &selectableWorld, &inputManager,mOut, 2);
-	sampler2.setPosition(vec3(-10, 10, -50));
+	sampler2.setPosition(vec3(-19.0f, 4.5f, -50));
 	sampler2.setRotation(angleAxis(10.0f, -1.0f, 1.0f, -1.0f));
 	
 	Sampler sampler3("\"I believe, we should go to the moon!\"", props, &selectableWorld, &inputManager,mOut, 3);
-	sampler3.setPosition(vec3(-100, -20, -100));
+	sampler3.setPosition(vec3(-10.0f, -13.5f, -46.5f));
 	sampler3.setRotation(angleAxis(40.0f, 0.2f ,0.8f, 0.2f));
 	
 	Sampler sampler4("\"sputnik\"", props, &selectableWorld, &inputManager,mOut, 4);
-	sampler4.setPosition(vec3(40, 0, 0));
+	sampler4.setPosition(vec3(23.5f, 12.0f, -23.0f));
 	sampler4.setRotation(angleAxis(-90.0f, 0.0f ,1.0f, 0.0f));
 	
-	Player player("music", props, &selectableWorld, &inputManager, mOut, 10);
-	player.setPosition(vec3(-20, -20, -70));
+	Player player("break!", props, &selectableWorld, &inputManager, mOut, 10);
+	player.setPosition(vec3(-17, -31, -40));
 	player.setRotation(angleAxis(-30.0f, 1.0f, 0.0f, 0.0f));
 	
 	TapeMachine tapeMachine("JFK", props, &selectableWorld, mOut, 11);
-	tapeMachine.setPosition(vec3(30, 30, -30));
+	tapeMachine.setPosition(vec3(-43, 25, -19));
+	tapeMachine.setRotation(angleAxis(60.0f, 0.0f, 1.0f, 0.1f));
 	
-	WayPoint wayPoint(props, &selectableWorld, mOut, 21);
-	wayPoint.setPosition(vec3(0, 0, -5));
 	
+	
+	WayPoint wayPoint1(props, &selectableWorld, mOut, 21);
+	wayPoint1.setPosition(vec3(-13, -10, -19));
+	
+	WayPoint wayPoint2(props, &selectableWorld, mOut, 22);
+	wayPoint2.setPosition(vec3(-18, -8, -19));
 
-
+	WayPoint wayPoint3(props, &selectableWorld, mOut, 23);
+	wayPoint3.setPosition(vec3(-23, -5, -19));
+	
+	WayPoint wayPoint4(props, &selectableWorld, mOut, 24);
+	wayPoint4.setPosition(vec3(-28, -1, -19));
+	
+	WayPoint wayPoint5(props, &selectableWorld, mOut, 25);
+	wayPoint5.setPosition(vec3(-33, 5, -19));
+	
+	WayPoint wayPoint6(props, &selectableWorld, mOut, 26);
+	wayPoint6.setPosition(vec3(-38, 13, -19));
+	
+	
+	
 	
 	StarField starField(props);
 	starField.init();
@@ -269,7 +287,12 @@ Sputnik::Sputnik(Properties* _props)
 		player.update(deltaT, t);
 		tapeMachine.update(deltaT, t);
 		
-		wayPoint.update(deltaT, t);
+		wayPoint1.update(deltaT, t);
+		wayPoint2.update(deltaT, t);
+		wayPoint3.update(deltaT, t);
+		wayPoint4.update(deltaT, t);
+		wayPoint5.update(deltaT, t);
+		wayPoint6.update(deltaT, t);
 		
 		
 		// post update
@@ -298,7 +321,13 @@ Sputnik::Sputnik(Properties* _props)
 			player.render(RP_NORMAL, camera);
 			tapeMachine.render(RP_NORMAL, camera);
 			
-			wayPoint.render(RP_NORMAL, camera);
+			wayPoint1.render(RP_NORMAL, camera);
+			wayPoint2.render(RP_NORMAL, camera);
+			wayPoint3.render(RP_NORMAL, camera);
+			wayPoint4.render(RP_NORMAL, camera);
+			wayPoint5.render(RP_NORMAL, camera);
+			wayPoint6.render(RP_NORMAL, camera);
+			
 			
 			text1.render(RP_NORMAL, camera);
 			text2.render(RP_NORMAL, camera);

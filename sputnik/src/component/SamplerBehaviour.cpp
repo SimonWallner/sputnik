@@ -60,6 +60,10 @@ void SamplerBehaviour::setHovering(bool isHovering)
 
 void SamplerBehaviour::setSelected(bool isSelected)
 {
+	// output the position to facilitate placement in scene.
+	std::cout <<" position: (" << ob->position.x << " | " << ob->position.y << " | " << ob->position.z << ")" << std::endl;
+
+	
 	this->isSelected = isSelected;
 
 	if (!isSelected)
