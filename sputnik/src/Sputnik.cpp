@@ -31,6 +31,7 @@
 #include <component/WiimoteDebugger.hpp>
 #include <component/WiimoteCameraController.hpp>
 #include <component/StarField.hpp>
+#include <component/PulseSize.hpp>
 
 #include <object/Text.hpp>
 #include <object/Arc.hpp>
@@ -206,21 +207,45 @@ Sputnik::Sputnik(Properties* _props)
 	
 	WayPoint wayPoint1(props, &selectableWorld, mOut, 21);
 	wayPoint1.setPosition(vec3(-13, -10, -19));
+	PulseSize pulse1(1.0f, 1.2f, 0.5f, 0.0f);
+	wayPoint1.addComponent(&pulse1);
+	wayPoint1.registerUpdateReceiver(&pulse1);
+	pulse1.init();
 	
 	WayPoint wayPoint2(props, &selectableWorld, mOut, 22);
 	wayPoint2.setPosition(vec3(-18, -8, -19));
+	PulseSize pulse2(1.0f, 1.2f, 0.5f, 1.0f);
+	wayPoint2.addComponent(&pulse2);
+	wayPoint2.registerUpdateReceiver(&pulse2);
+	pulse2.init();
 
 	WayPoint wayPoint3(props, &selectableWorld, mOut, 23);
 	wayPoint3.setPosition(vec3(-23, -5, -19));
+	PulseSize pulse3(1.0f, 1.2f, 0.5f, 2.0f);
+	wayPoint3.addComponent(&pulse3);
+	wayPoint3.registerUpdateReceiver(&pulse3);
+	pulse3.init();
 	
 	WayPoint wayPoint4(props, &selectableWorld, mOut, 24);
 	wayPoint4.setPosition(vec3(-28, -1, -19));
+	PulseSize pulse4(1.0f, 1.2f, 0.5f, 3.0f);
+	wayPoint4.addComponent(&pulse4);
+	wayPoint4.registerUpdateReceiver(&pulse4);
+	pulse4.init();
 	
 	WayPoint wayPoint5(props, &selectableWorld, mOut, 25);
 	wayPoint5.setPosition(vec3(-33, 5, -19));
+	PulseSize pulse5(1.0f, 1.2f, 0.5f, 4.0f);
+	wayPoint5.addComponent(&pulse5);
+	wayPoint5.registerUpdateReceiver(&pulse5);
+	pulse5.init();
 	
 	WayPoint wayPoint6(props, &selectableWorld, mOut, 26);
 	wayPoint6.setPosition(vec3(-38, 13, -19));
+	PulseSize pulse6(1.0f, 1.2f, 0.5f, 5.0f);
+	wayPoint6.addComponent(&pulse6);
+	wayPoint6.registerUpdateReceiver(&pulse6);
+	pulse6.init();
 	
 	
 	
