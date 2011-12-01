@@ -39,6 +39,7 @@
 #include <object/Player.hpp>
 #include <object/TapeMachine.hpp>
 #include <object/WayPoint.hpp>
+#include <object/WeightTest.hpp>
 
 #include <scene/SelectableWorld.hpp>
 #include <output/MIDIout.hpp>
@@ -248,6 +249,12 @@ Sputnik::Sputnik(Properties* _props)
 	pulse6.init();
 	
 	
+	WeightTest wt1("1.0", props, vec3(0, 0, 40), 1.0f, &selectableWorld);
+	WeightTest wt2("0.5", props, vec3(-10, 0, 40), 0.5f, &selectableWorld);
+	WeightTest wt3("2.0", props, vec3(-20, 0, 40), 2.0f, &selectableWorld);
+	WeightTest wt4("1.5", props, vec3(-30, 0, 40), 1.5f, &selectableWorld);
+	
+	
 	
 	
 	StarField starField(props);
@@ -319,6 +326,10 @@ Sputnik::Sputnik(Properties* _props)
 		wayPoint5.update(deltaT, t);
 		wayPoint6.update(deltaT, t);
 		
+		wt1.update(deltaT, t);
+		wt2.update(deltaT, t);
+		wt3.update(deltaT, t);
+		wt4.update(deltaT, t);
 		
 		// post update
 		camera->updateMatrixes();
@@ -352,6 +363,11 @@ Sputnik::Sputnik(Properties* _props)
 			wayPoint4.render(RP_NORMAL, camera);
 			wayPoint5.render(RP_NORMAL, camera);
 			wayPoint6.render(RP_NORMAL, camera);
+			
+			wt1.render(RP_NORMAL, camera);
+			wt2.render(RP_NORMAL, camera);
+			wt3.render(RP_NORMAL, camera);
+			wt4.render(RP_NORMAL, camera);
 			
 			
 			text1.render(RP_NORMAL, camera);

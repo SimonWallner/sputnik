@@ -24,8 +24,8 @@
 	<float name="height" value="160" /> -->
 
 	<!-- macbook windowed full screen -->
-	<!-- <float name="width" value="1280" />
-	<float name="height" value="756" /> -->
+	<float name="width" value="1280" />
+	<float name="height" value="756" />
 
 	<!-- XGA windowed -->
 	<!-- <float name="width" value="1024" />
@@ -39,6 +39,7 @@
 	<string name="sphere2-model-name" value="models/sphere2.blend" />
 	<string name="sphere3-model-name" value="models/sphere3.blend" />
 	<string name="sphere4-model-name" value="models/sphere4.blend" />
+	<string name="weight-test-model" value="models/sphere1.blend" />
 
 	<float name="wiimote-dead-zone-x" value="0.05" />
 	<float name="wiimote-dead-zone-y" value="0.05" />
