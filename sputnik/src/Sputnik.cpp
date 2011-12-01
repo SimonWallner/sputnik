@@ -184,23 +184,25 @@ Sputnik::Sputnik(Properties* _props)
 	Sampler sampler("\"Space achievment, ...\"", props, &selectableWorld, &inputManager, mOut, 1);
 	sampler.setPosition(vec3(24.5f, 0.0f, -19.5f));
 	
-	Sampler sampler2("\"adventure\"", props, &selectableWorld, &inputManager,mOut, 2);
+	Sampler sampler2("\"adventure\"", props, &selectableWorld, &inputManager,mOut, 3);
 	sampler2.setPosition(vec3(-19.0f, 4.5f, -50));
 	sampler2.setRotation(angleAxis(10.0f, -1.0f, 1.0f, -1.0f));
 	
-	Sampler sampler3("\"I believe, we should go to the moon!\"", props, &selectableWorld, &inputManager,mOut, 3);
+	Sampler sampler3("\"I believe, we should go to the moon!\"", props, &selectableWorld, &inputManager,mOut, 5);
 	sampler3.setPosition(vec3(-10.0f, -13.5f, -46.5f));
 	sampler3.setRotation(angleAxis(40.0f, 0.2f ,0.8f, 0.2f));
 	
-	Sampler sampler4("\"sputnik\"", props, &selectableWorld, &inputManager,mOut, 4);
+	Sampler sampler4("\"sputnik\"", props, &selectableWorld, &inputManager,mOut, 7);
 	sampler4.setPosition(vec3(23.5f, 12.0f, -23.0f));
 	sampler4.setRotation(angleAxis(-90.0f, 0.0f ,1.0f, 0.0f));
+	
+	
 	
 	Player player("break!", props, &selectableWorld, &inputManager, mOut, 10);
 	player.setPosition(vec3(-17, -31, -40));
 	player.setRotation(angleAxis(-30.0f, 1.0f, 0.0f, 0.0f));
 	
-	TapeMachine tapeMachine("JFK", props, &selectableWorld, mOut, 11);
+	TapeMachine tapeMachine("JFK", props, &selectableWorld, mOut, 50);
 	tapeMachine.setPosition(vec3(-43, 25, -19));
 	tapeMachine.setRotation(angleAxis(60.0f, 0.0f, 1.0f, 0.1f));
 	

@@ -7,6 +7,7 @@
 
 #include <component/TextLabel.hpp>
 #include <component/SamplerBehaviour.hpp>
+#include <component/SpeedToMidi.hpp>
 
 using namespace sputnik::object;
 using namespace sputnik::component;
@@ -31,6 +32,7 @@ sputnik::object::Sampler::Sampler(string name,
 {
 	objectBehaviour = new ObjectBehaviour();
 	objectBehaviour->lambda = math::decayConst(0.5f);
+	objectBehaviour->mass = 3.0f;
 	registerUpdateReceiver(objectBehaviour);
 	addComponent(objectBehaviour);
 	
@@ -58,6 +60,10 @@ sputnik::object::Sampler::Sampler(string name,
 															  cc);
 	addComponent(samplerBehaviour);
 	registerUpdateReceiver(samplerBehaviour);
+	
+	SpeedToMidi* speed2Midi = new SpeedToMidi(mOut, cc+1);
+	addComponent(speed2Midi);
+	registerUpdateReceiver(speed2Midi);
 	
 	initComponents();
 }

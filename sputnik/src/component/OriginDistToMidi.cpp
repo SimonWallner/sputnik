@@ -10,7 +10,7 @@ void OriginDistToMidi::init()
 
 void OriginDistToMidi::onUpdate(float deltaT, float t)
 {
-	float maxDistance = 10.0f;
+
 	
 	float distance = glm::length(origin - ob->position);
 	mOut->sendCC(cc, distance / maxDistance);

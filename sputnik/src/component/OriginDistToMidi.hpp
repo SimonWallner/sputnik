@@ -16,10 +16,11 @@ namespace sputnik
 		class OriginDistToMidi : public kocmoc::core::componentSystem::Component
 		{
 		public:
-			OriginDistToMidi(output::MIDIOut* _mOut, unsigned int _cc)
+			OriginDistToMidi(output::MIDIOut* _mOut, unsigned int _cc, 	float _maxDistance = 10.0f)
 				: origin(glm::vec3(0))
 				, cc(_cc)
 				, mOut(_mOut)
+				, maxDistance(_maxDistance)
 			{}
 			
 			void init();
@@ -30,7 +31,8 @@ namespace sputnik
 		private:
 			unsigned int cc;
 			kocmoc::core::component::ObjectBehaviour* ob;
-			output::MIDIOut* mOut;			
+			output::MIDIOut* mOut;
+			float maxDistance;
 		};
 	}
 }

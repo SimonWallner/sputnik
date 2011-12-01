@@ -31,7 +31,7 @@ WayPoint::WayPoint(util::Properties* props,
 	
 	
 	ob = new ObjectBehaviour();
-	ob->mass = 0.5f;
+	ob->mass = 0.2f;
 	addComponent(ob);
 	registerUpdateReceiver(ob);
 	

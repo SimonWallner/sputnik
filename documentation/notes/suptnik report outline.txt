@@ -25,41 +25,7 @@ Problem Statement
 
 
 
-Questions:
- - How well does the arc of light/fishing rod metaphor perform in terms of:
-	- user performance, how easy is it to interact?
-	- feel of the virtual environment, can certain object properties be felt?
-	- precision: how precise is the control
-	- improvements?
-	- does is feel powerfull/controlable/?
 
- - Can this interface be considered tangible?
-
- - visually
-	- is the scene visually pleasing?
-	- would this improve a live performance?
-	- improvements?
-	- what is the visual expression? --> narrative
-
- - narrative/immersion?
-	- what is it?
-	- what story does it tell?
-	- do you feel immersed into the scene?
-
- - modell/naturalism/affordance
-	- can users create a mental model of the object, both physical and musical
-
- - music
-	- how well suited is it to control music
-	- is it/what is needed to be expressive
-	- what possible instruments/uses?
-	- rate the level of perceived mastery form 1 to 10. this is a corrollary to the perceived potential. high potential should correlate with low mastery.
-
- - other uses
-	- what other uses can you envision?
-
- - wiimote pointer interaction
-	- how easy is it to control the pointer/arc?
 
 
 

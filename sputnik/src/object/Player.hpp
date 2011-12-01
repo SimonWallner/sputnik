@@ -7,6 +7,7 @@
 #include <scene/SelectableWorld.hpp>
 #include <output/MIDIout.hpp>
 #include <input/WiimoteInputManager.hpp>
+#include <component/SpeedToMidi.hpp>
 
 namespace sputnik
 {
@@ -35,6 +36,7 @@ namespace sputnik
 		
 		private:
 			kocmoc::core::component::ObjectBehaviour* objectBehaviour;
+			component::SpeedToMidi* speedToMidi;
 		};
 	}
 }

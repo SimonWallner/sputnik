@@ -54,7 +54,7 @@ void WiimoteCameraController::InputCallback::wiimoteAnalogEventCallback(Symbol n
 void WiimoteCameraController::InputCallback::buttonEventCallback(Symbol name,
 																 ButtonEvent event)
 {
-	float rate = 10.0f;
+	float rate = 30.0f;
 	
 	if (name == p->nunchuckC)
 		p->camera->dolly(vec3(0, rate, 0) * p->lastDeltaT);
@@ -70,7 +70,7 @@ void WiimoteCameraController::nunchuckAnalog(float x, float y)
 	float mapX = deadZoneMap(x, nDeadZone.x);
 	float mapY = deadZoneMap(y, nDeadZone.y);
 	
-	float rate = 20.0f;
+	float rate = 30.0f;
 	
 	camera->dolly(glm::vec3(accelerate(mapX), 0,accelerate(mapY) ) * lastDeltaT * rate);
 }
@@ -83,8 +83,8 @@ void WiimoteCameraController::pointerMoved(float x, float y)
 	float mapX = deadZoneMap(nX, deadZone.x);
 	float mapY = deadZoneMap(nY, deadZone.y);
 	
-	float rateHori = 1.0f;
-	float rateVert = 1.0f;
+	float rateHori = 1.5f;
+	float rateVert = 1.5f;
 	
 	camera->tumble(lastDeltaT * rateHori * accelerate(mapX),
 				   lastDeltaT * rateVert * accelerate(mapY));

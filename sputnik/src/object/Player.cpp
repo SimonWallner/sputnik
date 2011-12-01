@@ -59,5 +59,9 @@ Player::Player(string name,
 	addComponent(playerBehaviour);
 	registerUpdateReceiver(playerBehaviour);
 	
+	speedToMidi = new SpeedToMidi(mOut, cc+1);
+	addComponent(speedToMidi);
+	registerUpdateReceiver(speedToMidi);
+		
 	initComponents();
 }
