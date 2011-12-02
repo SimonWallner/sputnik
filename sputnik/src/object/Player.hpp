@@ -8,6 +8,7 @@
 #include <output/MIDIout.hpp>
 #include <input/WiimoteInputManager.hpp>
 #include <component/SpeedToMidi.hpp>
+#include <sputnik.hpp>
 
 namespace sputnik
 {
@@ -17,12 +18,12 @@ namespace sputnik
 		{		
 		public:
 			Player(std::string name,
-					kocmoc::core::util::Properties* props,
-					scene::SelectableWorld* world,
-					input::WiimoteInputManager* inputManager,
-					output::MIDIOut* mOut,
-					unsigned int cc,
-					std::string modelName = "sphere2-model-name");
+				   Sputnik* sputnik,
+				   scene::SelectableWorld* world,
+				   input::WiimoteInputManager* inputManager,
+				   output::MIDIOut* mOut,
+				   unsigned int cc,
+				   std::string modelName = "sphere2-model-name");
 			
 			void setPosition(glm::vec3 position)
 			{

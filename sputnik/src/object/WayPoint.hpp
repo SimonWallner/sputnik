@@ -8,6 +8,7 @@
 #include <output/MIDIOut.hpp>
 #include <component/OriginDrag.hpp>
 #include <component/OriginDistToMidi.hpp>
+#include <sputnik.hpp>
 
 namespace sputnik
 {
@@ -16,7 +17,7 @@ namespace sputnik
 		class WayPoint : public kocmoc::core::componentSystem::Object
 		{
 		public:
-			WayPoint(kocmoc::core::util::Properties* props,
+			WayPoint(Sputnik* sputnik,
 					 scene::SelectableWorld* world,
 					 output::MIDIOut* mOut,
 					 unsigned int cc);

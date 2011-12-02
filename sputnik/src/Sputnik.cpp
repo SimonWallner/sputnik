@@ -9,24 +9,37 @@
 #include "Sputnik.hpp"
 
 #include <iostream>
-#include <string>
+//#include <string>
 
 #include <glm/gtx/quaternion.hpp>
 
+// wrap, wrap
+#pragma GCC diagnostic ignored "-Wunused-variable"
+#include <glm/gtx/spline.hpp>
+//#pragma GCC diagnostic error "-Wunused-variable" // stupid c++ templates!!!
+
+
+
+#include <kocmoc-core/types/Symbol.hpp>
+#include <kocmoc-core/input/InputManager.hpp>
+#include <kocmoc-core/time/Timer.hpp>
+
 #include <kocmoc-core/util/Properties.hpp>
 #include <kocmoc-core/util/util.hpp>
-#include <kocmoc-core/types/Symbol.hpp>
+
 #include <kocmoc-core/renderer/Shader.hpp>
 #include <kocmoc-core/renderer/FrameBuffer21.hpp>
+
 #include <kocmoc-core/component/OverlayQuad.hpp>
-#include <kocmoc-core/input/InputManager.hpp>
+#include <kocmoc-core/component/CameraController.hpp>
+
 #include <kocmoc-core/scene/FilmCamera.hpp>
 #include <kocmoc-core/scene/OrthoCamera.hpp>
 #include <kocmoc-core/scene/FontRenderer.hpp>
-#include <kocmoc-core/time/Timer.hpp>
-#include <kocmoc-core/component/CameraController.hpp>
+#include <kocmoc-core/scene/AssetLoader.hpp>
 
 #include <kocmoc-core/gl.h>
+
 
 #include <component/WiimoteDebugger.hpp>
 #include <component/WiimoteCameraController.hpp>
@@ -73,6 +86,7 @@ using sputnik::output::MIDIOut;
 using glm::vec3;
 using glm::vec2;
 using glm::gtx::quaternion::angleAxis;
+using glm::gtx::spline::catmullRom;
 
 
 Sputnik::Sputnik(Properties* _props)
@@ -173,7 +187,11 @@ Sputnik::Sputnik(Properties* _props)
 	
 	
 	
-	// ------------------- CONTENT ------------------------------------------
+	// ------------------- CONTENT -----------------------------------------
+	
+	assetLoader = new AssetLoader();
+	assetLoader->addResourcePath(props->getString(symbolize("media-path")));
+
 	
 	SelectableWorld selectableWorld;
 	
@@ -181,74 +199,51 @@ Sputnik::Sputnik(Properties* _props)
 	
 	MIDIOut* mOut = new MIDIOut();
 	
-	Sampler sampler("\"Space achievment, ...\"", props, &selectableWorld, &inputManager, mOut, 1);
+	Sampler sampler("\"Space achievment, ...\"", this, &selectableWorld, &inputManager, mOut, 1);
 	sampler.setPosition(vec3(24.5f, 0.0f, -19.5f));
 	
-	Sampler sampler2("\"adventure\"", props, &selectableWorld, &inputManager,mOut, 3);
+	Sampler sampler2("\"adventure\"", this, &selectableWorld, &inputManager,mOut, 3);
 	sampler2.setPosition(vec3(-19.0f, 4.5f, -50));
 	sampler2.setRotation(angleAxis(10.0f, -1.0f, 1.0f, -1.0f));
 	
-	Sampler sampler3("\"I believe, we should go to the moon!\"", props, &selectableWorld, &inputManager,mOut, 5);
+	Sampler sampler3("\"I believe, we should go to the moon!\"", this, &selectableWorld, &inputManager,mOut, 5);
 	sampler3.setPosition(vec3(-10.0f, -13.5f, -46.5f));
 	sampler3.setRotation(angleAxis(40.0f, 0.2f ,0.8f, 0.2f));
 	
-	Sampler sampler4("\"sputnik\"", props, &selectableWorld, &inputManager,mOut, 7);
+	Sampler sampler4("\"sputnik\"", this, &selectableWorld, &inputManager,mOut, 7);
 	sampler4.setPosition(vec3(23.5f, 12.0f, -23.0f));
 	sampler4.setRotation(angleAxis(-90.0f, 0.0f ,1.0f, 0.0f));
 	
 	
 	
-	Player player("break!", props, &selectableWorld, &inputManager, mOut, 10);
+	Player player("break!", this, &selectableWorld, &inputManager, mOut, 10);
 	player.setPosition(vec3(-17, -31, -40));
 	player.setRotation(angleAxis(-30.0f, 1.0f, 0.0f, 0.0f));
 	
-	TapeMachine tapeMachine("JFK", props, &selectableWorld, mOut, 50);
+	TapeMachine tapeMachine("JFK", this, &selectableWorld, mOut, 50);
 	tapeMachine.setPosition(vec3(-43, 25, -19));
 	tapeMachine.setRotation(angleAxis(60.0f, 0.0f, 1.0f, 0.1f));
 	
 	
+	unsigned int wpCount = 20;
+	WayPoint** section1 = new WayPoint*[wpCount];
+	vec3 wp0 = vec3(-0, -10, -19);
+	vec3 wp1 = vec3(-13, -10, -19);
+	vec3 wp2 = vec3(-38, 13, -19);
+	vec3 wp3 = vec3(-58, 13, -19);
 	
-	WayPoint wayPoint1(props, &selectableWorld, mOut, 21);
-	wayPoint1.setPosition(vec3(-13, -10, -19));
-	PulseSize pulse1(1.0f, 1.2f, 0.5f, 0.0f);
-	wayPoint1.addComponent(&pulse1);
-	wayPoint1.registerUpdateReceiver(&pulse1);
-	pulse1.init();
 	
-	WayPoint wayPoint2(props, &selectableWorld, mOut, 22);
-	wayPoint2.setPosition(vec3(-18, -8, -19));
-	PulseSize pulse2(1.0f, 1.2f, 0.5f, 1.0f);
-	wayPoint2.addComponent(&pulse2);
-	wayPoint2.registerUpdateReceiver(&pulse2);
-	pulse2.init();
-
-	WayPoint wayPoint3(props, &selectableWorld, mOut, 23);
-	wayPoint3.setPosition(vec3(-23, -5, -19));
-	PulseSize pulse3(1.0f, 1.2f, 0.5f, 2.0f);
-	wayPoint3.addComponent(&pulse3);
-	wayPoint3.registerUpdateReceiver(&pulse3);
-	pulse3.init();
-	
-	WayPoint wayPoint4(props, &selectableWorld, mOut, 24);
-	wayPoint4.setPosition(vec3(-28, -1, -19));
-	PulseSize pulse4(1.0f, 1.2f, 0.5f, 3.0f);
-	wayPoint4.addComponent(&pulse4);
-	wayPoint4.registerUpdateReceiver(&pulse4);
-	pulse4.init();
-	
-	WayPoint wayPoint5(props, &selectableWorld, mOut, 25);
-	wayPoint5.setPosition(vec3(-33, 5, -19));
-	PulseSize pulse5(1.0f, 1.2f, 0.5f, 4.0f);
-	wayPoint5.addComponent(&pulse5);
-	wayPoint5.registerUpdateReceiver(&pulse5);
-	pulse5.init();
-	
-	WayPoint wayPoint6(props, &selectableWorld, mOut, 26);
-	wayPoint6.setPosition(vec3(-38, 13, -19));
-	PulseSize pulse6(1.0f, 1.2f, 0.5f, 5.0f);
-	wayPoint6.addComponent(&pulse6);
-	wayPoint6.registerUpdateReceiver(&pulse6);
-	pulse6.init();
+	for (unsigned int i = 0; i < wpCount; i++)
+	{
+		vec3 pos = catmullRom(wp0, wp1, wp2, wp3, (float)i/wpCount);
+		section1[i] = new WayPoint(this, &selectableWorld, mOut, 20+i);
+		section1[i]->setPosition(pos);
+		
+		PulseSize* pulse = new PulseSize(1, 1.2, 0.5, i);
+		section1[i]->addComponent(pulse);
+		section1[i]->registerUpdateReceiver(pulse);
+		pulse->init();
+	}
 	
 	
 	WeightTest wt1("1.0", props, vec3(0, 0, 40), 1.0f, &selectableWorld);
@@ -321,12 +316,8 @@ Sputnik::Sputnik(Properties* _props)
 		player.update(deltaT, t);
 		tapeMachine.update(deltaT, t);
 		
-		wayPoint1.update(deltaT, t);
-		wayPoint2.update(deltaT, t);
-		wayPoint3.update(deltaT, t);
-		wayPoint4.update(deltaT, t);
-		wayPoint5.update(deltaT, t);
-		wayPoint6.update(deltaT, t);
+		for (unsigned int i = 0; i < wpCount; i++)
+			section1[i]->update(deltaT, t);
 		
 		wt1.update(deltaT, t);
 		wt2.update(deltaT, t);
@@ -359,12 +350,9 @@ Sputnik::Sputnik(Properties* _props)
 			player.render(RP_NORMAL, camera);
 			tapeMachine.render(RP_NORMAL, camera);
 			
-			wayPoint1.render(RP_NORMAL, camera);
-			wayPoint2.render(RP_NORMAL, camera);
-			wayPoint3.render(RP_NORMAL, camera);
-			wayPoint4.render(RP_NORMAL, camera);
-			wayPoint5.render(RP_NORMAL, camera);
-			wayPoint6.render(RP_NORMAL, camera);
+			for (unsigned int i = 0; i < wpCount; i++)
+				section1[i]->render(RP_NORMAL, camera);
+			
 			
 			wt1.render(RP_NORMAL, camera);
 			wt2.render(RP_NORMAL, camera);

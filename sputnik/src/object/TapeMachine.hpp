@@ -8,6 +8,8 @@
 #include <output/MIDIout.hpp>
 #include <input/WiimoteInputManager.hpp>
 
+#include <sputnik.hpp>
+
 namespace sputnik
 {
 	namespace object
@@ -16,7 +18,7 @@ namespace sputnik
 		{		
 		public:
 			TapeMachine(std::string name,
-					kocmoc::core::util::Properties* props,
+					Sputnik* sputnik,
 					scene::SelectableWorld* world,
 					output::MIDIOut* mOut,
 					unsigned int cc,

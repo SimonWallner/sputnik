@@ -12,6 +12,7 @@ using namespace sputnik::object;
 using namespace sputnik::component;
 using namespace sputnik::scene;
 using namespace kocmoc::core;
+using namespace kocmoc::core::util;
 
 using kocmoc::core::component::Renderable;
 using kocmoc::core::component::ObjectBehaviour;
@@ -21,7 +22,7 @@ using kocmoc::core::types::symbolize;
 using std::string;
 
 Player::Player(string name,
-		  kocmoc::core::util::Properties* props,
+		  Sputnik* sputnik,
 		  scene::SelectableWorld* world,
 		  input::WiimoteInputManager* inputManager,
 		  output::MIDIOut* mOut,
@@ -34,16 +35,14 @@ Player::Player(string name,
 	registerUpdateReceiver(objectBehaviour);
 	addComponent(objectBehaviour);
 	
-	AssetLoader loader;
-	loader.addResourcePath(props->getString(symbolize("media-path")));
+	Properties* props = sputnik->getProps();
 	std::string model = props->getString(symbolize(modelName.c_str()));
 	std::string shaderPath = props->getString(symbolize("media-path")) + "shaders/base";
-	
 	// FIXME: something mutates my strings in the props.
 	// changing it here to c_str() helped, but it is evil
 	// XXX:
-//#warning XXX: problem with mutable strings in props!
-	kocmoc::core::component::Renderable* renderable = loader.load(model.c_str(), shaderPath);
+	//#warning XXX: problem with mutable strings in props!
+	kocmoc::core::component::Renderable* renderable = sputnik->getAssetLoader()->load(model.c_str(), shaderPath);
 	addComponent(renderable);	
 	registerRenderReceiver(renderable);
 	

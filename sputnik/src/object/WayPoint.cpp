@@ -10,22 +10,22 @@ using namespace kocmoc::core;
 using namespace kocmoc::core::component;
 using namespace kocmoc::core::scene;
 using namespace kocmoc::core::types;
+using namespace kocmoc::core::util;
 
-WayPoint::WayPoint(util::Properties* props,
+WayPoint::WayPoint(Sputnik* sputnik,
 				   scene::SelectableWorld* world,
 				   output::MIDIOut* mOut,
 				   unsigned int cc) 
 	: kocmoc::core::componentSystem::Object("way point i", props)
 {
-	AssetLoader loader;
-	loader.addResourcePath(props->getString(symbolize("media-path")));
+	Properties* props = sputnik->getProps();
 	std::string model = props->getString(symbolize("sphere4-model-name"));
 	std::string shaderPath = props->getString(symbolize("media-path")) + "shaders/base";
 	// FIXME: something mutates my strings in the props.
 	// changing it here to c_str() helped, but it is evil
 	// XXX:
 	//#warning XXX: problem with mutable strings in props!
-	kocmoc::core::component::Renderable* renderable = loader.load(model.c_str(), shaderPath);
+	kocmoc::core::component::Renderable* renderable = sputnik->getAssetLoader()->load(model.c_str(), shaderPath);
 	addComponent(renderable);	
 	registerRenderReceiver(renderable);
 	
