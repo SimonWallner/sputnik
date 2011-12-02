@@ -7,6 +7,7 @@
 
 #include <component/TextLabel.hpp>
 #include <component/PlayerBehaviour.hpp>
+#include <component/CameraDistToMidi.hpp>
 
 using namespace sputnik::object;
 using namespace sputnik::component;
@@ -58,9 +59,9 @@ Player::Player(string name,
 	addComponent(playerBehaviour);
 	registerUpdateReceiver(playerBehaviour);
 	
-	speedToMidi = new SpeedToMidi(mOut, cc+1);
-	addComponent(speedToMidi);
-	registerUpdateReceiver(speedToMidi);
+	CameraDistToMidi* cdm = new CameraDistToMidi(sputnik->getCamera(), mOut, cc+1);
+	addComponent(cdm);
+	registerUpdateReceiver(cdm);
 		
 	initComponents();
 }

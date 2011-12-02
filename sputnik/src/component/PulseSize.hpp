@@ -27,7 +27,7 @@ namespace sputnik
 			void onUpdate(float deltaT, float t)
 			{
 				float q = (sin(t * 2 * kocmoc::core::math::pi * f - phase) + 1 ) * 0.5;
-				float size = minSize + pow(q, 2.0f) * (maxSize - minSize);
+				float size = minSize + pow(q, 4.0f) * (maxSize - minSize);
 				ob->scale = glm::vec3(size);
 
 				UNUSED deltaT;

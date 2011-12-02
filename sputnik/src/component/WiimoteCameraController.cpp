@@ -70,7 +70,7 @@ void WiimoteCameraController::nunchuckAnalog(float x, float y)
 	float mapX = deadZoneMap(x, nDeadZone.x);
 	float mapY = deadZoneMap(y, nDeadZone.y);
 	
-	float rate = 30.0f;
+	float rate = 50.0f;
 	
 	camera->dolly(glm::vec3(accelerate(mapX), 0,accelerate(mapY) ) * lastDeltaT * rate);
 }
@@ -83,8 +83,8 @@ void WiimoteCameraController::pointerMoved(float x, float y)
 	float mapX = deadZoneMap(nX, deadZone.x);
 	float mapY = deadZoneMap(nY, deadZone.y);
 	
-	float rateHori = 1.5f;
-	float rateVert = 1.5f;
+	float rateHori = 2.0f;
+	float rateVert = 2.0f;
 	
 	camera->tumble(lastDeltaT * rateHori * accelerate(mapX),
 				   lastDeltaT * rateVert * accelerate(mapY));

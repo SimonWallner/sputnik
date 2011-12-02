@@ -36,6 +36,7 @@ namespace sputnik
 		
 		private:
 			kocmoc::core::component::ObjectBehaviour* objectBehaviour;
+			Sputnik* sputnik;
 		};
 	}
 }

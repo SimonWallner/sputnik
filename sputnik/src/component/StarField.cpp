@@ -12,7 +12,7 @@ using namespace kocmoc::core;
 
 void StarField::init()
 {
-	TriangleMesh* stars = generator::generateStars(600.0f, 1.5f, 10000);
+	TriangleMesh* stars = generator::generateStars(1000.0f, 1.5f, 50000);
 	
 	std::string mediaPath = props->getString(types::symbolize("media-path"));
 	

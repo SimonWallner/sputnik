@@ -3,6 +3,8 @@
 
 #include "MusicControlOut.hpp"
 
+#include <map>
+
 #include <rtmidi/RtMidi.h>
 
 namespace sputnik
@@ -20,6 +22,8 @@ namespace sputnik
 			
 		private:
 			RtMidiOut* midiOut;
+			typedef std::map<int, unsigned char> CCCache;
+			CCCache ccCache;
 		};
 	}
 }

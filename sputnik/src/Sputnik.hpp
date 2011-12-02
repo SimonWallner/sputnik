@@ -10,6 +10,7 @@
 #include <kocmoc-core/scene/ImageLoader.hpp>
 #include <kocmoc-core/renderer/Context.hpp>
 #include <kocmoc-core/scene/AssetLoader.hpp>
+#include <kocmoc-core/scene/FilmCamera.hpp>
 
 #include <input/WiimoteInputManager.hpp>
 
@@ -53,11 +54,13 @@ namespace sputnik
 		
 		kocmoc::core::scene::AssetLoader* getAssetLoader() {return assetLoader;}
 		kocmoc::core::util::Properties* getProps() {return props;}
+		kocmoc::core::scene::FilmCamera* getCamera() {return camera;}
 
 	private:
 		kocmoc::core::renderer::Context* context;
 		kocmoc::core::util::Properties* props;
 		kocmoc::core::scene::AssetLoader* assetLoader;
+		kocmoc::core::scene::FilmCamera* camera;
 		
 		bool running;
 		kocmoc::core::types::Symbol quit, screenShot, note, cursorX, cursorY;

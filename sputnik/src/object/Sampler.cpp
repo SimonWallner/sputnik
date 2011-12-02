@@ -61,9 +61,9 @@ sputnik::object::Sampler::Sampler(string name,
 	addComponent(samplerBehaviour);
 	registerUpdateReceiver(samplerBehaviour);
 	
-	SpeedToMidi* speed2Midi = new SpeedToMidi(mOut, cc+1);
-	addComponent(speed2Midi);
-	registerUpdateReceiver(speed2Midi);
+//	SpeedToMidi* speed2Midi = new SpeedToMidi(mOut, cc+1);
+//	addComponent(speed2Midi);
+//	registerUpdateReceiver(speed2Midi);
 	
 	initComponents();
 }

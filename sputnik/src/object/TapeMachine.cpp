@@ -21,12 +21,13 @@ using kocmoc::core::types::symbolize;
 using std::string;
 
 TapeMachine::TapeMachine(string name,
-								  Sputnik* sputnik,
+								  Sputnik* _sputnik,
 								  scene::SelectableWorld* world,
 								  output::MIDIOut* mOut,
 								  unsigned int cc,
 								  std::string modelName)
-: Object(name, props)
+	: Object(name, props)
+	, sputnik(_sputnik)
 {
 	objectBehaviour = new ObjectBehaviour();
 	objectBehaviour->lambda = math::decayConst(0.5f);
@@ -56,6 +57,7 @@ TapeMachine::TapeMachine(string name,
 	Selectable* selectable = new Selectable(3.0f);
 	addComponent(selectable);
 	world->add(selectable);
+	
 	
 	initComponents();
 }
