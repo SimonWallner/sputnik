@@ -59,9 +59,9 @@ Player::Player(string name,
 	addComponent(playerBehaviour);
 	registerUpdateReceiver(playerBehaviour);
 	
-	CameraDistToMidi* cdm = new CameraDistToMidi(sputnik->getCamera(), mOut, cc+1);
-	addComponent(cdm);
-	registerUpdateReceiver(cdm);
+//	CameraDistToMidi* cdm = new CameraDistToMidi(sputnik->getCamera(), mOut, cc+1);
+//	addComponent(cdm);
+//	registerUpdateReceiver(cdm);
 		
 	initComponents();
 }

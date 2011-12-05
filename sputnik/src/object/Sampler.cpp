@@ -34,7 +34,7 @@ sputnik::object::Sampler::Sampler(string name,
 {
 	objectBehaviour = new ObjectBehaviour();
 	objectBehaviour->lambda = math::decayConst(0.5f);
-	objectBehaviour->mass = 3.0f;
+	objectBehaviour->mass = 1.5f;
 	registerUpdateReceiver(objectBehaviour);
 	addComponent(objectBehaviour);
 	

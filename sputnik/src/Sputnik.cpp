@@ -200,8 +200,8 @@ Sputnik::Sputnik(Properties* _props)
 	
 	// -- tier 1 ---------------------------------------
 	
-	Sampler sampler("\"Space achievment, ...\"", this, &selectableWorld, &inputManager, mOut, 1);
-	sampler.setPosition(vec3(24.5f, 0.0f, -19.5f));
+	Sampler sampler1("\"Space achievment, ...\"", this, &selectableWorld, &inputManager, mOut, 1);
+	sampler1.setPosition(vec3(12.5f, -10.0f, -47.5f));
 	
 	Sampler sampler2("\"adventure\"", this, &selectableWorld, &inputManager,mOut, 2);
 	sampler2.setPosition(vec3(-19.0f, 4.5f, -50));
@@ -212,96 +212,62 @@ Sputnik::Sputnik(Properties* _props)
 	sampler3.setRotation(angleAxis(40.0f, 0.2f ,0.8f, 0.2f));
 	
 	Sampler sampler4("\"sputnik\"", this, &selectableWorld, &inputManager,mOut, 4);
-	sampler4.setPosition(vec3(23.5f, 12.0f, -23.0f));
+	sampler4.setPosition(vec3(29.5f, 12.0f, -1.0f));
 	sampler4.setRotation(angleAxis(-90.0f, 0.0f ,1.0f, 0.0f));
 	
+	Sampler sampler5("\"hello everybody!\"", this, &selectableWorld, &inputManager,mOut, 5);
+	sampler5.setPosition(vec3(24.5f, 12.0f, -22.0f));
+	sampler5.setRotation(angleAxis(-90.0f, 0.0f ,1.0f, 0.0f));
+	
+	Sampler sampler6("\"ladies and gentlemen\"", this, &selectableWorld, &inputManager,mOut, 6);
+	sampler6.setPosition(vec3(16.6f, 16.4f, -65.0f));
+	sampler6.setRotation(angleAxis(-90.0f, 0.0f ,1.0f, 0.0f));
+	
+	Sampler sampler7("\"cultural events\"", this, &selectableWorld, &inputManager,mOut, 7);
+	sampler7.setPosition(vec3(32.5f, 19.0f, -46.0f));
+	sampler7.setRotation(angleAxis(-90.0f, 0.0f ,1.0f, 0.0f));
+	
+	Sampler sampler8("\"It can't be played\"", this, &selectableWorld, &inputManager,mOut, 8);
+	sampler8.setPosition(vec3(20.0f, 3.2f, -45.0f));
+	sampler8.setRotation(angleAxis(-90.0f, 0.0f ,1.0f, 0.0f));
 	
 	
-	Player player("break!", this, &selectableWorld, &inputManager, mOut, 6);
-	player.setPosition(vec3(-17, -31, -40));
-	player.setRotation(angleAxis(-30.0f, 1.0f, 0.0f, 0.0f));
+	Player player1("beat 1", this, &selectableWorld, &inputManager, mOut, 10);
+	player1.setPosition(vec3(-17, -31, -40));
+	player1.setRotation(angleAxis(-30.0f, 1.0f, 0.0f, 0.0f));
 	
-	TapeMachine tapeMachine("JFK", this, &selectableWorld, mOut, 12);
-	tapeMachine.setPosition(vec3(-43, 25, -19));
-	tapeMachine.setRotation(angleAxis(60.0f, 0.0f, 1.0f, 0.1f));
+	Player player2("beat 2", this, &selectableWorld, &inputManager, mOut, 11);
+	player2.setPosition(vec3(-7, -31, -40));
+	player2.setRotation(angleAxis(-30.0f, 1.0f, 0.0f, 0.0f));
+	
+	Player player3("beat 3", this, &selectableWorld, &inputManager, mOut, 12);
+	player3.setPosition(vec3(3, -31, -40));
+	player3.setRotation(angleAxis(-30.0f, 1.0f, 0.0f, 0.0f));
 	
 	
-	unsigned int wpCount = 20;
+	TapeMachine tapeMachine1("JFK", this, &selectableWorld, mOut, 20);
+	tapeMachine1.setPosition(vec3(-43, 25, -19));
+	tapeMachine1.setRotation(angleAxis(60.0f, 0.0f, 1.0f, 0.1f));
+	
+	TapeMachine tapeMachine2("hand me down my walking cane", this, &selectableWorld, mOut, 21);
+	tapeMachine2.setPosition(vec3(-23, 25, -25));
+	tapeMachine2.setRotation(angleAxis(60.0f, 0.0f, 1.0f, 0.1f));
+	
+	
+	unsigned int wpCount = 6;
 	WayPoint** section1 = new WayPoint*[wpCount];
-	vec3 wp0 = vec3(100, 0, -19);
-	vec3 wp1 = vec3(-13, -10, -19);
-	vec3 wp2 = vec3(-200, -50, -19);
-	vec3 wp3 = vec3(-210, -500, -1000);
+	vec3 wp0 = vec3(20, -5, 0);
+	vec3 wp1 = vec3(-20, -5, 0);
+	vec3 wp2 = vec3(-40, 23, 0);
+	vec3 wp3 = vec3(-40, 50, 0);
 	
 	for (unsigned int i = 0; i < wpCount; i++)
 	{
 		vec3 pos = catmullRom(wp0, wp1, wp2, wp3, (float)i/wpCount);
-		section1[i] = new WayPoint(this, &selectableWorld, mOut, 60+i);
+		section1[i] = new WayPoint(this, &selectableWorld, mOut, 30+i);
 		section1[i]->setPosition(pos);
+	}
 		
-//		PulseSize* pulse = new PulseSize(1.0f, 2.0f, 1.0f, i);
-//		section1[i]->addComponent(pulse);
-//		section1[i]->registerUpdateReceiver(pulse);
-//		pulse->init();
-	}
-	
-	
-	WayPoint** section2 = new WayPoint*[wpCount];
-	vec3 wp4 = vec3(-100, 0, -19);
-	vec3 wp5 = vec3(13, -10, -19);
-	vec3 wp6 = vec3(200, 33, -19);
-	vec3 wp7 = vec3(210, 500, -1000);
-	
-	for (unsigned int i = 0; i < wpCount; i++)
-	{
-		vec3 pos = catmullRom(wp4, wp5, wp6, wp7, (float)i/wpCount);
-		section2[i] = new WayPoint(this, &selectableWorld, mOut, 80+i);
-		section2[i]->setPosition(pos);
-	}
-	
-	
-	// -- tier 2 ---------------------------------------------------------
-	Sampler samplerT21("\"Space achievment, ...\"", this, &selectableWorld, &inputManager, mOut, 21);
-	samplerT21.setPosition(vec3(-180.0f, -50.0f, -19.5f));
-	
-	Sampler samplerT22("\"adventure\"", this, &selectableWorld, &inputManager,mOut, 22);
-	samplerT22.setPosition(vec3(-219.0f, -45.0f, -50));
-	samplerT22.setRotation(angleAxis(10.0f, -1.0f, 1.0f, -1.0f));
-	
-	Sampler samplerT23("\"I believe, we should go to the moon!\"", this, &selectableWorld, &inputManager,mOut, 23);
-	samplerT23.setPosition(vec3(-210.0f, -63.5f, -46.5f));
-	samplerT23.setRotation(angleAxis(40.0f, 0.2f ,0.8f, 0.2f));
-	
-	Sampler samplerT24("\"sputnik\"", this, &selectableWorld, &inputManager,mOut, 24);
-	samplerT24.setPosition(vec3(-180.0f, -38.0f, -23.0f));
-	samplerT24.setRotation(angleAxis(-90.0f, 0.0f ,1.0f, 0.0f));
-	
-	
-	Player playerT2("break!", this, &selectableWorld, &inputManager, mOut, 26);
-	playerT2.setPosition(vec3(-190, -81, -40));
-	playerT2.setRotation(angleAxis(-30.0f, 1.0f, 0.0f, 0.0f));
-	
-	
-	// -- tier 3 ---------------------------------------
-	
-	Sampler samplerT31("\"Space achievment, ...\"", this, &selectableWorld, &inputManager, mOut, 41);
-	samplerT31.setPosition(vec3(224.5f, 2.0f, -19.5f));
-	
-	Sampler samplerT32("\"adventure\"", this, &selectableWorld, &inputManager,mOut, 42);
-	samplerT32.setPosition(vec3(180.0f, 24.5f, -50));
-	samplerT32.setRotation(angleAxis(10.0f, -1.0f, 1.0f, -1.0f));
-	
-	Sampler samplerT33("\"I believe, we should go to the moon!\"", this, &selectableWorld, &inputManager,mOut, 43);
-	samplerT33.setPosition(vec3(190.0f, -6.5f, -46.5f));
-	samplerT33.setRotation(angleAxis(40.0f, 0.2f ,0.8f, 0.2f));
-	
-	Sampler samplerT34("\"sputnik\"", this, &selectableWorld, &inputManager,mOut, 44);
-	samplerT34.setPosition(vec3(223.5f, 32.0f, -23.0f));
-	samplerT34.setRotation(angleAxis(-90.0f, 0.0f ,1.0f, 0.0f));
-	
-	Player playerT3("break!", this, &selectableWorld, &inputManager, mOut, 46);
-	playerT3.setPosition(vec3(180, 1, -40));
-	playerT3.setRotation(angleAxis(-30.0f, 1.0f, 0.0f, 0.0f));
 	
 	
 	
@@ -317,7 +283,7 @@ Sputnik::Sputnik(Properties* _props)
 	StarField starField(props);
 	starField.init();
 	
-	Text text1(props, "user study, mid december!");
+	Text text1(props, "user study, 12th december!");
 	text1.setPosition(vec3(50, 20, -150));
 	text1.setRotation(angleAxis(-30.f, 0.0f, 1.0f, 0.0f));
 	text1.update(0, 0);
@@ -331,7 +297,6 @@ Sputnik::Sputnik(Properties* _props)
 	text3.setPosition(vec3(50, 14, -150));
 	text3.setRotation(angleAxis(-30.f, 0.0f, 1.0f, 0.0f));
 	text3.update(0, 0);
-	
 	
 	
 	
@@ -369,35 +334,27 @@ Sputnik::Sputnik(Properties* _props)
 		
 		// update
 		// -- tier 1 ---------------
-		sampler.update(deltaT, t);
+		sampler1.update(deltaT, t);
 		sampler2.update(deltaT, t);
 		sampler3.update(deltaT, t);
 		sampler4.update(deltaT, t);
+		sampler5.update(deltaT, t);
+		sampler6.update(deltaT, t);
+		sampler7.update(deltaT, t);
+		sampler8.update(deltaT, t);
 		
-		player.update(deltaT, t);
-		tapeMachine.update(deltaT, t);
+		player1.update(deltaT, t);
+		player2.update(deltaT, t);
+		player3.update(deltaT, t);
 		
-		// -- tier 2 ---------------
-		samplerT21.update(deltaT, t);
-		samplerT22.update(deltaT, t);
-		samplerT23.update(deltaT, t);
-		samplerT24.update(deltaT, t);
+		tapeMachine1.update(deltaT, t);
+		tapeMachine2.update(deltaT, t);
 		
-		playerT2.update(deltaT, t);
-
-		// -- tier 3 ---------------
-		samplerT31.update(deltaT, t);
-		samplerT32.update(deltaT, t);
-		samplerT33.update(deltaT, t);
-		samplerT34.update(deltaT, t);
 		
-		playerT3.update(deltaT, t);
-		
-//		for (unsigned int i = 0; i < wpCount; i++)
-//		{
-//			section1[i]->update(deltaT, t);
-//			section2[i]->update(deltaT, t);
-//		}
+		for (unsigned int i = 0; i < wpCount; i++)
+		{
+			section1[i]->update(deltaT, t);
+		}
 		
 		wt1.update(deltaT, t);
 		wt2.update(deltaT, t);
@@ -423,35 +380,26 @@ Sputnik::Sputnik(Properties* _props)
 			glDepthMask(GL_TRUE);
 
 			// -- tier 1 -------------
-			sampler.render(RP_NORMAL, camera);
+			sampler1.render(RP_NORMAL, camera);
 			sampler2.render(RP_NORMAL, camera);
 			sampler3.render(RP_NORMAL, camera);
 			sampler4.render(RP_NORMAL, camera);
+			sampler5.render(RP_NORMAL, camera);
+			sampler6.render(RP_NORMAL, camera);
+			sampler7.render(RP_NORMAL, camera);
+			sampler8.render(RP_NORMAL, camera);
 			
-			player.render(RP_NORMAL, camera);
-			tapeMachine.render(RP_NORMAL, camera);
+			player1.render(RP_NORMAL, camera);
+			player2.render(RP_NORMAL, camera);
+			player3.render(RP_NORMAL, camera);
+			
+			tapeMachine1.render(RP_NORMAL, camera);
+			tapeMachine2.render(RP_NORMAL, camera);
 
-			// -- tier 2 -------------
-			samplerT21.render(RP_NORMAL, camera);
-			samplerT22.render(RP_NORMAL, camera);
-			samplerT23.render(RP_NORMAL, camera);
-			samplerT24.render(RP_NORMAL, camera);
-			
-			playerT2.render(RP_NORMAL, camera);
 
-			// -- tier 3 -------------
-			samplerT31.render(RP_NORMAL, camera);
-			samplerT32.render(RP_NORMAL, camera);
-			samplerT33.render(RP_NORMAL, camera);
-			samplerT34.render(RP_NORMAL, camera);
-			
-			playerT3.render(RP_NORMAL, camera);
-			
-			
 			for (unsigned int i = 0; i < wpCount; i++)
 			{
 				section1[i]->render(RP_NORMAL, camera);
-				section2[i]->render(RP_NORMAL, camera);
 			}
 			
 			
