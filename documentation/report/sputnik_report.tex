@@ -20,7 +20,7 @@
 \maketitle
 
 \begin{abstract}
-This paper evaluates \emph{sputnik} a 3D environment with which the user can freely interact through an elastic \emph{arc of light/fishing rod} metaphor, to explore, create and interact with virtual \emph{sound objects}. These sound objects are placed in the scene and react to the user's input by sending MIDI commands to an external audio program thus creating or manipulating the sound.
+This paper evaluates \emph{Sputnik} a 3D environment with which the user can freely interact through an elastic \emph{arc of light/fishing rod} metaphor, to explore, create and interact with virtual \emph{sound objects}. These sound objects are placed in the scene and react to the user's input by sending MIDI commands to an external audio program thus creating or manipulating the sound.
 
 \end{abstract}
 
@@ -44,8 +44,8 @@ With the advent of motion based controllers in consumer entertainment systems, m
 % problem statement
 A common problem of computer music interfaces is that often the process of sound creation is not readily comprehensible. Seeing a performer on stage behind their laptop twisting knobs and adjusting faders might be ambiguous to an uninformed observer. It can be hard to relate the artist's action to the resulting sounds. This can hinder the experience and might go as far as to the point where the audience suspects that an artist just pressed play, as interviews conducted by \cite{Pedersen2009} show.
 
-% sputnik description
-This paper introduces \emph{sputnik}, a system that uses a \emph{Wiimote} controller to interact with a dynamic 3D scene. In the scene, a variety of sound creating objects are placed that send MIDI signals to an external audio program upon the user's interaction. 
+% Sputnik description
+This paper introduces \emph{Sputnik}, a system that uses a \emph{Wiimote} controller to interact with a dynamic 3D scene. In the scene, a variety of sound creating objects are placed that send MIDI signals to an external audio program upon the user's interaction. 
 
 Users can freely navigate the 3D scene and interact with it through an elastic \emph{arc of light/fishing rod} metaphor. It seems as if the \emph{arc of light} was coming out of the Wiimote and reaches into the scene, acting as an extension of the user's body into the virtual space. With this bodily extension users can \emph{grab} and \emph{drag} objects around the 3D scene.
 
@@ -54,16 +54,16 @@ Users can freely navigate the 3D scene and interact with it through an elastic \
 % contribution
 In this paper I evaluate the qualities of the \emph{arc or light} metaphor and how the design decisions/constraints of the system influence its expressive potential both visually and musically. This evaluation is grounded in a user study of XXX users.
 
-Based on these findings and the theoretical framework of \cite{Ullmer2000} the similarities and differences between \emph{sputnik} and tangible user interfaces are discussed. 
+Based on these findings and the theoretical framework of \cite{Ullmer2000} the similarities and differences between \emph{Sputnik} and tangible user interfaces are discussed. 
 
 
 \section{Paper Outline}
-The following section gives an overview over related work in the field of \emph{New Interfaces for Musical Expression} and tangible user interfaces. Section \ref{sec:results} goes into detail about sputnik, both on a conceptual and a technical level. Section \ref{sec:evaluation} describes the performed user study and the paper is finally concluded in section \ref{sec:discussion} where the findings are discussed.
+The following section gives an overview over related work in the field of \emph{New Interfaces for Musical Expression} and tangible user interfaces. Section \ref{sec:results} goes into detail about Sputnik, both on a conceptual and a technical level. Section \ref{sec:evaluation} describes the performed user study and the paper is finally concluded in section \ref{sec:discussion} where the findings are discussed.
 
 
 \section{Related Work}
 \paragraph{Practical Work}
-Only a few projects exist that go into a similar direction as sputnik. The \emph{Virtual Xylophone}\cite{Maki-Patola2005} is a virtual reality system in which the user can place xylophone bars of different pitch in the scene and then struck them with a virtual mallet. By translating the configuration and mapping of the real instrument into the VR environment, new modes of play emerge.
+Only a few projects exist that go into a similar direction as Sputnik. The \emph{Virtual Xylophone}\cite{Maki-Patola2005} is a virtual reality system in which the user can place xylophone bars of different pitch in the scene and then struck them with a virtual mallet. By translating the configuration and mapping of the real instrument into the VR environment, new modes of play emerge.
 \cite{Zappi2010} created a virtual controller for \emph{Ableton Live} that allows users to create simple proxy objects in a VR environment, bind them to certain controls and use them effectively as virtual sliders. \cite{Rodet2005} created a virtual environment for an exhibition setting. Users interact with the system via a 6-DOF motion tracker with tactile feedback. However, the user's actions in the system are highly constrained.
 
 More projects can be found in the realm of Tangible User Interfaces. With \emph{mixiTUI} \cite{Pedersen2009} created a table top tangible interface for a sequencer that aimed not only to be functional but also to visually enrich the artists performance. Interviews with musicians and an extensive user study have been performed. \cite{Jorda2007} created the famous \emph{reacTable}, also a table top tangible interface that allows the creation and manipulation of music by composing various objects on its surface. 
@@ -113,7 +113,7 @@ Closing the loop to design and HCI, \cite{Magnusson2010} gives a good overview o
 
 % \cite{Gurevich2010} evaluate a highly constrainted one-button instrument in terms of the style and variations these constraints induce.
 
-% \cite{Maki-Patola2005} built four virtual reality instruments for a cave like environment, one of them being a virtual mallet, where users can hit the pads with virtual mallets. This comes closest to sputnik and also a few general thought on virtual scenes and the possible impact on the performance are given.
+% \cite{Maki-Patola2005} built four virtual reality instruments for a cave like environment, one of them being a virtual mallet, where users can hit the pads with virtual mallets. This comes closest to Sputnik and also a few general thought on virtual scenes and the possible impact on the performance are given.
 
 % \cite{Miller2010} uses the Wiimote and sensor bar to modell a virtual violin. It has no graphical UI and uses recorded sound samples.
 
@@ -156,17 +156,58 @@ Description of the Implementation according to the learning goals:
 % Develop an architecture that streamlines the three stages input - processing - output.
 
 
-\subsection{Sputnik}
-% user domain description of sputnik
-% what is sputnik in the user domain. Everything that is not technical or theoretical. This sets up the frame for alle the following section.
+\subsection{Sputnik Overview}
+% user domain description of Sputnik
+% what is Sputnik in the user domain. Everything that is not technical or theoretical. This sets up the frame for alle the following section.
 
 \emph{Sputnik} is a \emph{New Interface for Musical Expression} that combines 3D graphics with the capabilities of the Wiimote controller. The user is presented with colourful 3D scene that contains various simple objects. The user can freely navigate this scene and interact with these object to create sounds.
 
 The user can interact with the system via a Wiimote and Nunchuck controller. The Nunchuck controls the users movement in the 3D space and the Wiimote is used to control the camera and to interact with the objects in the scene. 
 
-Objects in the scene can be selected and dragged around. All Objects behave in a simplified yet physically plausible way, with each object featuring a distinctive weight and friction. Interaction with these objects is mediated through an abstract \emph{elastic arc of light} metaphor. It seems as if the arc of light was coming out of the Wiimote and reaches into the scene, acting as a bodily extension of the user into the virtual space. With this \emph{arc} the user can \emph{point} to objects, \emph{grab} them and \emph{drag} them around the scene. Dragging objects causes the arc of light to bend like a fishing rod, reflecting the physical properties of the object.
+\subsubsection{Setup}
+The system is set up in a room with an overhead mounted video beamer. The sensor bar can either be placed on the upper or lower edge of the projected image. It consists of two IR emitters that allows the IR camera in the Wiimote to track its relative orientation in space. A Wiimote and Nunchuck controller are used and only a single person at a time can use the system. Figure \ref{fig:sputnik-setup} illustrates the setup.
 
-Each object in the scene can react individually to user interaction like dragging or button presses, and the following classes of objects exist:
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width=0.4\columnwidth]{img/setup}
+\caption{Standard set up of Sputnik}
+\label{fig:sputnik-setup}
+\end{center}
+\end{figure}
+
+
+
+\subsection{Navigation and Camera Controls}
+Sputnik's virtual scene uses a fixed up direction and the user can move through the scene by pushing the Nunchuck's analogue stick in the respective direction. Pushing the stick forward moves the camera into the scene, pushing it left moves the camera to the left and vice versa.
+
+Tilting and panning is controlled by pointing the Wiimote to the top/bottom/left/right of the screen. The farther it is pointed away from the neutral center position the faster the camera movement is. Figure \ref{fig:sputnik-navigation} illustrates the navigation.
+
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width=0.7\columnwidth]{img/navigation}
+\caption{The Nunchuk's analogue stick controls the camera's dolly and track movements, the Wiimote's IR pointer controls the camera's tilt and pan movements.}
+\label{fig:sputnik-navigation}
+\end{center}
+\end{figure}
+
+
+
+
+\subsubsection{Interaction}
+
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width=0.95\columnwidth]{img/sputnik-overview}
+\caption{The basic interaction vocabulary of Sputnik}
+\label{fig:sputnik-overview}
+\end{center}
+\end{figure}
+
+Figure \ref{fig:sputnik-overview} illustrates the basic interaction vocabulary of Sputnik. The user can interact with the scene via an \emph{arc of light metaphor}. It seems as if the arc of light was coming out of the Wiimote and reaches into the scene, acting as a bodily extension of the user into the virtual space. Through this \emph{arc} objects in the scene can be \emph{pointed} at, \emph{grabbed} and \emph{dragged} around as well as \emph{released}.
+
+Objects behave in a simplified yet physically plausible way, each featuring distinct weight and friction. Dragging objects causes the arc to bend like a fishing rod, reflecting the physical properties of the object.
+
+Each object in the scene can react individually to user interaction. The following classes of objects exist in Sputnik:
 \begin{description}
 \item[Sampler (red sphere)] The \emph{sampler} object reacts to the press of the \emph{A Button} while it is grabbed. While the button is held the sample is played in a loop and stops immediately when the button or the object is released. Playback always starts at the beginning of the sample.
 
@@ -174,32 +215,26 @@ Each object in the scene can react individually to user interaction like draggin
 
 \item[Tape Machine (grey sphere)] Modelled after an old tape machine and inspired by \emph{musique concrète} the \emph{tape machine} object controls the speed of the play back by the object's movement speed in the virtual space. The faster it moves the faster the playback. Playback is looped.
 
-\item[Harmonic Harp (orange spheres)] The orange spheres together form kind of a \emph{harmonic harp}. Each sphere controls a single sine wave oscillator and the volume is determined by the the spheres distance to is origin. Additionally a force exists that drags the spheres towards their respective origins. The oscillators are tuned to the natural harmonic series.
+\item[Harmonic Harp (orange spheres)] The orange spheres form a kind kind \emph{harmonic harp}. Each sphere controls a single sine wave oscillator and the volume is determined by the the spheres distance to is origin. Additionally a force exists that drags the spheres towards their respective origins. The oscillators are tuned to the natural harmonic series.
 \end{description}
 
-By interacting with the different objects and arranging the in the virtual environment users can create musical performances that are expressive both musically and visually.
+By interacting with the different objects and arranging the in the virtual scene users can create musical performances that are both musically and visually expressive.
 
 
-\subsection{Design Goals}
-% describe the initial design goals in more detail that stand behind sputnik
-
-The combination of visuals and music was one of the core design goals behind sputnik. The goal was to create a novel interface that was both musically and visually expressive. Additionally it should be relatively easy to use and have a low barrier of entry.
-
-...hmmmmmm
 
 
-\subsection{Technical Details}
+\subsection{Implementation}
 % component based approach, renderer, midiout, wiimote in
-Sputnik is built on C++ and is developed on Mac Os X. It is split up in two projects with \emph{kocmoc} building the (more general purpose) core foundation for sputnik. Small parts of kocmoc already existed before this project, but most of it was written in this project.
+Sputnik is built on C++ and is developed on Mac Os X. It is split up in two projects with \emph{kocmoc} building the (more general purpose) core foundation for Sputnik. Small parts of kocmoc already existed before this project, but most of it was written in this project.
 
 \subsubsection{Component Based}
 At its core kocmoc uses a simple component based architecture to manage \emph{objects}. An object is simply a collection of components and components can directly communicate with each other and are configured at runtime. One of the benefits of component based systems is that new objects can be easily be created by reusing existing component. Extending existing components is often only a matter of adding an existing component to it. It is a relative flexible approach that allows quick changes and keeps the class hierarchy flat.
 
 \subsubsection{OpenGL}
-OpenGL is used for rendering the scene. Sputnik uses OpenGL 2.1 with a few common extensions. The renderer is rather simple and only supports the few features that are required by sputnik. It has not been tuned to production standards but should be reasonably fast for the task at hand.
+OpenGL is used for rendering the scene. Sputnik uses OpenGL 2.1 with a few common extensions. The renderer is rather simple and only supports the few features that are required by Sputnik. It has not been tuned to production standards but should be reasonably fast for the task at hand.
 
 \subsubsection{MIDI Output}
-The RtMidi\footnote{\texttt{http://www.music.mcgill.ca/~gary/rtmidi/}} was used to interface with the MIDI protocol\footnote{\texttt{http://en.wikipedia.org/wiki/MIDI}}. MIDI was used because of its simplicity and wide adoption in the field of computer music. By using this ubiquitous protocol sputnik can potentially communicate with virtually every music program. 
+The RtMidi\footnote{\texttt{http://www.music.mcgill.ca/~gary/rtmidi/}} was used to interface with the MIDI protocol\footnote{\texttt{http://en.wikipedia.org/wiki/MIDI}}. MIDI was used because of its simplicity and wide adoption in the field of computer music. By using this ubiquitous protocol Sputnik can potentially communicate with virtually every music program. 
 
 A disadvantage of of MIDI is the rather low resolution discrete value space. Control values are in the discrete range of $[0, 127]$. Depending on the application this can be a severe limitation, especially if one wants to map for example $[0, \inf)$ to a midi value. Another problem is the limited bandwidth of MIDI.
 
@@ -222,13 +257,13 @@ Adhering to the convention found in most video games and also films I decided to
 \subsection{Wiimote input and control}
 % what it is, what it does, Why the wiimote, how it is integrated into the system, how do the controls work, rationale behind the star field.
 
-The user interacts with sputnik through a Wiimote and a Nunchuck controller that where originally created the Wii video game console. The Wiimote is quite similar in shape to a standard TV remote, has a few buttons and a built in IR camera that allows it to function as a pointing device by pointing it at a \emph{sensor bar} composed of IR-LED lights. The Nunchuck controller only consists of an analogue stick and two buttons. 
+The user interacts with Sputnik through a Wiimote and a Nunchuck controller that where originally created the Wii video game console. The Wiimote is quite similar in shape to a standard TV remote, has a few buttons and a built in IR camera that allows it to function as a pointing device by pointing it at a \emph{sensor bar} composed of IR-LED lights. The Nunchuck controller only consists of an analogue stick and two buttons. 
 
 [Wiimote + Nunchuck Schematic here!]
 
 Camera tilt and pan is controlled by the Wiimote pointer. Pointing at the center of the screen results in no camera motion. Pointing to the left or the right causes the camera to pan in the respective direction and pointing up and down causes the camera to tilt. Movements are smooth and the amount of movement is relative to the distance to the center position. Additionally an continuous strictly monotonic increasing function is used as an acceleration function.
 
-A severe drawback of the the Wiimote's pointing capabilities is the relatively small field of view of the IR camera. It is not adequate to capture bigger motions. It is best controlled by using mostly the wrist and very little arm and body movement. This contradicts the initial goal of enabling sputnik to capture bigger movements.
+A severe drawback of the the Wiimote's pointing capabilities is the relatively small field of view of the IR camera. It is not adequate to capture bigger motions. It is best controlled by using mostly the wrist and very little arm and body movement. This contradicts the initial goal of enabling Sputnik to capture bigger movements.
 
 The Wiimote processes the IR camera feed directly on chip and provides the locations of up to 4 tracking points as output. Several sources on the internet report the update rate of the Wiimote at 100Hz
 
