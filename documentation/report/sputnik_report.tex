@@ -230,10 +230,16 @@ The Assimp\footnote{\texttt{http://assimp.sourceforge.net/}} and devIL\footnote{
 
 RtMidi\footnote{\texttt{http://www.music.mcgill.ca/~gary/rtmidi/}} is used to send messages to external applications and WiiC\footnote{\texttt{http://wiic.sourceforge.net/}} was used to interface with the Wiimote and Nunchuck controller.
 
+Figure \ref{fig:flow} illustrates the data flow in the main run-loop. First the devices are polled, which causes callbacks to be fired. The components are subsequently updated and finally the scene is sent to the renderer.
 
 
-
-\section{Sputnik in Detail}
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.95 \columnwidth]{img/flow}
+\caption{The data flow in the run-loop.}
+\label{fig:flow}
+\end{center}
+\end{figure}
 
 
 

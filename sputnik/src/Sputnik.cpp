@@ -95,6 +95,8 @@ Sputnik::Sputnik(Properties* _props)
 	, screenShot(symbolize("screen-shot"))
 	, note(symbolize("note"))
 	, cursorX(symbolize("cursor-x"))
+	, pos1(symbolize("camera-position-1"))
+	, pos2(symbolize("camera-position-2"))
 	, ic(this)
 {
 	string configFile = props->getString(symbolize("config-file"));
@@ -156,11 +158,17 @@ Sputnik::Sputnik(Properties* _props)
 	
 	inputManager.registerButtonEventListener(quit, &ic);
 	inputManager.bindKeyToButtonEvent(256, quit);	// ESC
-	inputManager.bindWiimoteEvent(WIIMOTE_EVENT_BUTTON_MINUS_HELD, quit);
+//	inputManager.bindWiimoteEvent(WIIMOTE_EVENT_BUTTON_MINUS_HELD, quit);
 
-	inputManager.registerButtonEventListener(screenShot, &ic);
-	inputManager.bindKeyToButtonEvent(',', screenShot);
-	
+//	inputManager.registerButtonEventListener(screenShot, &ic);
+//	inputManager.bindKeyToButtonEvent(',', screenShot);
+
+	inputManager.registerButtonEventListener(pos1, &ic);
+	inputManager.bindKeyToButtonEvent('1', pos1);
+
+	inputManager.registerButtonEventListener(pos2, &ic);
+	inputManager.bindKeyToButtonEvent('2', pos2);
+
 	
 	WiimoteDebugger wiimoteDebugger0("wiimote debugger 0", props, &inputManager, 0);
 	wiimoteDebugger0.init();
@@ -254,6 +262,12 @@ Sputnik::Sputnik(Properties* _props)
 	tapeMachine2.setRotation(angleAxis(60.0f, 0.0f, 1.0f, 0.1f));
 	
 	
+	// -- weight test --------------------------------------
+	WeightTest wt1(" A ", props, vec3(400, 400, 360), 1.0f, &selectableWorld);
+	WeightTest wt2(" B ", props, vec3(410, 400, 360), 0.5f, &selectableWorld);
+	WeightTest wt3(" C ", props, vec3(420, 400, 360), 2.0f, &selectableWorld);
+	WeightTest wt4(" D ", props, vec3(430, 400, 360), 1.5f, &selectableWorld);
+	
 	unsigned int wpCount = 6;
 	WayPoint** section1 = new WayPoint*[wpCount];
 	vec3 wp0 = vec3(20, -5, 0);
@@ -271,11 +285,7 @@ Sputnik::Sputnik(Properties* _props)
 	
 	
 	
-	// -- weight test --------------------------------------
-	WeightTest wt1("1.0", props, vec3(0, 0, 40), 1.0f, &selectableWorld);
-	WeightTest wt2("0.5", props, vec3(-10, 0, 40), 0.5f, &selectableWorld);
-	WeightTest wt3("2.0", props, vec3(-20, 0, 40), 2.0f, &selectableWorld);
-	WeightTest wt4("1.5", props, vec3(-30, 0, 40), 1.5f, &selectableWorld);
+
 	
 	
 	
@@ -283,20 +293,20 @@ Sputnik::Sputnik(Properties* _props)
 	StarField starField(props);
 	starField.init();
 	
-	Text text1(props, "user study, 12th december!");
-	text1.setPosition(vec3(50, 20, -150));
-	text1.setRotation(angleAxis(-30.f, 0.0f, 1.0f, 0.0f));
-	text1.update(0, 0);
-
-	Text text2(props, "@SimonWallner");
-	text2.setPosition(vec3(50, 17, -150));
-	text2.setRotation(angleAxis(-30.f, 0.0f, 1.0f, 0.0f));
-	text2.update(0, 0);
-	
-	Text text3(props, "http://simonwallner.at");
-	text3.setPosition(vec3(50, 14, -150));
-	text3.setRotation(angleAxis(-30.f, 0.0f, 1.0f, 0.0f));
-	text3.update(0, 0);
+//	Text text1(props, "user study, 12th december!");
+//	text1.setPosition(vec3(50, 20, -150));
+//	text1.setRotation(angleAxis(-30.f, 0.0f, 1.0f, 0.0f));
+//	text1.update(0, 0);
+//
+//	Text text2(props, "@SimonWallner");
+//	text2.setPosition(vec3(50, 17, -150));
+//	text2.setRotation(angleAxis(-30.f, 0.0f, 1.0f, 0.0f));
+//	text2.update(0, 0);
+//	
+//	Text text3(props, "http://simonwallner.at");
+//	text3.setPosition(vec3(50, 14, -150));
+//	text3.setRotation(angleAxis(-30.f, 0.0f, 1.0f, 0.0f));
+//	text3.update(0, 0);
 	
 	
 	
@@ -409,9 +419,9 @@ Sputnik::Sputnik(Properties* _props)
 			wt4.render(RP_NORMAL, camera);
 			
 			
-			text1.render(RP_NORMAL, camera);
-			text2.render(RP_NORMAL, camera);
-			text3.render(RP_NORMAL, camera);
+//			text1.render(RP_NORMAL, camera);
+//			text2.render(RP_NORMAL, camera);
+//			text3.render(RP_NORMAL, camera);
 			
 			starField.onRender(RP_NORMAL, camera);
 

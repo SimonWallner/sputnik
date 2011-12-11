@@ -63,7 +63,7 @@ namespace sputnik
 		kocmoc::core::scene::FilmCamera* camera;
 		
 		bool running;
-		kocmoc::core::types::Symbol quit, screenShot, note, cursorX, cursorY;
+		kocmoc::core::types::Symbol quit, screenShot, note, cursorX, cursorY, pos1, pos2;
 		
 		object::Monkey* monkey;
 		kocmoc::core::scene::ImageLoader imageLoader;
@@ -73,14 +73,31 @@ namespace sputnik
 		public:
 			InputCallback(Sputnik* _p)
 			: p(_p)
-			{};
+			{}
 			
 			void buttonEventCallback(kocmoc::core::types::Symbol name, kocmoc::core::input::ButtonEvent event)
 			{
 				if (name == p->quit)
 					p->running = false;
-				else if (name == p->screenShot && event.state == kocmoc::core::input::ButtonEvent::PRESSED)
+				
+				else if (name == p->screenShot)
 					p->imageLoader.screenShot();
+				
+				else if (name == p->pos1)
+				{
+					p->camera->setPosition(glm::vec3(0, 0, 4));
+					p->camera->setTargetPosition(glm::vec3(0));
+					p->camera->setUpVector(glm::vec3(0, 1, 0));
+				}
+				
+				else if (name == p->pos2)
+				{
+					p->camera->setPosition(glm::vec3(400, 400, 404));
+					p->camera->setTargetPosition(glm::vec3(400, 400, 400));
+					p->camera->setUpVector(glm::vec3(0, 1, 0));
+				}
+				
+				UNUSED event;
 			}
 			
 		private:
