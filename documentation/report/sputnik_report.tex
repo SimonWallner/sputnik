@@ -174,7 +174,7 @@ The system is set up in a room with an overhead mounted video beamer. The sensor
 
 
 \subsection{Navigation and Camera Controls}
-Sputnik's virtual scene uses a fixed up direction and the user can move through the scene by pushing the Nunchuck's analogue stick in the respective direction. Pushing the stick forward moves the camera into the scene, pushing it left moves the camera to the left and vice versa.
+Sputnik's virtual scene uses a fixed \emph{up direction} and the user can move through the scene by pushing the Nunchuck's analogue stick in the respective direction. Pushing the stick forward moves the camera into the scene, pushing it left moves the camera to the left and vice versa.
 
 Tilting and panning is controlled by pointing the Wiimote to the top/bottom/left/right of the screen. The farther it is pointed away from the neutral center position the faster the camera movement is. Figure \ref{fig:sputnik-navigation} illustrates the navigation.
 
@@ -217,6 +217,39 @@ Each object in the scene can react individually to user interaction. The followi
 By interacting with the different objects and arranging the in the virtual scene users can create musical performances that are both musically and visually expressive.
 
 
+\subsection{The Arc Of Light Metaphor}
+The \emph{arc of light} is the core of Sputnik. It should be easy to pick up and understand even for novice users. It has the following properties:
+
+If no object is grabbed, the \emph{arc} follows the input of the user directly. The input is not filtered by the application and is used \emph{as is}. This creates a slight jittering but on the other hand makes it very responsive. Low pass filtering of the Wiimote input was explicitly not used in order to achieve high responsiveness.
+
+This filtering however is indirectly introduced through the physical properties of the interactive objects. Giving this filter process a physical representation should it ideally make it transparent to the user and achieve the desired effect (even very strong filtering) without making the system feel laggy or dull.
+
+
+\subsection{Simplified Physics}
+Sputnik uses simplified physics simulations to give the interactive objects their distinct physical properties. An objects properties are described by \emph{mass}, a \emph{movement vector}, as well as a movement \emph{damping constant}. SI units are used unless otherwise noted.
+
+The dragging force of the arc on an object is linear in the distance from the object to the intersection of the unbended arc with the plane that goes through the object with a plane normal pointing at the camera.
+
+In each frame, the speed of an object is then computed as 
+\begin{equation}
+v_i = v_{i-1} + \frac{F * \Delta T}{m} 
+\end{equation}
+where $v_i$ is the object's movement vector in frame $i$, $F$ is the current force, $m$ is the mass and $\Delta T$ is the frame time. Force is only applied at the center of the objects, and thus never causes a rotation of the object.
+
+Damping of objects movement is implemented by a simple exponential decay, given as
+\begin{equation}
+v_i = v_{i-1} * e^{-\lambda * \Delta T}
+\end{equation}
+where $\lambda$ is the damping constant.
+
+Even with theses simple formulas a convincing and plausible physical system can be created. 
+
+
+\subsection{Creating sound}
+Sputnik's interactive objects use the MIDI  protocol to communicate with external applications. Thanks to the simplicity and the pervasiveness of this protocol, virtually every music software can be used together Sputnik. 
+
+In the current set up Sputnik \emph{pure data (pd)}\footnote{\texttt{http://puredata.info/}} is used to create sound. A simple patch is used that builds on \emph{boctok-1}, a small collection of pd patches written by the author prior to this project. 
+
 
 
 \section{Implementation}
@@ -224,11 +257,11 @@ Sputnik is implemented in C++ with Mac OS X as its development platform. The pro
 
 The source code of of both Sputnik and kocmoc-core is licensed under the MIT license and is available to the public on github\footnote{\texttt{https://github.com/SimonWallner/sputnik}} \footnote{\texttt{https://github.com/SimonWallner/kocmoc-core}}.
 
-Sputnik uses OpenGL 2.1 with a few extensions to display the virtual scene. The renderer is fairly simple and displays unlit, textured objects with baked ambient occlusion maps. A simplified physically correct computation of the homogeneous fog is realised in the vertex and fragment shader and a post processing effect is applied. This effect adds a barrel distortion, vignetting as well as a form of full screen anti aliasing.
+Sputnik uses OpenGL 2.1 with a few extensions to display the virtual scene. The renderer is fairly simple and displays unlit, textured objects with baked ambient occlusion maps. A simplified physically correct computation of the homogeneous fog is realised in the vertex and fragment shader and a post processing effect is applied. This effect adds a barrel distortion and vignetting as well as a simple form of full screen anti aliasing.
 
-The Assimp\footnote{\texttt{http://assimp.sourceforge.net/}} and devIL\footnote{\texttt{http://openil.sourceforge.net/}} libraries are used to load assets and font rendering is implemented using the freetype\footnote{\texttt{http://www.freetype.org/}} library.
+The \emph{Assimp}\footnote{\texttt{http://assimp.sourceforge.net/}} and \emph{devIL}\footnote{\texttt{http://openil.sourceforge.net/}} libraries are used to load assets and font rendering is implemented using the \emph{freetype}\footnote{\texttt{http://www.freetype.org/}} library.
 
-RtMidi\footnote{\texttt{http://www.music.mcgill.ca/~gary/rtmidi/}} is used to send messages to external applications and WiiC\footnote{\texttt{http://wiic.sourceforge.net/}} was used to interface with the Wiimote and Nunchuck controller.
+\emph{RtMidi}\footnote{\texttt{http://www.music.mcgill.ca/~gary/rtmidi/}} is used to send messages to external applications and \emph{WiiC}\footnote{\texttt{http://wiic.sourceforge.net/}} was used to interface with the Wiimote and Nunchuck controller.
 
 Figure \ref{fig:flow} illustrates the data flow in the main run-loop. First the devices are polled, which causes callbacks to be fired. The components are subsequently updated and finally the scene is sent to the renderer.
 
@@ -247,9 +280,14 @@ Figure \ref{fig:flow} illustrates the data flow in the main run-loop. First the 
 
 \begin{figure}[hbtp]
 \begin{center}
-\includegraphics[width = 0.7 \columnwidth]{img/screen-shot-all}
-\caption{An overview shot of sputnik.}
-\label{fig:screen-shot-overview}
+\subfigure{
+	\includegraphics[width = 0.45\columnwidth]{img/screen-shot-all}
+	\label{fig:screen-shot-overview}
+}
+\subfigure{
+	\includegraphics[width = 0.45 \columnwidth]{img/overview-illu}
+}
+\caption{The objects in the scene: (a) Samplers, (b) Players, (c) Tape Machines, (d) Harmonic Harp}
 \end{center}
 \end{figure}
 
@@ -282,12 +320,6 @@ The textual labels play an important role in Sputnik. On the one hand they provi
 \end{figure}
 
 
-\section{The Arc Of Light Metaphor}
-The \emph{arc of light} is the core of Sputnik. It should be easy to pick up and understand even for novice users. It has the following properties:
-
-If no object is grabbed, the \emph{arc} follows the input of the user directly. The input is not filtered by the application and is used \emph{as is}. This creates a slight jittering but on the other hand makes it very responsive. Low pass filtering of the Wiimote input was explicitly not used in order to achieve high responsiveness.
-
-This filtering however is indirectly introduced through the physical properties of the interactive objects. Giving this filter process a physical representation should it ideally make it transparent to the user and achieve the desired effect (even very strong filtering) without making the system feel laggy or dull.
 
 
 
@@ -304,11 +336,6 @@ The used library supports more than one Wiimote and the input system in Sputnik 
 
 
 
-
-\subsection{Creating sound}
-Sputnik's interactive objects use the MIDI  protocol to communicate with external applications. Thanks to the simplicity and the pervasiveness of this protocol, virtually every music software can be used together Sputnik. 
-
-In the current set up Sputnik \emph{pure data (pd)}\footnote{\texttt{http://puredata.info/}} is used to create sound. A simple patch is used that builds on \emph{boctok-1}, a small collection of pd patches written by the author prior to this project. 
 
 
 

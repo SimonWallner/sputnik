@@ -83,8 +83,8 @@ void WiimoteCameraController::pointerMoved(float x, float y)
 	float mapX = deadZoneMap(nX, deadZone.x);
 	float mapY = deadZoneMap(nY, deadZone.y);
 	
-	float rateHori = 2.0f;
-	float rateVert = 2.0f;
+	float rateHori = 1.0f;
+	float rateVert = 1.0f;
 	
 	camera->tumble(lastDeltaT * rateHori * accelerate(mapX),
 				   lastDeltaT * rateVert * accelerate(mapY));
