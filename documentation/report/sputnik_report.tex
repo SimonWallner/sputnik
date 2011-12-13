@@ -33,6 +33,8 @@ Video
 CD
 etc...
 
+user/performer synonymously used
+
 
 \section{Introduction}
 
@@ -78,7 +80,7 @@ Not a Wiimote but still impressive, \cite{Miyama2010} uses an low resolution dis
 \paragraph{Theoretical Work}
 The field of \emph{Tangible User Interfaces (TUI)} provides part of the theoretical background for this work. Work of \cite{Fitzmaurice1995} and then later \cite{Ishii1997} introduced this term and the wider concept. \cite{Shaer2009} Gives a very good overview over this field as well as the history of TUI studies. \cite{Ullmer2000} introduced \emph{MCRpd}, a formal model for describing and analysing TUIs that will be used in section \ref{}.
 
-\cite{Sharlin2004} introduced \emph{spacial TUIs} that focuses on \emph{I/O unification} by tightly coupling the action and perception spaces and embodying a clear state representation across all sensory modalities.
+\cite{Sharlin2004} introduced \emph{spatial TUIs} that focuses on \emph{I/O unification} by tightly coupling the action and perception spaces and embodying a clear state representation across all sensory modalities.
 
 
 Entering the musical realm \cite{Fels2011} give a good overview and general introduction into the field of \emph{NIMEs (New Interfaces for Musical Expression)}. \cite{Cook2001} shares 13 general principles for designing computer music controllers that resulted from his long lasting experience in this field. \cite{Dobrian2006} asks the question of virtuosity and expression by pointing out the elephant in the room, e.g. the lack thereof and also the lack of a comparable standard repertoire. 
@@ -143,25 +145,12 @@ Closing the loop to design and HCI, \cite{Magnusson2010} gives a good overview o
 
 
 
-% results
 
-% Create a system that allows the user to interact with an virtual world through the Wiimote. This system should be intuitive even for untrained users, and have a very low barrier of entry.
-% Explore the technical capabilities of the Wiimote and Nunchuck controller and put it to good use.
-% Create a meaningful mapping form the virtual world to the sound generation system.
-% Create a sound generation system that allows nuanced and rich musical expression.
-% Develop an architecture that streamlines the three stages input - processing - output.
-
-
-\section{Sputnik Overview}
-% user domain description of Sputnik
-% what is Sputnik in the user domain. Everything that is not technical or theoretical. This sets up the frame for alle the following section.
-
-\emph{Sputnik} is a \emph{New Interface for Musical Expression} that combines 3D graphics with the capabilities of the Wiimote controller. The user is presented with colourful 3D scene that contains various simple objects. The user can freely navigate this scene and interact with these object to create sounds.
-
-The user can interact with the system via a Wiimote and Nunchuck controller. The Nunchuck controls the users movement in the 3D space and the Wiimote is used to control the camera and to interact with the objects in the scene. 
+\section{Sputnik}
+\emph{Sputnik} is a \emph{New Interface for Musical Expression} that combines 3D graphics with the capabilities of the wireless \emph{Wiimote} and \emph{Nunchuck} controller. The user is presented with a colourful 3D scene that contains various interactive objects. The user can freely navigate the scene and interact with these object to create sounds.
 
 \subsection{Setup}
-The system is set up in a room with an overhead mounted video beamer. The sensor bar can either be placed on the upper or lower edge of the projected image. It consists of two IR emitters that allows the IR camera in the Wiimote to track its relative orientation in space. A Wiimote and Nunchuck controller are used and only a single person at a time can use the system. Figure \ref{fig:sputnik-setup} illustrates the setup.
+The system is set up in a room with an overhead mounted video projector. The IR-sensor bar, needed for the Wiimote controller, can either be placed on the upper or lower edge of the projected image. It consists of two IR emitters that allows the IR camera in the Wiimote to track its relative orientation in space. A Wiimote and Nunchuck controller are used and only a single person at a time can use the system. Figure \ref{fig:sputnik-setup} illustrates the setup.
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -173,10 +162,66 @@ The system is set up in a room with an overhead mounted video beamer. The sensor
 
 
 
+
+\subsection{The Virtual Scene}
+
+\begin{figure}[hbtp]
+\begin{center}
+\subfigure{
+	\includegraphics[width = 0.45\columnwidth]{img/screen-shot-all}
+}
+\subfigure{
+	\includegraphics[width = 0.45 \columnwidth]{img/overview-illu}
+}
+\caption{The objects in the scene: (a) Samplers, (b) Players, (c) Tape Machines, (d) Harmonic Harp}
+\label{fig:screen-shot-overview}
+\end{center}
+\end{figure}
+
+
+Figure \ref{fig:screen-shot-overview} shows an overview shot of sputnik. The svirtual cene consists of the following parts:
+\begin{enumerate}
+\item The light blue and bent \emph{arc of light} starting in the middle of the lower edge and going \emph{into} the picture. It is directly controlled by the user and is the primary mean of interaction.
+
+\item Objects the user can interact with: sampler (red), player (yellow), tape machine (grey), harmonic harp (orange)
+
+\item Textual labels on the interactive objects. Each label contains a short text or name describing the interactive object. Figure \ref{fig:sampler-labels} shows a few \emph{samplers} with their labels.
+
+\item Randomly generated star field. It is not interactive and static. It serves an aesthetic purpose as well as providing important reference points for the users orientation.
+
+\item Coloured Fog. The fog provides depth cues for the objects
+\end{enumerate}
+
+\begin{figure}[hbtp]
+\begin{center}
+\subfigure{
+	\includegraphics[width = 0.45\columnwidth]{img/screen-shot-sampler}
+}
+\subfigure{
+	\includegraphics[width = 0.45 \columnwidth]{img/screen-shot-label}
+}
+\caption{A group of \emph{samplers} and the close up of a single \emph{sampler} with their attached labels}
+\label{fig:sampler-labels}
+\end{center}
+\end{figure}
+
+
+The visual representation of Sputnik serves a dual purpose. On the one hand it is the sole graphical interface for the user and on the other hand it should be visually pleasing for the audience and allow them to understand the process of music creation in a live setting. Common music software usually focuses on the performer, leaving the visual performance in most cases to a dedicated and specialised VJ. Sputnik tries to bridge this rift by using the visual representation both as an interface to the performer and the audience. 
+
+% add: visual expression, just like VJing...
+
+The textual labels in Sputnik are aimed at both the performer and the audience. The text on the labels is hard coded and does not change during run time. It can be used to convey additional information to the performer about a certain object, but it can also allow the audience to gain more information about the piece. The function of the objects can become clear even if the object is not currently in use. This can also introduce an element of anticipation when an object with a certain label is visible but the performer does not yet interact with it.
+
+
+
+
+
 \subsection{Navigation and Camera Controls}
-Sputnik's virtual scene uses a fixed \emph{up direction} and the user can move through the scene by pushing the Nunchuck's analogue stick in the respective direction. Pushing the stick forward moves the camera into the scene, pushing it left moves the camera to the left and vice versa.
+Sputnik is controlled from a first person perspective. The user can navigate the scene by pushing the Nunchuck's analogue stick in the respective direction. Pushing the stick forward moves the camera into the scene, pushing it to the left moves the camera to the left and vice versa.
 
 Tilting and panning is controlled by pointing the Wiimote to the top/bottom/left/right of the screen. The farther it is pointed away from the neutral center position the faster the camera movement is. Figure \ref{fig:sputnik-navigation} illustrates the navigation.
+
+Sputnik's camera uses a fixed \emph{up direction}. The fixed up direction is commonly seen in cinema and video games, even though it is not intrinsic in the space inspired setting. It furthermore should limit the camera's degree of freedom and make it more accessible.
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -185,7 +230,6 @@ Tilting and panning is controlled by pointing the Wiimote to the top/bottom/left
 \label{fig:sputnik-navigation}
 \end{center}
 \end{figure}
-
 
 
 
@@ -199,71 +243,65 @@ Tilting and panning is controlled by pointing the Wiimote to the top/bottom/left
 \end{center}
 \end{figure}
 
-Figure \ref{fig:sputnik-overview} illustrates the basic interaction vocabulary of Sputnik. The user can interact with the scene via an \emph{arc of light} metaphor. It seems as if the arc of light was coming out of the Wiimote and reaches into the scene, acting as a bodily extension of the user into the virtual space. Through this \emph{arc} objects in the scene can be \emph{pointed} at, \emph{grabbed} and \emph{dragged} around.
+Figure \ref{fig:sputnik-overview} illustrates the basic interaction vocabulary of Sputnik. The user can interact with the scene via an \emph{arc of light} metaphor. It seems as if the arc of light was coming out of the Wiimote and reaches into the scene, acting as a bodily extension of the user into the virtual space. Through this \emph{arc} the user can \emph{point} at objects, \emph{grab} them and also \emph{drag} them around the scene.
 
-Objects behave in a simplified yet physically plausible way, each featuring distinct weight and friction. Dragging objects causes the arc to bend like a fishing rod, reflecting the physical properties of the object.
+Interactive objects behave in a simplified physically plausible way, each featuring distinct weight and friction. Dragging objects causes the arc to bend like a fishing rod, reflecting the physical properties of the object.
 
-Each object in the scene can react individually to user interaction. The following classes of objects exist in Sputnik:
+Each interactive object in the scene can react individually to user interaction. The following classes of objects currently exist in Sputnik:
+
 \begin{description}
-\item[Sampler (red sphere)] The \emph{sampler} object reacts to the press of the \emph{A Button} while it is grabbed. While the button is held the sample is played in a loop and stops immediately when the button or the object is released. Playback always starts at the beginning of the sample.
+\item[Sampler (red)] The \emph{sampler} object reacts to the press of the \emph{A button} while it is grabbed. While the button is held a preloaded sample is played in a loop and stops immediately when the button or the object is released. Playback always starts at the beginning of the sample.
 
-\item[Player (yellow sphere)] The \emph{player} object reacts to the press of the \emph{A Button} while it is grabbed. Pressing the \emph{A button} starts and stops the player. It is not automatically stopped when it is released. Playback is looped and always starts at the beginning.
+\item[Player (yellow)] The \emph{player} object reacts to the press of the \emph{A button} while it is grabbed. Pressing the \emph{A button} starts and stops the playback of a preloaded sample. It is not automatically stopped when it is released. Playback is looped and always starts at the beginning.
 
-\item[Tape Machine (grey sphere)] Modelled after an old tape machine and inspired by \emph{musique concrète} the \emph{tape machine} object controls the speed of the play back by the object's movement speed in the virtual space. The faster it moves the faster the playback. Playback is looped.
+\item[Tape Machine (grey)] Modelled after an old tape machine and inspired by \emph{musique concrète} the \emph{tape machine} object controls the play back speed of a preloaded sample via the object's movement speed in the virtual space. The faster it moves the faster the playback. Playback is looped.
 
-\item[Harmonic Harp (orange spheres)] The orange spheres form a kind kind \emph{harmonic harp}. Each sphere controls a single sine wave oscillator and the volume is determined by the the spheres distance to is origin. Additionally a force exists that drags the spheres towards their respective origins. The oscillators are tuned to the natural harmonic series.
+\item[Harmonic Harp (orange)] The orange spheres form a kind of \emph{harmonic harp}. Each sphere controls a single sine wave oscillator and the volume is determined by the the sphere's distance to its origin. Additionally the spheres are pulled towards their respective origins by a constant force that is linear in the distance from the sphere to its origin. The oscillators are tuned to the natural harmonic series which makes them easy to play with and avoids dissonances.
 \end{description}
 
-By interacting with the different objects and arranging the in the virtual scene users can create musical performances that are both musically and visually expressive.
-
-
-\subsection{The Arc Of Light Metaphor}
-The \emph{arc of light} is the core of Sputnik. It should be easy to pick up and understand even for novice users. It has the following properties:
-
-If no object is grabbed, the \emph{arc} follows the input of the user directly. The input is not filtered by the application and is used \emph{as is}. This creates a slight jittering but on the other hand makes it very responsive. Low pass filtering of the Wiimote input was explicitly not used in order to achieve high responsiveness.
-
-This filtering however is indirectly introduced through the physical properties of the interactive objects. Giving this filter process a physical representation should it ideally make it transparent to the user and achieve the desired effect (even very strong filtering) without making the system feel laggy or dull.
+Each interactive object is preloaded with a different sample or sound in an external application. By interacting with the different objects and arranging them in the virtual scene, users can create musical performances that are both musically and visually expressive.
 
 
 \subsection{Simplified Physics}
-Sputnik uses simplified physics simulations to give the interactive objects their distinct physical properties. An objects properties are described by \emph{mass}, a \emph{movement vector}, as well as a movement \emph{damping constant}. SI units are used unless otherwise noted.
+Sputnik uses simplified physics simulations to give the interactive objects their distinct physical properties. An object's properties are described by \emph{mass}, a \emph{movement vector}, as well as a movement \emph{damping constant}. SI units are used unless otherwise noted.
 
-The dragging force of the arc on an object is linear in the distance from the object to the intersection of the unbended arc with the plane that goes through the object with a plane normal pointing at the camera.
+The dragging force of the arc on an object is linear in the distance from the object to the intersection of the unbent arc with the plane that goes through the object, with a normal pointing at the camera. This intersection point also defines the direction of the force vector.
 
 In each frame, the speed of an object is then computed as 
 \begin{equation}
-v_i = v_{i-1} + \frac{F * \Delta T}{m} 
+v_i = v_{i-1} + \frac{F * \Delta t}{m} 
 \end{equation}
-where $v_i$ is the object's movement vector in frame $i$, $F$ is the current force, $m$ is the mass and $\Delta T$ is the frame time. Force is only applied at the center of the objects, and thus never causes a rotation of the object.
+where $v_i$ is the object's movement vector in frame $i$, $F$ is the current force, $m$ is the mass and $\Delta t$ is the frame time. Force is only applied at the center of the objects, and thus never causes a rotation of the object.
 
-Damping of objects movement is implemented by a simple exponential decay, given as
+Damping of the object's movement is implemented by a simple exponential decay, given as
 \begin{equation}
-v_i = v_{i-1} * e^{-\lambda * \Delta T}
+v_i = v_{i-1} * e^{-\lambda * \Delta t}
 \end{equation}
 where $\lambda$ is the damping constant.
 
-Even with theses simple formulas a convincing and plausible physical system can be created. 
 
 
 \subsection{Creating sound}
-Sputnik's interactive objects use the MIDI  protocol to communicate with external applications. Thanks to the simplicity and the pervasiveness of this protocol, virtually every music software can be used together Sputnik. 
+Sputnik's interactive objects individually react to the users input and use the MIDI protocol to communicate with an external application. Sputnik itself does not create any sounds. Sound creation is handled entirely by an external application.
 
-In the current set up Sputnik \emph{pure data (pd)}\footnote{\texttt{http://puredata.info/}} is used to create sound. A simple patch is used that builds on \emph{boctok-1}, a small collection of pd patches written by the author prior to this project. 
+Thanks to the simplicity and the pervasiveness of this protocol, virtually every music software can be used together with Sputnik. In the current set up \emph{pure data (pd)}\footnote{\texttt{http://puredata.info/}} is used for sound creation. A simple patch is used that builds on \emph{boctok-1}, a small collection of pd patches written by the author prior to this project. 
 
+Communication is only one way; from Sputnik to the external application. The MIDI channel and controller number every object uses is currently hard coded into Sputnik an can only be changed in the source code. 
 
 
 \section{Implementation}
-Sputnik is implemented in C++ with Mac OS X as its development platform. The project is split into two sub projects: The special purpose Sputnik and the more general purpose \emph{kocmoc-core}. Kocmoc-core provides a host of core services that are then used by sputnik to build the final system. Some code of kocmoc-core existed prior to this project, but most of it was created during this project. 
+Sputnik is implemented in C++ with Mac OS X as its development platform. The project is split into two sub projects: The special purpose Sputnik and the more general purpose \emph{kocmoc-core}. Kocmoc-core provides core services that are then used by sputnik to build the final system. Some code of kocmoc-core existed prior to this project, but most of it was created in the course of the project. 
 
-The source code of of both Sputnik and kocmoc-core is licensed under the MIT license and is available to the public on github\footnote{\texttt{https://github.com/SimonWallner/sputnik}} \footnote{\texttt{https://github.com/SimonWallner/kocmoc-core}}.
+The source code of both Sputnik and kocmoc-core is licensed under the permissive MIT open source license and is publicly available on github\footnote{\texttt{https://github.com/SimonWallner/sputnik}} \footnote{\texttt{https://github.com/SimonWallner/kocmoc-core}}.
 
-Sputnik uses OpenGL 2.1 with a few extensions to display the virtual scene. The renderer is fairly simple and displays unlit, textured objects with baked ambient occlusion maps. A simplified physically correct computation of the homogeneous fog is realised in the vertex and fragment shader and a post processing effect is applied. This effect adds a barrel distortion and vignetting as well as a simple form of full screen anti aliasing.
+Sputnik uses OpenGL 2.1 with a few extensions to display the virtual scene. The renderer is fairly simple and displays unlit, textured objects with baked ambient occlusion maps. The computation of the homogeneous fog is realised in the vertex and fragment shader and a post processing effect is applied. This effect adds a barrel distortion to compensate the wide field of view and vignetting. A simple form of full screen anti aliasing is also added in this stage.
 
-The \emph{Assimp}\footnote{\texttt{http://assimp.sourceforge.net/}} and \emph{devIL}\footnote{\texttt{http://openil.sourceforge.net/}} libraries are used to load assets and font rendering is implemented using the \emph{freetype}\footnote{\texttt{http://www.freetype.org/}} library.
 
-\emph{RtMidi}\footnote{\texttt{http://www.music.mcgill.ca/~gary/rtmidi/}} is used to send messages to external applications and \emph{WiiC}\footnote{\texttt{http://wiic.sourceforge.net/}} was used to interface with the Wiimote and Nunchuck controller.
+The \emph{Assimp}\footnote{\texttt{http://assimp.sourceforge.net/}} and \emph{devIL}\footnote{\texttt{http://openil.sourceforge.net/}} libraries are used to load assets. Font rendering is implemented using the \emph{freetype}\footnote{\texttt{http://www.freetype.org/}} library.
 
-Figure \ref{fig:flow} illustrates the data flow in the main run-loop. First the devices are polled, which causes callbacks to be fired. The components are subsequently updated and finally the scene is sent to the renderer.
+\emph{RtMidi}\footnote{\texttt{http://www.music.mcgill.ca/~gary/rtmidi/}} is used to send MIDI messages to external applications and \emph{WiiC}\footnote{\texttt{http://wiic.sourceforge.net/}} was used to interface with the Wiimote and Nunchuck controller.
+
+Figure \ref{fig:flow} illustrates the data flow in the main run-loop. First, the devices are polled, which causes input callbacks to be fired. The components are subsequently updated and finally the scene is sent to the renderer.
 
 
 \begin{figure}[hbtp]
@@ -276,77 +314,38 @@ Figure \ref{fig:flow} illustrates the data flow in the main run-loop. First the 
 
 
 
-\subsection{The Virtual Scene}
-
-\begin{figure}[hbtp]
-\begin{center}
-\subfigure{
-	\includegraphics[width = 0.45\columnwidth]{img/screen-shot-all}
-	\label{fig:screen-shot-overview}
-}
-\subfigure{
-	\includegraphics[width = 0.45 \columnwidth]{img/overview-illu}
-}
-\caption{The objects in the scene: (a) Samplers, (b) Players, (c) Tape Machines, (d) Harmonic Harp}
-\end{center}
-\end{figure}
-
-
-Figure \ref{fig:screen-shot-overview} shows an overview shot of sputnik. The scene consists of the following parts:
-\begin{enumerate}
-\item The light blue and bent \emph{arc of light} starting in the middle of the lower edge and going \emph{into} the picture
-\item Musical objects the user can interact with: sampler (red), player (yellow), tape machine (grey), harmonic harp (orange)
-\item Textual Labels on the musical objects. These help the performer as well as they convey meaning to the audience.
-\item The star field. It is randomly generated and the user cannot interact with it. It serves an aesthetic  purpose as well as it is an important orientation help. (see section \ref{})
-\item The coloured fog. The fog provides an important depth cue to the human perception. 
-\end{enumerate}
-
-
-The visual representation of Sputnik serves a dual purpose. It it the sole graphical interface to the performer and thus has to display all relevant information that is needed for the performance but at the same time has to be visually pleasing to the audience. Common music software only focuses on the first, leaving the visual performance in most cases to a dedicated VJ. Sputnik tries to bridge those two areas by using the same interface for both the performer as well as the audience.
-
-The textual labels play an important role in Sputnik. On the one hand they provide important information to the performer and on the other hand they act as an additional communication channel to the audience. The audience can read the labels and better understand what is happening and how the musical performance is built up from smaller building blocks. It can also introduce an element of anticipation when an object with a certain label is visible but the performer does not yet interact with it.
-
-
-\begin{figure}[hbtp]
-\begin{center}
-\subfigure[]{
-	\includegraphics[width = 0.45\columnwidth]{img/screen-shot-sampler}
-}
-\subfigure[]{
-	\includegraphics[width = 0.45 \columnwidth]{img/screen-shot-label}
-}
-\caption{(a) a group of \emph{samplers}, (b) a close-up of a sampler with its textual label}
-\end{center}
-\end{figure}
-
-
-
-
 
 
 \section{Wiimote Input}
 The Wiimote controller was chosen for its pointing functionality as well as the motion sensing capabilities, even though they haven't been used in the final project. The accompanying Nunchuck controller was also used to allow the standard analogue stick driven navigation.
 
-The Wiimote has an built in low resolution IR camera and its feed is directly processed on chip. The feed itself is not accessible but data of up to 4 tracked IR points can be read. the Wiimote's update rate is reported to be $100Hz$ which gives an lower bound for the worst case lag of $10ms$. The used Wiimote library takes care of most of the processing and and conveniently returns the computed pointer location in relative screen coordinates.
+The Wiimote has an built in low resolution IR camera and its feed is directly processed on chip. The feed itself is not accessible but data of up to 4 tracked IR points can be read. the Wiimote's update rate is reported to be $100Hz$ which gives an lower bound for the worst case lag of $10ms$. The used Wiimote library takes care of most of the processing and conveniently returns the computed pointer location in relative screen coordinates.
 
-A drastic constraint of the Wiimote's IR pointer is the relatively narrow field of view. It is very easy to leave the small sensing area resulting in no data. During the development it turned out that using the Wiimote for the tilt/pan movements of the camera can alleviate this problem a little. Users seem to intuitively try to compensate the camera rotation thus better maintaining a focus on the neutral area in the center of the screen. Without it users easily lost the focus an had troubles finding \emph{back onto the screen}.
+A drastic constraint of the Wiimote's IR pointer however is the relatively narrow field of view. It is very easy to leave the small sensing area. During the development it turned out that using the Wiimote for the tilt/pan movements of the camera can alleviate this problem a little. Users seem to intuitively try to compensate the camera's rotation, thus maintaining a focus on the neutral area in the center of the screen. Without it users easily lost the focus an had troubles finding \emph{back onto the screen}.
 
-The used library supports more than one Wiimote and the input system in Sputnik would also support multiple input devices at the same time. The option to \emph{dual wield} two Wiimotes and interact with two arcs of light simultaneously was given up in favour of the more standard analogue stick track/dolly controls to allow the users to easily navigate the scene. 
-
-
+The used Wiimote library supports more than one Wiimote and the input system in Sputnik would also support multiple input devices at the same time. The option to \emph{dual wield} two Wiimotes and to interact with two arcs of light simultaneously was given up in favour of the more standard analogue stick track/dolly controls, that allow the users to easily navigate the scene. 
 
 
 
 
 
+\section{The Arc Of Light}
+The arc of light forms the foundation of Sputnik and is its core contribution. It acts as a bodily extension of the users body into the virtual scene. Through the arc the user can use the interaction vocabulary described above. It has the following behaviour.
+
+If no object is grabbed, the arc follows the user's input directly. This input is not filtered and is used directly \emph{as is}. This introduces a slight jitter but on the other hand does not take away from the system's responsiveness. 
+
+Low pass filtering however is desired in most scenarios and is indirectly implemented via the physical properties of the interactive objects. The higher the weight of the object for instance, the stronger the filtering is. while grabbing an object the arc bends accordingly to the the physical properties of the object and the dragging force of the user. It bends like a fishing rod, a natural metaphor that seems to readily understandable to the users.
+
+One of the core advantages of the arc is that even very strong filtering can be achieved without making the system feel laggy and slow. It happens in a way that is transparent and understandable for the user, and in a informal user study the testers reported that the system is very responsive.
 
 
-\subsection{Mapping the System}
-What further distinguishes Sputnik from other projects or interfaces is the spacial component. The user cannot only drag objects to create sounds but can also change the spacial configuration of the system by moving objects. All objects that are not bound to a fixed origin (i.e. the harmonic harp) can be freely moved around and be thus allowing the system to be reconfigured at runtime. 
 
-The tape machine and harmonic harp provide the most interesting examples for possible mappings of the system. Those two interactive objects use the physical properties of the individual objects and map them to sound parameters. This is something that is not possible with conventional hardware or software interfaces.
+\section{Mapping the System}
+What further distinguishes Sputnik from other projects or interfaces, and a commonality it shares with some tangible interfaces, is the spatial component. Users can move the interactive objects in 3D space in a meaningful way.
 
+The spatial arrangement of objects can be reconfigured at run time. This allows the performer to create new configuration during the performance. 
 
+For the objects that react to their position of movement the spatiality is mapped directly to the sound creating application. The \emph{tape machine} for instance maps its movement speed to the playback speed of the sample and the \emph{harmonic harp} maps the distance of its spheres to their respective origins to the volume of each oscillator. These are mappings that cannot be achieved by a conventional hardware interface. The informal user study also hinted, that these mappings where the most interesting and novel ones.
 
 
 
