@@ -1,0 +1,14 @@
+# sputnik user study result data
+# QUIS
+# terrible/wonderfull		7	7	2
+# frustrating/satisfying	6	6	2
+# dull/stimulating		7	7	6
+# rigid/flexible			7	5	3
+# laggy/responsive		8	9	8
+# random/controllable		5	4	8
+# boring/fun				7	9	5
+
+terrible\nwonderfull		frustrating/satisfying		dull/stimulating		rigid/flexible		laggy/responsive	random/controlable		boring/fun
+7	6	7	7	8	5	7
+7	6	7	5	9	4	9
+2	2	6	3	8	8	5
