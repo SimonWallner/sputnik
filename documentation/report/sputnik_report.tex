@@ -5,7 +5,6 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-%\usepackage{subfig}
 \usepackage{graphicx}
 \usepackage[british]{babel}
 \usepackage{subfigure}
@@ -393,7 +392,7 @@ The answers to the Likert items are discussed individually and mean and standard
 
 
 \subsection{Results}
-Overall reactions to Sputnik were mildly positive which is hinted in the results of the QUIS inspired questionnaire seen in figure \ref{fig:QUIS}. Due to the small number of participants no direct and strong conclusions can be drawn from this evaluation and it should rather be taken as a hint on what Sputnik does good, and where there is more room for improvement.
+Overall reactions to Sputnik were rather positive which is hinted in the results of the QUIS inspired questionnaire seen in figure \ref{fig:QUIS}. Due to the small number of participants no direct and strong conclusions can be drawn from this evaluation and it should rather be taken as a hint on what Sputnik does good, and where there is more room for improvement.
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -413,16 +412,17 @@ Unfortunately, the results of the Likert items where inconclusive: The first que
 % - no precise control --> jittering, sensitivity?
 % - grab accuracy
 % - lack of movement/sophisticated movement/motion patterns
+% - pull missing, mentioned 3 times
 \subsubsection{Controls and Navigation}
-Even though none of the participants had prior experience with the Wiimote, all managed to use Sputnik effectively during the test. After only a few minutes the participants where able to navigate the scene and interact with objects. 
+Even though none of the participants had prior experience with the Wiimote, all managed to effectively use Sputnik during the test. After only a few moments the participants where able to navigate the scene and interact with the objects. 
 
-Problems however were the narrow field of view of the Wiimote resulting in uncontrollable camera movement until the Wiimote is brought back into the range of the sensor bar. During the test this happened about 3-5 times per participant. 
+A problem however was the narrow field of view (FOV) of the Wiimote, resulting in uncontrollable camera movement if the sensor bar is not in the Wiimote's FOV. During the test this happened about 3-5 times per participant.
 
-Another problem was missing precision from the pointer. All participants had at least once problems to accurately grab an object. This could in parts be attributed to the slight jitter of the pointer.
+Another problem was insufficient pointer precision. All participants struggled at least once trying to grab small or faraway objects. This could partially be explained by the slight jitter of the Wiimote's pointer and it's narrow FOV, that requires rather subtle movements.
 
-The camera was often held static and the participants where then using the scene from the current position until the position became \emph{unusable} and the camera was moved. Phases of camera movement and interaction with the pointer where often clearly separated and camera movement was often rather erratic.
+Differences in motion patterns could also be observed. Two of the three participants did not move the camera very often. Phases of interaction (rotate, grab, interact) and camera movement were clearly separated and camera movement was rather erratic. The third participant also begun in a similar fashion but then gradually started to combine movement and interaction into more sopisticated like circle strafing (track + pan) and moving while dragging an object.
 
---> confirm with Video!!!
+All participants tried to pull objects by grabbing them and moving backwards at the same time. This is not implemented in Sputnik and this was noticed and explicitly mentioned by all participants during the test.
 
 
 
@@ -432,14 +432,13 @@ The camera was often held static and the participants where then using the scene
 % - no read labels
 % - use pointer to direct gaze, or when talking
 \subsubsection{Visual}
-All participants where missing feedback of the interactive objects regarding their musical state, e.g. a way to see if a player object was playing or not. One participants mentioned explicitly that the visual representation has no meaning stating that: "[...] objects and their forms, and so on..., didn't make any sense". Answering another question he also mentioned that it would be more interesting if also the star field was interactive and react to the music performed .
+All participants where missing feedback of the interactive objects regarding their musical state, e.g. a way to see if a player object was playing or not. One participant mentioned explicitly that the visual representation has no meaning, stating that: "[...] objects and their forms, and so on..., didn't make any sense". Answering another question he also mentioned that it would be more interesting if also the star field was interactive and reacted to the music performed.
 
-During the improvisational performance the participants seemed to ignore the textual labels of the objects. This could be in connection to the camera navigation, since the camera was often in a position where the labels where just not readable.
+The participants seemed to not pay much attention to the textual labels of the objects. The labels have a fixed orientation and the camera was often in a position from which they were not readable. This can be related to the rather simple navigation patterns mentioned above and that the effort to move the camera in a position from which the labels were readable was to high.
 
 
 
 % # interaction
-% - pull missing, mentioned 3 times
 % - participants found out what objects do and how they react.
 % - artificial distance limit
 % - controller waggle
@@ -449,15 +448,15 @@ During the improvisational performance the participants seemed to ignore the tex
 % - use of space, spatiality
 % - dragging of all objects, even samplers and stuff. --> natural affordance of the system?
 \subsubsection{Interaction}
-All participants could deduce the functions of the sampler and player objects, and descriptions of the tape machine and harmonic harp were not as precise but captured their general mode of operation. 
+All participants could deduce the functions of the sampler and player objects. Descriptions of the tape machine and harmonic harp were not as precise but captured their general mode of operation. 
 
-Participants seemed to have no problems using the arc and all participants responded positively when being asked about immersion into the scene. One participant even said at the end that: "I liked the link from me to the objects,.. when you hold the objects. It made sense".
+Participants seemed to have no problems using the arc and all participants responded positively when being asked about immersion into the scene. One participant even said at the end that: "I liked the link from me to the objects,.. when you hold the objects. It made sense". A point noticed and mentioned by all participants was the arbitrary distance limit of the arc. Objects could only be grabbed if they where inside a certain range.
 
-A point that was noticed and mentioned by all participants was the arbitrary distance limit of the arc. Objects could only be grabbed if they where outside a certain range. Another thing mentioned by all participants was the urge to pull objects closer to the camera, a feature that does not exist in Sputnik. Right now, objects can only be dragged around the camera, not closer to it.
-
-When exploring the system, all participants actively moved around the objects, even those that do not react to their position or movement speed. This behaviour continued even after the point where they should have realised that it has no effect on the object. It seems that dragging is a natural affordance of the system. Two of the 3 participants also tried to waggle the Wiimote, a gesture which is not directly used in Sputnik. 
+Two of the 3 participants also tried to waggle the Wiimote, a gesture which is not directly used in Sputnik. 
  
 In regards to the samplers all three participants indicated the need for a way to quickly and directly access some of the objects to either have certain sounds available all the time or to quickly change between sounds.
+
+Even though Sputnik was not running at a very high frame rate during the test (~30-40fps) participants indicated in the QUIS that it was \emph{very responsive} and no comments about lag where made in the following interview.
 
 
 
@@ -469,11 +468,11 @@ In regards to the samplers all three participants indicated the need for a way t
 % - interesting objects, harp, tape
 
 \subsubsection{Improvisational Performance}
-All participants used a similar pattern for their improvisation, alternating between the different groups of objects. The participant without prior experience with computer and sample based music had trouble to put together a coherent performance and seemingly disliked the task
+All participants used a similar pattern for their improvisation, alternating between the different groups of objects. The participant without prior experience with computer and sample based music had trouble putting together a coherent performance and seemingly disliked the task
 
-The two users with experience in computer and sampler base music, arranged the objects before the performance and seemed to \emph{plan ahead}. A procedure that is probably similar to how they would approach such a task with their usual set up and tools.
+The two users with experience in computer and sampler base music, arranged the objects before the performance and seemed to be \emph{planing ahead}. A procedure that is probably similar to how they would approach such a task with their usual set up and tools.
 
-Likeability of objects seems to correlate with the amount of interactivity they provide and how it is used in the system. The tape machine and harmonic harp got generally better comments than the sampler and player object. Two participants said, that they disliked the player object for being uninteresting and lacking interaction.
+Likeability of the interactive objects seems to correlate with the amount of interactivity they provide and how it is used in the system. The tape machine and harmonic harp generally received better comments than the sampler and player objects. Two participants said, that they disliked the player object for being uninteresting and lacking interaction.
 
 
 % # weight test
@@ -488,7 +487,7 @@ Two participants sorted the objects correctly, one brought the lightest two in t
 \subsubsection{Misc.}
 All participants expressed the need to exchange the sounds and fit Sputnik to their needs in order to be useful in a live setting.
 
-One participant reported fatigue in his shoulders, ans aspect of Sputnik that was not accounted for in the study, but is probably an important factor in real world usage scenarios
+One participant reported fatigue in his shoulders, an aspect of Sputnik that was not accounted for in the study, but is probably an important factor in real world usage scenarios.
 
 
 
@@ -497,19 +496,13 @@ One participant reported fatigue in his shoulders, ans aspect of Sputnik that wa
 
 \section{Discussion}
 \label{sec:discussion}
-3-5 pages
 
-Discuss the results form the evaluation and answer the research questions. 
-
-\begin{enumerate}
-\item How can the arc of light/fishing rod metaphor be used for intuitive interaction. How does lag impact the system?
-\item What meaningful mappings can be derived from the interaction with and the visualisation of the virtual scene.
-\end{enumerate}
+\section{Conclusion}
 
 \section{Future Work}
 
-\section{Conclusion}
-0.5 pages
+
+
 
 \section{Acknowledgements}
 thank Esben, thank the participants,
