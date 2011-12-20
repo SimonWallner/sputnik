@@ -9,6 +9,7 @@
 \usepackage[british]{babel}
 \usepackage{subfigure}
 \usepackage{appendix}
+\usepackage[square]{natbib}
 \usepackage[final]{pdfpages}
 
 % Globals: include all pages, don't auto scale
@@ -42,7 +43,7 @@ Also accompanying this report are the questionnaire and interview form used for 
 \section{Introduction}
 
 % setting the scene
-Computer music has been around us for some time now and through the use of the computer musicians have sheer endless possibilities of musical expression. With this plethora of possibilities comes the need for constraints and control to harness this expressive potential. Over the recent years many standard and non-standard interface have been developed, ranging from the ordinary button-fader-nob MIDI interface to more elaborate interfaces and systems like the \emph{reactable}\cite{Jorda2007}, \emph{mixiTUI}\cite{Pedersen2009} or commercial solutions like the \emph{Novation Launchpad}\footnote{\texttt{http://www.novationmusic.com/products/midi\_controllers/launchpad}} or \emph{Native Instruments Maschine}\footnote{\texttt{http://www.native-instruments.com/\#/en/products/producer/maschine/}} to name but a few.
+Computer music has been around us for some time now and through the use of the computer musicians have sheer endless possibilities of musical expression. With this plethora of possibilities comes the need for constraints and control to harness this expressive potential. Over the recent years many standard and non-standard interface have been developed, ranging from the ordinary button-fader-nob MIDI interface to more elaborate interfaces and systems like the \emph{reactable}\citep{Jorda2007}, \emph{mixiTUI}\citep{Pedersen2009} or commercial solutions like the \emph{Novation Launchpad}\footnote{\texttt{http://www.novationmusic.com/products/midi\_controllers/launchpad}} or \emph{Native Instruments Maschine}\footnote{\texttt{http://www.native-instruments.com/\#/en/products/producer/maschine/}} to name but a few.
 
 With the advent of motion based controllers in consumer entertainment systems, marked by the release of the \emph{Wii}\footnote{\texttt{http://de.wikipedia.org/wiki/Wii}} console in late 2006, motion controllers became widely and cheaply available. This and their interface capabilities make them the ideal tools to explore the realm of \emph{new interfaces for musical expression}.
 
@@ -58,7 +59,7 @@ Users can freely navigate the 3D scene and interact with it through an elastic \
 
 
 % contribution
-Sputnik is evaluated in s small user study and the findings and future work directions are discussed. As part if this, the \emph{arc or light} metaphor is evaluated as a way to spatially manipulate objects in 3D space. Parallels to tangible user interfaces (TUI)\cite{Ishii1997} and specifically spatial TUIs\cite{Sharlin2004} are drawn. 
+Sputnik is evaluated in s small user study and the findings and future work directions are discussed. As part if this, the \emph{arc or light} metaphor is evaluated as a way to spatially manipulate objects in 3D space. Parallels to tangible user interfaces (TUI)\citep{Ishii1997} and specifically spatial TUIs\citep{Sharlin2004} are drawn. 
 
 
 \section{Paper Outline}
@@ -69,9 +70,9 @@ The following section gives an overview over related work in the field of \emph{
 Sputnik draws from a wide variety of related work and this section is therefore loosely split into more practical and more theoretical work. 
 
 \paragraph{Practical Work}
-Only a few projects exist that go into a similar direction as Sputnik. The \emph{Virtual Xylophone}\cite{Maki-Patola2005} is a virtual reality system in which the user can place xylophone bars of different pitch in the scene and then strike them with a virtual mallet. By translating the configuration and mapping of the real instrument into the VR environment, new modes of play emerge as it is shown in the paper. \cite{Zappi2010} created a virtual controller for \emph{Ableton Live}\footnote{\texttt{http://www.ableton.com}} that allows users to create simple proxy objects in a VR environment, bind them to certain controls and use them effectively as virtual sliders. \cite{Rodet2005} created a virtual environment for an exhibition setting. Users interact with the system via a 6-DOF motion tracker with tactile feedback. However, the user's actions in the system are highly constrained.
+Only a few projects exist that go into a similar direction as Sputnik. The \emph{Virtual Xylophone}\citep{Maki-Patola2005} is a virtual reality system in which the user can place xylophone bars of different pitch in the scene and then strike them with a virtual mallet. By translating the configuration and mapping of the real instrument into the VR environment, new modes of play emerge as it is shown in the paper. \cite{Zappi2010} created a virtual controller for \emph{Ableton Live}\footnote{\texttt{http://www.ableton.com}} that allows users to create simple proxy objects in a VR environment, bind them to certain controls and use them effectively as virtual sliders. \cite{Rodet2005} created a virtual environment for an exhibition setting. Users interact with the system via a 6-DOF motion tracker with tactile feedback. However, the user's actions in the system are highly constrained.
 
-More projects can be found in the realm of Tangible User Interfaces. An early project is \emph{Audiopad}\cite{Patten2002} that uses pucks on a table top interface to select and interact with sounds. With \emph{mixiTUI} \cite{Pedersen2009} created a table top tangible interface for a sequencer that aimed not only to be functional but also to visually enrich the artists performance. Interviews with musicians and an extensive user study have been performed. \cite{Jorda2007} created the famous \emph{reacTable}, also a table top tangible interface that allows the creation and manipulation of music by composing various objects on its surface.
+More projects can be found in the realm of Tangible User Interfaces. An early project is \emph{Audiopad}\citep{Patten2002} that uses pucks on a table top interface to select and interact with sounds. With \emph{mixiTUI} \cite{Pedersen2009} created a table top tangible interface for a sequencer that aimed not only to be functional but also to visually enrich the artists performance. Interviews with musicians and an extensive user study have been performed. \cite{Jorda2007} created the famous \emph{reacTable}, also a table top tangible interface that allows the creation and manipulation of music by composing various objects on its surface.
 
 After the release of the Wii in late 2006, the Wiimote motion controller received some attention in and outside the field of musical interfaces: 
 \cite{Kiefer2008} assess the general qualities of the Wiimote as a musical controller and \cite{Miller2010} uses the Wiimote and sensor bar to create the \emph{Wiiolin}, a virtual violin that mimics the real instrument and can be played either in an upright position like a cello or horizontally like a violin. It senses the button presses and tracks the movement of the \emph{bow}, i.e. the sensor bar to create the sounds.
@@ -85,11 +86,11 @@ The field of \emph{Tangible User Interfaces (TUI)} provides part of the theoreti
 \cite{Sharlin2004} introduced \emph{spatial TUIs} that focuses on \emph{I/O unification} by tightly coupling the action and perception spaces and embodying a clear state representation across all sensory modalities.
 
 
-Entering the musical realm \cite{Fels2011} give a good overview and general introduction into the field of \emph{NIMEs (New Interfaces for Musical Expression)}. \cite{Cook2001} shares 13 general principles for designing computer music controllers that resulted from his long lasting experience in this field. \cite{Dobrian2006} asks the question of virtuosity and expression and points out the lack of a standard repertoire.
+Entering the musical realm, \cite{Fels2011} give a good overview and general introduction into the field of \emph{NIMEs (New Interfaces for Musical Expression)}. \cite{Cook2001} shares 13 general principles for designing computer music controllers that resulted from his long lasting experience in this field. \cite{Dobrian2006} asks the question of virtuosity and expression and points out the lack of a standard repertoire.
 
 In contrast, \cite{Gurevich2007} question the hegemonic composer--interpret--listener relation in favour of a more holistic \emph{ecological} view of musical expression. Later work by \cite{Gurevich2010} evaluated a highly constrained, prototypical one-button instrument that spurred a wide variety of play styles in test users.
 
-Closing the loop to design and HCI, \cite{Magnusson2010} gives a good overview over the field of affordance and elaborates on contraints from different viewing angles and how they impact and support creativity. Finally, \cite{Wanderley2002} goes into depth over evaluating input devices for musical expression in the context of HCI. 
+Closing the loop to design and HCI, \cite{Magnusson2010} gives a good overview over the field of affordance and elaborates on contraints from different viewing angles and how they impact and support creativity. Finally, \cite{Wanderley2002} go into depth over evaluating input devices for musical expression in the context of HCI. 
 
 
 
@@ -335,12 +336,12 @@ One of the core advantages of the arc is that even very strong filtering can be 
 
 
 
-\section{Mapping the System}
-What further distinguishes Sputnik from other projects or interfaces, and a commonality it shares with some tangible interfaces, is the spatial component. Users can move the interactive objects in 3D space in a meaningful way.
+%\section{Mapping the System}
+%What further distinguishes Sputnik from other projects or interfaces, and a commonality it shares with some tangible interfaces, is the spatial component. Users can move the interactive objects in 3D space in a meaningful way.
 
-The spatial arrangement of objects can be reconfigured at run time. This allows the performer to create new configuration during the performance. 
+%The spatial arrangement of objects can be reconfigured at run time. This allows the performer to create new configuration during the performance. 
 
-For the objects that react to their position of movement the spatiality is mapped directly to the sound creating application. The \emph{tape machine} for instance maps its movement speed to the playback speed of the sample and the \emph{harmonic harp} maps the distance of its spheres to their respective origins to the volume of each oscillator. These are mappings that cannot be achieved by a conventional hardware interface. The informal user study also hinted, that these mappings where the most interesting and novel ones.
+%For the objects that react to their position of movement the spatiality is mapped directly to the sound creating application. The \emph{tape machine} for instance maps its movement speed to the playback speed of the sample and the \emph{harmonic harp} maps the distance of its spheres to their respective origins to the volume of each oscillator. These are mappings that cannot be achieved by a conventional hardware interface. The informal user study also hinted, that these mappings where the most interesting and novel ones.
 
 
 
@@ -386,7 +387,7 @@ Overall, reactions to Sputnik were rather positive which is hinted in the result
 \end{center}
 \end{figure}
 
-Unfortunately, the results of the Likert items where inconclusive: The first question, "Sputnik is easy to use" resulted in the answer triple (strongly disagree, neutral, agree) and all other items resulted in (disagree, neutral, agree). The results to the QUIS questions in figure \ref{fig:QUIS} lack significance, but show a mildly positive trend. Only the question about responsiveness has unanimously received high values, showing it as a strength of Sputnik.
+Unfortunately, the results of the Likert items where inconclusive: The first question, "Sputnik is easy to use" resulted in the answer triple (strongly disagree, neutral, agree) and all other items resulted in (disagree, neutral, agree). The results to the QUIS questions in figure \ref{fig:QUIS} lack significance, but show a mildly positive trend. Only the question about responsiveness has unanimously received high values, marking it as a strength of Sputnik.
 
 The following sections break down the findings into \emph{Controls and Navigation}, \emph{Visual}, \emph{Interation}, \emph{Improvisational Performance} and finally the object sorting task is reviewed. The break down into this categories is not definitive and the overlapping borders are rather fuzzy than strict.
 
@@ -490,7 +491,7 @@ The arc of light worked well in providing a bodily extension of the user into th
 
 	
 % Musical expression?
-The question of whether musical and visual expressiveness can be achieved through Sputnik can not be answered in this evaluation. More time needs to be given to the participants and more possibilities to customise Sputnik to their needs and musical and visual style. An approach similar to the one used in \cite{Gurevich2010} could be a good starting point for further evaluations. In this work, users where given a highly constrained one button instrument that could only create a single tone. The participants had a week to practice and prepare a performance, resulting in  diverse play styles. Even though Sputnik is far less constrained, approaching it from this angle could yield interesting insights into its expressive potential. Sputnik's constraints could be a source of creativity rather than a hindrance, as it is mentioned in \cite{Magnusson2010}. 
+The question of whether musical and visual expressiveness can be achieved through Sputnik can not be answered in this evaluation. More time needs to be given to the participants and more possibilities to customise Sputnik to their needs and musical and visual style. An approach similar to the one used in \citep{Gurevich2010} could be a good starting point for further evaluations. In this work, users where given a highly constrained one button instrument that could only create a single tone. The participants had a week to practice and prepare a performance, resulting in  diverse play styles. Even though Sputnik is far less constrained, approaching it from this angle could yield interesting insights into its expressive potential. Sputnik's constraints could be a source of creativity rather than a hindrance, as it is mentioned in \citep{Magnusson2010}. 
 
 
 % Tangible Interface, 
@@ -518,7 +519,7 @@ This project raised a lot of questions and opened up many directions for future 
 
 Sputnik's impact on a live audience and how it can be used for visual expression should be explored. This is an important aspect of Sputnik and a larger scale study is needed.
 
-To be useful for artists and users with less of a technical background editing tools should be provided to allow the artist to change the scene, create new objects and models and change the input/output mapping. Additionally, the performance should be increased to run at $> 60fps$ for a smoother experience.
+To be useful for artists and users with less of a technical background editing tools should be provided to allow the artist to change the scene, create new objects and models and change the input/output mapping. Additionally, the performance should be increased to run at $> 60$fps for a smoother experience.
 
 The Wiimote's motion sensing capabilities were left untapped in Sputnik. Some participants in the user study tried to waggle the Wiimote, an strong indication that more advanced motions and gestures should be explored. Two handed interaction with a second Wiimote instead of the Nunchuck controller could also be interesting to evaluate. It would allow two handed interaction and more advanced gestures known from touch devices like pinching and rotating. 
 
@@ -545,11 +546,11 @@ I would like to express my greatest thanks to my supervisor Esben Warming Peders
 \renewcommand\appendixpagename{\usekomafont{disposition}Appendices}
 \appendixpage
 
-\section{User Test Questionnaire}
+\section{User Study Questionnaire}
 \label{apx:questionnaire}
 \includepdf{../evaluation/quantitative.pdf}
 
-\section{User Test Evaluation Form}
+\section{User Study Evaluation Form}
 \label{apx:evaluation-form}
 \includepdf{../evaluation/evaluation-form.pdf}
 
