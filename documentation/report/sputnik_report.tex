@@ -8,6 +8,13 @@
 \usepackage{graphicx}
 \usepackage[british]{babel}
 \usepackage{subfigure}
+\usepackage{appendix}
+\usepackage[final]{pdfpages}
+
+% Globals: include all pages, don't auto scale
+\includepdfset{pages=-, noautoscale}
+
+
 
 \setlength{\parskip}{0.5em}
 
@@ -341,39 +348,35 @@ For the objects that react to their position of movement the spatiality is mappe
 \label{sec:evaluation}
 
 \subsection{Method}
-Sputnik was evaluated in a small user study with three participants. The testers where asked to use Sputnik fill out a short questionnaire followed by an interview. Sputnik was tested with only one person at a time.
+Sputnik was evaluated in a user study where participants where asked to perform certain tasks, followed by a questionnaire and an interview. Sputnik was tested with only one person at a time.
 
-Due to the very small number of participants this study can only be seen as a precursor to fully fledged user study. A relatively wide range of questions and topics was used in the evaluation to gain a broad overview about how Sputnik is used, what general problems arise, and how suitable it is as an interface for musical expression.
-
-The test was recorded on video and the interview afterwards was audio recorded for later analysis.
+A relatively wide range of questions and topics was used in the user study to gain a broad overview of how Sputnik is used, what general problems arise, and how suitable it is as an interface for musical expression. The user study was recorded on video and the interview afterwards was audio recorded for later analysis.
 
 \subsection{Participants}
-Musical experience was a criterion in finding participants and from the the initial 6 participants, three unfortunately cancelled the test on short notice. The three remaining participants (all male) had an average age of 26 (SD = 5.2) and all had a musical background having played classical instruments but not on a professional level. Two had additional experience with computer and sample based music.
+Musical experience was a criterion in finding participants and from the initial 6 participants, three unfortunately cancelled the test on short notice. The three remaining participants (all male) had an average age of 26 (SD = 5.2) and all had a musical background having played classical instruments but not on a professional level. Two had additional experience with computer and sample based music. The participants were not compensated for taking part in the user study.
 
-None of the participants had used a Wiimote prior to the study, all where right handed and colour normal. Two participants have seen short explanatory demo videos of Sputnik that where used in order to find participants.
+None of the participants had used a Wiimote prior to the user study and all where right handed and colour normal. Two participants have seen short explanatory demo videos of Sputnik that were used in order to find participants.
 
-\subsection{Set Up}
-The test was conducted in a darkened room with the participant standing about 4 meters away from the overhead projected screen with a diagonal of about 2 meters. The screen had an aspect ratio of about 16/9 and the screen's center was about 1.5m above ground.
-
-The Wiimote sensor bar was positioned a few centimetres below the lower edge of the picture. A small stereo speaker set was used that was located on the floor right behind the participant.
+\subsection{Setup}
+The user study was conducted in a darkened room with the participant standing about 4 meters away from the overhead projected screen with a diagonal of about 2 meters. The screen had an aspect ratio of about 16:9 and the screen's center was about 1.5m above ground. The Wiimote sensor bar was positioned a few centimetres below the lower edge of the picture. A small stereo speaker set was used that was located on the floor right behind the participant.
 
 \subsection{Procedure and Design}
-At the beginning of the test, participants where asked for basic statistical data. The testers were informed about the test plan and the controls where briefly explained. 
+At the beginning of the user study, participants where asked for basic personal data. The participants were informed about the user study and the controls where briefly explained. 
 
 The first task was to try out the navigation and familiarise with the controls. This included basic navigation and orientation as well as grabbing and interacting with objects.
 
-In the second stage, participants where asked to describe for every class of interactive objects, what they do and how they react to user interaction. This should make sure that the participants fully explore the system before continuing and also tested if the behaviour of the objects is understandable.
+For the second task, participants where asked to describe for every class of interactive objects, what they do and how they react to user interaction. This should make sure that the participants fully explore the system before continuing, and also tested if the behaviour of the objects is understandable.
 
-The third stage consisted of a brief impromptu musical performance. Time was given to plan and structure it in advance and participants where asked to start when they felt ready. The length of the performance was not specified, only a vague rule of \emph{not too short, not too long} was given. This test should evaluate Sputnik's potential for musical expression, and also force the goal oriented use of Sputnik.
+The third task consisted of a brief improvisational musical performance. Time was given to plan and structure it in advance and participants where asked to start when they felt ready. The length of the performance was not specified, only a vague rule of \emph{not too short, not too long} was given. This test should evaluate Sputnik's potential for musical expression, and also force a more goal oriented use of Sputnik.
 
-The test was concluded with a brief ordering task. The participants where presented with four objects and here asked to bring them in order according to their weight. Those objects did not create sounds. With this test the perception of the weight of interactive objects is tested.
+The user study was concluded with a brief ordering task. The participants where presented with four objects and were asked to bring them in order according to their weight. Those objects did not create sounds. With this test the perception of the weight of interactive objects was tested.
 
-After the practical test, a one-page questionnaire consisting of 4 5-point Likert-items and 7 questions inspired by QUIS\cite{Chin1988}. A short interview guided by a set of pre-written questions was conducted afterwards.
+After the practical part, a one-page questionnaire was given to the participants. It consisted of 4 Likert-items and 7 QUIS\cite{Chin1988} questions, 4 of them taken from the original paper and 3 additional questions to capture aspects not found in QUIS. A short interview, guided by a set of pre-written questions was conducted afterwards. The questionnaire and interview form can be found in appendix \ref{apx:questionnaire} and \ref{apx:evaluation-form}
 
-Due to the small sample size, no quantitative analysis is performed on the Likert and QUIS items. 
+Due to the small sample size, no quantitative analysis was performed on the Likert and QUIS items. Notes where taken during the user study and interview and all video and audio material was then reviewed to get a general overview. As the analysis was narrowed down, this material was consulted repeatedly to confirm and underpin the findings. 
 
 \subsection{Results}
-Overall reactions to Sputnik were rather positive which is hinted in the results of the QUIS inspired questionnaire seen in figure \ref{fig:QUIS}. Due to the small number of participants no direct and strong conclusions can be drawn from this evaluation and it should rather be taken as a hint on what Sputnik does good, and where there is more room for improvement.
+Overall, reactions to Sputnik were rather positive which is hinted in the results of the QUIS inspired questionnaire seen in figure \ref{fig:QUIS}. Due to the small number of participants, no direct and strong conclusions can be drawn from this evaluation. It shall rather be seen as a precursor to fully fledged user study and as a hint as to what Sputnik does good, and where there is room for improvement. 
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -383,8 +386,9 @@ Overall reactions to Sputnik were rather positive which is hinted in the results
 \end{center}
 \end{figure}
 
-Unfortunately, the results of the Likert items where inconclusive: The first question, "Sputnik is easy to use" resulted in the answer triple (strongly disagree, neutral, agree) and all other items resulted in (disagree, neutral, agree).
+Unfortunately, the results of the Likert items where inconclusive: The first question, "Sputnik is easy to use" resulted in the answer triple (strongly disagree, neutral, agree) and all other items resulted in (disagree, neutral, agree). The results to the QUIS questions in figure \ref{fig:QUIS} lack significance, but show a mildly positive trend. Only the question about responsiveness has unanimously received high values, showing it as a strength of Sputnik.
 
+The following sections break down the findings into \emph{Controls and Navigation}, \emph{Visual}, \emph{Interation}, \emph{Improvisational Performance} and finally the object sorting task is reviewed. The break down into this categories is not definitive and the overlapping borders are rather fuzzy than strict.
 
 
 % # controls and navigation
@@ -395,11 +399,11 @@ Unfortunately, the results of the Likert items where inconclusive: The first que
 % - lack of movement/sophisticated movement/motion patterns
 % - pull missing, mentioned 3 times
 \subsubsection{Controls and Navigation}
-Even though none of the participants had prior experience with the Wiimote, all managed to effectively use Sputnik during the test. After only a few moments the participants where able to navigate the scene and interact with the objects. 
+Even though none of the participants had prior experience with the Wiimote, all managed to effectively use Sputnik during the user study. After only a few moments the participants were able to navigate the scene and interact with the objects. 
 
-A problem however was the narrow field of view (FOV) of the Wiimote, resulting in uncontrollable camera movement if the sensor bar is not in the Wiimote's FOV. During the test this happened about 3-5 times per participant.
+A problem, however, was the narrow field of view (FOV) of the Wiimote, resulting in uncontrollable camera movement if the sensor bar is not in the Wiimote's FOV. During the test this happened about 3-5 times per participant.
 
-Another problem was insufficient pointer precision. All participants struggled at least once trying to grab small or faraway objects. This could partially be explained by the slight jitter of the Wiimote's pointer and it's narrow FOV, that requires rather subtle movements.
+Another problem was insufficient pointer precision. All participants struggled at least once in trying to grab small or faraway objects. This might be influenced by the slight jitter of the Wiimote's pointer and its narrow FOV, requiring rather subtle movements.
 
 Differences in movement patterns could also be observed. Two of the three participants did not move the camera very often. Phases of interaction (rotate, grab, interact) and camera movement were clearly separated and camera movement was rather erratic. The third participant also begun in a similar fashion but then gradually started to combine movement and interaction into more sophisticated movements like \emph{circle strafing} (moving sideways while turning) and moving while dragging an object.
 
@@ -413,9 +417,9 @@ All participants tried to pull objects by grabbing them and moving backwards at 
 % - no read labels
 % - use pointer to direct gaze, or when talking
 \subsubsection{Visual}
-All participants where missing feedback of the interactive objects regarding their musical state, e.g. a way to see if a player object was playing or not. One participant mentioned explicitly that the visual representation has no meaning, stating that: "[...] objects and their forms, and so on..., didn't make any sense". Answering another question he also mentioned that it would be more interesting if also the star field was interactive and reacted to the music performed.
+All participants were missing feedback of the interactive objects regarding their musical state, e.g., a way to see if a player object was playing or not. One participant mentioned explicitly that the visual representation has no meaning, stating that: "[...] objects and their forms, and so on..., didn't make any sense". Answering another question he also mentioned that it would be more interesting if also the star field was interactive and reacted to the music performed.
 
-The participants seemed to not pay much attention to the textual labels of the objects. The labels have a fixed orientation and the camera was often in a position from which they were not readable. This can be related to the rather simple navigation patterns mentioned above and that the effort to move the camera in a position from which the labels were readable was to high.
+The participants seemed to not pay much attention to the textual labels of the objects. The labels have a fixed orientation and the camera was often in a position from which they were not readable. This can be related to the rather simple navigation patterns mentioned above and that the effort required to move the camera in a position from which the labels were readable was to high.
 
 
 
@@ -431,13 +435,13 @@ The participants seemed to not pay much attention to the textual labels of the o
 \subsubsection{Interaction}
 All participants could deduce the functions of the sampler and player objects. Descriptions of the tape machine and harmonic harp were not as precise but captured their general mode of operation. 
 
-Participants seemed to have no problems using the arc and all participants responded positively when being asked about immersion into the scene. One participant even said at the end that: "I liked the link from me to the objects,.. when you hold the objects. It made sense". A point noticed and mentioned by all participants was the arbitrary distance limit of the arc. Objects could only be grabbed if they where inside a certain range.
+Participants seemed to have no problems using the arc and all participants responded positively when being asked about immersion into the scene. One participant even said at the end that: "I liked the link from me to the objects, when you hold the objects. It made sense". A point noticed and mentioned by all participants was the arbitrary distance limit of the arc. Objects could only be grabbed if they where inside a certain range.
 
 Two of the 3 participants also tried to waggle the Wiimote, a gesture which is not directly used in Sputnik. 
  
 In regards to the samplers all three participants indicated the need for a way to quickly and directly access some of the objects to either have certain sounds available all the time or to quickly change between sounds.
 
-Even though Sputnik was not running at a very high frame rate during the test (~30-40fps) participants indicated in the QUIS that it was \emph{very responsive} and no comments about lag where made in the following interview.
+Even though Sputnik was not running at a very high frame rate during the test ($\sim30-40$fps) participants indicated in the QUIS that it was \emph{very responsive} and no comments about lag where made in the following interview.
 
 
 
@@ -449,24 +453,24 @@ Even though Sputnik was not running at a very high frame rate during the test (~
 % - interesting objects, harp, tape
 
 \subsubsection{Improvisational Performance}
-All participants used a similar pattern for their improvisation, alternating between the different groups of objects. The participant without prior experience with computer and sample based music had trouble putting together a coherent performance and seemingly disliked the task
+All participants used a similar pattern for their improvisation, alternating between the different groups of objects. The participant without prior experience with computer and sample based music had trouble putting together a coherent performance and seemingly disliked the task.
 
-The two users with experience in computer and sampler base music, arranged the objects before the performance and seemed to be \emph{planing ahead}. A procedure that is probably similar to how they would approach such a task with their usual set up and tools.
+The two users with experience in computer and sampler base music, arranged the objects before the performance and seemed to be \emph{planing ahead}. A procedure that is probably similar to how they would approach such a task with their usual setup and tools.
 
 Likeability of the interactive objects seems to correlate with the amount of interactivity they provide and how it is used in the system. The tape machine and harmonic harp generally received better comments than the sampler and player objects. Two participants said, that they disliked the player object for being uninteresting and lacking interaction.
 
 All participants expressed the need to exchange the sounds and fit Sputnik to their needs in order to be useful in a live setting.
 
-One participant reported fatigue in his shoulders, an aspect of Sputnik that was not accounted for in the study, but is probably an important factor in real world usage scenarios.
+One participant reported fatigue in his shoulders, an aspect of Sputnik that was not accounted for in the study, but is an important factor in real world usage scenarios.
 
 
 % # weight test
 % - continuous grab
 % - weight metaphor
 \subsubsection{Object Sorting}
-Two participants sorted the objects correctly, one brought the lightest two in the wrong order. All participants used a continuous grab to assess the weight of the objects. During the development another user tried to \emph{throw} the objects to observe their weight, but this behaviour was not observed in this study.
+Two participants sorted the objects correctly, one brought the lightest two in the wrong order. All participants used a continuous grab to assess the weight of the objects. During this task, all participants made comments about the physicality of the objects like: "This is harder to drag. This is less hard. This is quite easy", "B is lighter than C, it can be moved more easily."\footnote{translated from German: "B ist leichter als C, das lässt sich leichter bewegen."}, "C is arguably the heaviest."\footnote{translated from German: "...ist C wohl am schwersten."}.
 
-
+During the development another user tried to throw the objects to observe their weight, but this behaviour was not observed in the user study.
 
 \section{Discussion and Conclusion}
 \label{sec:discussion}
@@ -532,5 +536,22 @@ I would like to express my greatest thanks to my supervisor Esben Warming Peders
 \clearpage
 \bibliographystyle{apalike}
 \bibliography{related-work}
+
+
+
+
+\appendix
+
+\renewcommand\appendixpagename{\usekomafont{disposition}Appendices}
+\appendixpage
+
+\section{User Test Questionnaire}
+\label{apx:questionnaire}
+\includepdf{../evaluation/quantitative.pdf}
+
+\section{User Test Evaluation Form}
+\label{apx:evaluation-form}
+\includepdf{../evaluation/evaluation-form.pdf}
+
 
 \end{document}
