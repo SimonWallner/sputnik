@@ -35,37 +35,37 @@ This paper evaluates \emph{Sputnik} a 3D environment with which the user can fre
 \end{abstract}
 
 \section{Reading Guide}
-This report is aimed at readers with a general knowledge in computer science on the bachelor's level and above. Prior knowledge and experience with HCC and Tangible User Interfaces (TUI) is recommended, but the related work sections also includes a few introductory .. for the interested reader.
+This report is aimed at readers with a general knowledge in computer science on the bachelor's level and above. Prior knowledge and experience with HCC and Tangible User Interfaces (TUI) is recommended, but the related work section should be a good starting point for interested readers new to this field.
 
-This report is accompanied by a short video, that gives a short overview and demonstrates the main interactions with Sputnik. It is advised to watch this video before reading the report. 
+This report is accompanied by a short video that gives a short overview and demonstrates the main interactions with Sputnik. It is advised to watch this video before reading the report. 
 
-Also accompanying this report are the questionnaire and interview form used for the user study. They can be found in the root of this package named \texttt{questionnaire.pdf} and \texttt{evaluation-form.pdf} and in appendix \ref{apx:questionnaire} and \ref{apx:evaluation-form}.
+Also accompanying this report are the questionnaire and evaluation form used for the user study. They can be found at the root of this package named \texttt{questionnaire.pdf} and \texttt{evaluation-form.pdf} and in appendix \ref{apx:questionnaire} and \ref{apx:evaluation-form}.
 
 
 \section{Introduction}
 
 % setting the scene
-Computer music has been around us for some time now and through the use of the computer musicians have sheer endless possibilities of musical expression. With this plethora of possibilities comes the need for constraints and control to harness this expressive potential. Over the recent years many standard and non-standard interface have been developed, ranging from the ordinary button-fader-nob MIDI interface to more elaborate interfaces and systems like the \emph{reactable}\citep{Jorda2007}, \emph{mixiTUI}\citep{Pedersen2009} or commercial solutions like the \emph{Novation Launchpad}\footnote{\texttt{http://www.novationmusic.com/products/midi\_controllers/launchpad}} or \emph{Native Instruments Maschine}\footnote{\texttt{http://www.native-instruments.com/\#/en/products/producer/maschine/}} to name but a few.
+Computer music has been around us for some time now and through the use of the computer, musicians have sheer endless possibilities of musical expression. With this plethora of possibilities comes the need for constraints and control to harness this expressive potential. Over the recent years many standard and non-standard interface have been developed, ranging from the ordinary button-fader-nob MIDI interface to more elaborate interfaces and systems like the \emph{reactable}\citep{Jorda2007}, \emph{mixiTUI}\citep{Pedersen2009}, or commercial solutions like the \emph{Novation Launchpad}\footnote{\texttt{http://www.novationmusic.com/products/midi\_controllers/launchpad}} or \emph{Native Instruments Maschine}\footnote{\texttt{http://www.native-instruments.com/\#/en/products/producer/maschine/}} to name but a few.
 
-With the advent of motion based controllers in consumer entertainment systems, marked by the release of the \emph{Wii}\footnote{\texttt{http://de.wikipedia.org/wiki/Wii}} console in late 2006, motion controllers became widely and cheaply available. This and their interface capabilities make them the ideal tools to explore the realm of \emph{new interfaces for musical expression}.
+With the advent of motion based controllers in consumer entertainment systems, marked by the release of the \emph{Wii}\footnote{\texttt{http://de.wikipedia.org/wiki/Wii}} console in late 2006, motion controllers became widely and cheaply available. This and their interface capabilities make them the ideal tools to explore the realm of NIMEs.
 
 
 % problem statement
 A common problem of computer music interfaces is that often the process of sound creation is not readily comprehensible. Seeing a performer on stage behind their laptop twisting knobs and adjusting faders might be ambiguous to an uninformed observer. It can be hard to relate the artist's action to the resulting sounds. This can hinder the experience and might go as far as to the point where the audience suspects that an artist just pressed play, as interviews conducted by \cite{Pedersen2009} show.
 
 % Sputnik description
-This paper introduces \emph{Sputnik}, a system that uses a \emph{Wiimote} controller to interact with a dynamic 3D scene. In the scene, a variety of sound creating objects are placed that send MIDI signals to an external audio program upon the user's interaction. 
+This paper introduces \emph{Sputnik}, a system that uses a \emph{Wiimote} controller to interact with a dynamic 3D scene. In this scene, a variety of sound creating objects are placed that send MIDI signals to an external audio program upon the user's interaction. 
 
-Users can freely navigate the 3D scene and interact with it through an elastic \emph{arc of light/fishing rod} metaphor. It seems as if the \emph{arc of light} was coming out of the Wiimote and reaches into the scene, acting as an extension of the user's body into the virtual space. With this bodily extension users can \emph{grab} and \emph{drag} objects around the 3D scene.
+Users can freely navigate the 3D scene and interact with it through an elastic \emph{arc of light/fishing rod} metaphor. It seems as if the \emph{arc of light} was coming out of the Wiimote and reaches into the scene, acting as an extension of the user's body into the virtual space. With this bodily extension, users can \emph{grab} and \emph{drag} objects around the 3D scene.
 
 
 
 % contribution
-Sputnik is evaluated in s small user study and the findings and future work directions are discussed. As part if this, the \emph{arc or light} metaphor is evaluated as a way to spatially manipulate objects in 3D space. Parallels to tangible user interfaces (TUI)\citep{Ishii1997} and specifically spatial TUIs\citep{Sharlin2004} are drawn. 
+Sputnik is evaluated in s small user study and the findings and future work directions are discussed. As part of this, the \emph{arc or light} metaphor is evaluated as a way to spatially manipulate objects in 3D space. Parallels to tangible user interfaces (TUI)\citep{Ishii1997} and specifically spatial TUIs\citep{Sharlin2004} are drawn. 
 
 
 \section{Paper Outline}
-The following section gives an overview over related work in the field of \emph{New Interfaces for Musical Expression} and tangible user interfaces. Section \ref{sec:sputnik} goes into detail about Sputnik, both on a conceptual and a technical level. Section \ref{sec:evaluation} describes the performed user study and the paper is finally concluded in section \ref{sec:discussion} where the findings are discussed.
+The following section gives an overview over related work in the field of NIMEs and tangible user interfaces. Section \ref{sec:sputnik} goes into detail about Sputnik, both on a conceptual and a technical level. Section \ref{sec:evaluation} describes the performed user study and the paper is finally concluded in section \ref{sec:discussion} where the findings are discussed.
 
 
 \section{Related Work}
@@ -74,10 +74,10 @@ Sputnik draws from a wide variety of related work and this section is therefore 
 \paragraph{Practical Work}
 Only a few projects exist that go into a similar direction as Sputnik. The \emph{Virtual Xylophone}\citep{Maki-Patola2005} is a virtual reality system in which the user can place xylophone bars of different pitch in the scene and then strike them with a virtual mallet. By translating the configuration and mapping of the real instrument into the VR environment, new modes of play emerge as it is shown in the paper. \cite{Zappi2010} created a virtual controller for \emph{Ableton Live}\footnote{\texttt{http://www.ableton.com}} that allows users to create simple proxy objects in a VR environment, bind them to certain controls and use them effectively as virtual sliders. \cite{Rodet2005} created a virtual environment for an exhibition setting. Users interact with the system via a 6-DOF motion tracker with tactile feedback. However, the user's actions in the system are highly constrained.
 
-More projects can be found in the realm of Tangible User Interfaces. An early project is \emph{Audiopad}\citep{Patten2002} that uses pucks on a table top interface to select and interact with sounds. With \emph{mixiTUI} \cite{Pedersen2009} created a table top tangible interface for a sequencer that aimed not only to be functional but also to visually enrich the artists performance. Interviews with musicians and an extensive user study have been performed. \cite{Jorda2007} created the famous \emph{reacTable}, also a table top tangible interface that allows the creation and manipulation of music by composing various objects on its surface.
+More projects can be found in the realm of Tangible User Interfaces. An early project is \emph{Audiopad}\citep{Patten2002} that uses pucks on a table top interface to select and interact with sounds. With \emph{mixiTUI}, \cite{Pedersen2009} created a table top tangible interface for a sequencer that aimed not only to be functional but also to visually enrich the artist's performance. Interviews with musicians and an extensive user study have been performed. \cite{Jorda2007} created the famous \emph{reacTable}, also a table top tangible interface that allows the creation and manipulation of music by composing various objects on its surface.
 
 After the release of the Wii in late 2006, the Wiimote motion controller received some attention in and outside the field of musical interfaces: 
-\cite{Kiefer2008} assess the general qualities of the Wiimote as a musical controller and \cite{Miller2010} uses the Wiimote and sensor bar to create the \emph{Wiiolin}, a virtual violin that mimics the real instrument and can be played either in an upright position like a cello or horizontally like a violin. It senses the button presses and tracks the movement of the \emph{bow}, i.e. the sensor bar to create the sounds.
+\cite{Kiefer2008} assess the general qualities of the Wiimote as a musical controller and \cite{Miller2010} uses the Wiimote and sensor bar to create the \emph{Wiiolin}, a virtual violin that mimics the real instrument and can be played either in an upright position like a cello or horizontally like a violin. It senses the button presses and tracks the movement of the \emph{bow}, i.e., the sensor bar to create the sounds.
 
 Similarly, \cite{Miyama2010} uses an low resolution distance sensor array to control the many parameters of a synthesizer. A small gui application is merely used for monitoring the system's state, and sound creation is done in pd.
 
@@ -88,7 +88,7 @@ The field of \emph{Tangible User Interfaces (TUI)} provides part of the theoreti
 \cite{Sharlin2004} introduced \emph{spatial TUIs} that focuses on \emph{I/O unification} by tightly coupling the action and perception spaces and embodying a clear state representation across all sensory modalities.
 
 
-Entering the musical realm, \cite{Fels2011} give a good overview and general introduction into the field of \emph{NIMEs (New Interfaces for Musical Expression)}. \cite{Cook2001} shares 13 general principles for designing computer music controllers that resulted from his long lasting experience in this field. \cite{Dobrian2006} asks the question of virtuosity and expression and points out the lack of a standard repertoire.
+Entering the musical realm, \cite{Fels2011} give a good overview and general introduction into the field of NIMEs. \cite{Cook2001} shares 13 general principles for designing computer music controllers that resulted from his long lasting experience in this field. \cite{Dobrian2006} asks the question of virtuosity and expression and points out the lack of a standard repertoire.
 
 In contrast, \cite{Gurevich2007} question the hegemonic composer--interpret--listener relation in favour of a more holistic \emph{ecological} view of musical expression. Later work by \cite{Gurevich2010} evaluated a highly constrained, prototypical one-button instrument that spurred a wide variety of play styles in test users.
 
@@ -159,12 +159,12 @@ Sections \ref{sec:setup} and \ref{sec:virtual-scene} go into detail about the ge
 
 \subsection{Set Up}
 \label{sec:setup}
-The system is set up in a room with an overhead mounted video projector. The IR-sensor bar, needed for the Wiimote controller, can either be placed on the upper or lower edge of the projected image. It consists of two IR emitters that allows the IR camera in the Wiimote to track its relative orientation in space. A Wiimote and Nunchuck controller are used and only a single person at a time can use the system. Figure \ref{fig:sputnik-setup} illustrates the setup.
+The system is set up in a room with an overhead mounted video projector. The IR-sensor bar, needed for the Wiimote controller, can either be placed on the upper or lower edge of the projected image. It consists of two IR emitters that allow the IR camera in the Wiimote to track its relative orientation in space. A Wiimote and Nunchuck controller are used and only a single person at a time can use the system. Figure \ref{fig:sputnik-setup} illustrates the setup.
 
 \begin{figure}[hbtp]
 \begin{center}
 \includegraphics[width=0.7\columnwidth]{img/setup}
-\caption{Standard set up of Sputnik}
+\caption{Standard set up of Sputnik.}
 \label{fig:sputnik-setup}
 \end{center}
 \end{figure}
@@ -200,7 +200,7 @@ Figure \ref{fig:screen-shot-overview} shows an overview shot of Sputnik. The sce
 \subfigure{
 	\includegraphics[width = 0.45 \columnwidth]{img/screen-shot-label}
 }
-\caption{A group of \emph{samplers} and the close up of a single \emph{sampler} with their attached labels}
+\caption{A group of samplers and the close up of a single sampler with their attached labels.}
 \label{fig:sampler-labels}
 \end{center}
 \end{figure}
@@ -216,11 +216,11 @@ The textual labels in Sputnik (figure \ref{fig:sampler-labels}) are aimed at bot
 
 \subsection{Navigation and Camera Controls}
 \label{sec:navigation}
-Sputnik is controlled from a first person perspective. The user can navigate the scene by pushing the Nunchuck's analogue stick in the respective direction. Pushing the stick in the desired direction moves the camera accordingly.
+Sputnik is controlled from a first person perspective. The user can navigate the scene by pushing the Nunchuck's analogue stick. Pushing the stick in the desired direction moves the camera accordingly.
 
-Tilting and panning is controlled by pointing the Wiimote to the top/bottom/left/right of the screen. The farther it is pointed away from the neutral center position the faster the camera movement is. Figure \ref{fig:sputnik-navigation} illustrates the navigation.
+Tilting and panning is controlled by pointing the Wiimote to the top/\-bottom/\-left/\-right of the screen. The farther it is pointed away from the neutral center position the faster the camera movement is. Figure \ref{fig:sputnik-navigation} illustrates the navigation.
 
-Sputnik's camera uses a fixed \emph{up direction}. The fixed up direction is commonly seen in cinema and video games, even though it is not intrinsic in the space inspired setting. It furthermore should limit the camera's degree of freedom and make it more accessible.
+Sputnik's camera uses a fixed \emph{up direction}. The fixed up direction is commonly seen in cinema and video games, even though it is not intrinsic in the space inspired setting. It should furthermore limit the camera's degree of freedom and make it more accessible.
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -243,9 +243,9 @@ Sputnik's camera uses a fixed \emph{up direction}. The fixed up direction is com
 \end{center}
 \end{figure}
 
-Figure \ref{fig:sputnik-overview} illustrates the basic interaction vocabulary of Sputnik. The user can interact with the 3D scene via an \emph{arc of light} metaphor, that is intended to act as a bodily extension of the user into the virtual space. Through this arc the user can \emph{point} at objects, \emph{grab} them and also \emph{drag} them around the scene.
+Figure \ref{fig:sputnik-overview} illustrates the basic interaction vocabulary of Sputnik. The user can interact with the 3D scene via an elastic \emph{arc of light} metaphor that is intended to act as a bodily extension of the user into the virtual space. Through this arc, the user can \emph{point} at objects, \emph{grab} them and also \emph{drag} them around the scene.
 
-Interactive objects behave in a simplified physically plausible way, each featuring distinct weight and friction. Dragging objects causes the arc to bend like a fishing rod, reflecting the physical properties of the object.
+Interactive objects behave in a simplified, physically plausible way, each featuring distinct weight and friction. Dragging objects causes the arc to bend like a fishing rod, reflecting the physical properties of the object.
 
 Each interactive object in the scene can react individually to user interaction. The following classes of objects currently exist in Sputnik (see figure \ref{fig:screen-shot-overview} for an overview):
 
@@ -256,7 +256,7 @@ Each interactive object in the scene can react individually to user interaction.
 
 \item[Tape Machine (grey)] Modelled after an old tape machine and inspired by musique concrète, the tape machine object controls the play back speed of a preloaded sample via the object's movement speed in the virtual space. The faster it moves the faster the playback. Playback is looped.
 
-\item[Harmonic Harp (orange)] The orange spheres together form a kind of harmonic harp. Each sphere controls the volume of a single sine oscillator. Each sphere also has its own origin towards which it is dragged all the time, causing the spheres to swing in pendulum like motions if moved. The distance from the sphere's center to this origin determines the volume of the oscillator and the underlying oscillators are tuned to the natural harmonic series, which makes them easy to play with and avoids dissonances.
+\item[Harmonic Harp (orange)] The orange spheres together form a kind of harmonic harp. Each sphere controls the volume of a single sine oscillator. Each sphere also has its own origin towards which it is dragged all the time, causing the spheres to swing in pendulum like motions if moved. The distance from the sphere's center to this origin determines its volume and the underlying oscillators are tuned to the natural harmonic series, which makes them easy to play with and avoids dissonances.
 
 \end{description}
 
@@ -291,9 +291,7 @@ The source code of both Sputnik and kocmoc-core is licensed under the permissive
 Sputnik uses OpenGL 2.1 with a few extensions to display the virtual scene. The renderer is fairly simple and displays unlit, textured objects with baked ambient occlusion maps. The computation of the homogeneous fog is realised in the vertex and fragment shader and a post processing effect is applied. This effect adds a barrel distortion to compensate the wide field of view and vignetting. A simple form of full screen anti aliasing is also added in this stage.
 
 
-The \emph{Assimp}\footnote{\texttt{http://assimp.sourceforge.net/}} and \emph{devIL}\footnote{\texttt{http://openil.sourceforge.net/}} libraries are used to load assets. Font rendering is implemented using the \emph{freetype}\footnote{\texttt{http://www.freetype.org/}} library.
-
-\emph{RtMidi}\footnote{\texttt{http://www.music.mcgill.ca/~gary/rtmidi/}} is used to send MIDI messages to external applications and \emph{WiiC}\footnote{\texttt{http://wiic.sourceforge.net/}} was used to interface with the Wiimote and Nunchuck controller.
+The \emph{Assimp}\footnote{\texttt{http://assimp.sourceforge.net/}} and \emph{devIL}\footnote{\texttt{http://openil.sourceforge.net/}} libraries are used to load assets. Font rendering is implemented using the \emph{freetype}\footnote{\texttt{http://www.freetype.org/}} library. \emph{RtMidi}\footnote{\texttt{http://www.music.mcgill.ca/~gary/rtmidi/}} is used to send MIDI messages to external applications and \emph{WiiC}\footnote{\texttt{http://wiic.sourceforge.net/}} was used to interface with the Wiimote and Nunchuck controller.
 
 Figure \ref{fig:flow} illustrates the data flow in the main run-loop. First, the devices are polled, which causes input callbacks to be fired. The components are subsequently updated and finally the scene is sent to the renderer.
 
@@ -302,7 +300,7 @@ Sputnik's interactive objects individually react to the users input and use the 
 
 Thanks to the simplicity and the pervasiveness of this protocol, virtually every music software can be used together with Sputnik. In the current set up \emph{pure data (pd)}\footnote{\texttt{http://puredata.info/}} is used for sound creation. A simple patch is used that builds on \emph{boctok-1}, a small collection of pd patches written by the author prior to this project. 
 
-Communication is only one way; from Sputnik to the external application. The MIDI channel and controller number every object uses is currently hard coded into Sputnik an can only be changed in the source code. 
+Communication is only one way: From Sputnik to the external application. The MIDI channel and controller number every object uses can currently only be changed in the source code.
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -317,24 +315,24 @@ Communication is only one way; from Sputnik to the external application. The MID
 
 
 \section{Wiimote Input}
-The Wiimote controller was chosen for its pointing functionality as well as the motion sensing capabilities, even though they haven't been used in the final project. The accompanying Nunchuck controller was also used to allow the standard analogue stick driven navigation.
+The Wiimote controller was chosen for its pointing functionality as well as the motion sensing capabilities, even though they haven't been used in the final project. The accompanying Nunchuck controller was also used to allow the standard, analogue stick driven navigation.
 
-The Wiimote has an built in low resolution IR camera and its feed is directly processed on chip. The feed itself is not accessible but data of up to 4 tracked IR points can be read. the Wiimote's update rate is reported to be $100Hz$ which gives an lower bound for the worst case lag of $10ms$. The used Wiimote library takes care of most of the processing and conveniently returns the computed pointer location in relative screen coordinates.
+The Wiimote has a built in low resolution IR camera and its feed is directly processed on chip. The feed itself is not accessible, but data of up to 4 tracked IR points can be read. the Wiimote's update rate is reported to be $100Hz$ which gives a lower bound for the worst case lag of $10ms$. The used Wiimote library takes care of most of the processing and conveniently returns the computed pointer location in relative screen coordinates.
 
 A drastic constraint of the Wiimote's IR pointer however is the relatively narrow field of view. It is very easy to leave the small sensing area. During the development it turned out that using the Wiimote for the tilt/pan movements of the camera can alleviate this problem a little. Users seem to intuitively try to compensate the camera's rotation, thus maintaining a focus on the neutral area in the center of the screen. Without it users easily lost the focus an had troubles finding \emph{back onto the screen}.
 
-The used Wiimote library supports more than one Wiimote and the input system in Sputnik would also support multiple input devices at the same time. The option to \emph{dual wield} two Wiimotes and to interact with two arcs of light simultaneously was given up in favour of the more standard analogue stick track/dolly controls, that allow the users to easily navigate the scene. 
+The used Wiimote library supports more than one Wiimote and the input system in Sputnik would also support multiple input devices at the same time. The option to dual wield two Wiimotes and to interact with two arcs of light simultaneously was given up in favour of the more standard analogue stick track/dolly controls, that allow the users to easily navigate the scene. 
 
 
 
 \section{The Arc Of Light}
-The arc of light forms the foundation of Sputnik. It acts as a bodily extension of the user's body into the virtual scene. Through the arc, the user can use the interaction vocabulary described above. It has the following behaviour.
+The arc of light forms the foundation of Sputnik. It acts as a bodily extension of the user into the virtual scene. Through the arc, the user can use the interaction vocabulary described above. It has the following behaviour.
 
 If no object is grabbed, the arc follows the user's input directly. This input is not filtered and is used directly \emph{as is}. This introduces a slight jitter but on the other hand does not take away from the system's responsiveness. 
 
-Low pass filtering however is desired in most scenarios and is indirectly implemented via the physical properties of the interactive objects. The higher the weight of the object for instance, the stronger the filtering is. While grabbing an object the arc bends accordingly to the the physical properties of the object and the dragging force of the user. It bends like a fishing rod, a natural metaphor that seems to readily understandable to the users.
+Low pass filtering however is desired in most scenarios and is indirectly implemented via the physical properties of the interactive objects. The higher the weight of the object for instance, the stronger the filtering is. While grabbing an object the arc bends accordingly to the physical properties of the object and the dragging force of the user. It bends like a fishing rod, a natural metaphor that seems to be readily understandable to the users.
 
-One of the core advantages of the arc is that even very strong filtering can be achieved without making the system feel laggy and slow. It happens in a way that is transparent and understandable for the user, and in a informal user study the testers reported that the system is very responsive.
+One of the core advantages of the arc is that even very strong filtering can be achieved without making the system feel laggy and slow. It happens in a way that is transparent and understandable for the user, and in the user study the participants reported that the system is very responsive.
 
 
 
@@ -351,35 +349,35 @@ One of the core advantages of the arc is that even very strong filtering can be 
 \label{sec:evaluation}
 
 \subsection{Method}
-Sputnik was evaluated in a user study where participants where asked to perform certain tasks, followed by a questionnaire and an interview. Sputnik was tested with only one person at a time.
+Sputnik was evaluated in a user study where participants were asked to perform certain tasks, followed by a questionnaire and an interview. Sputnik was tested with only one person at a time.
 
-A relatively wide range of questions and topics was used in the user study to gain a broad overview of how Sputnik is used, what general problems arise, and how suitable it is as an interface for musical expression. The user study was recorded on video and the interview afterwards was audio recorded for later analysis.
+A relatively wide range of questions and topics was used in the user study to gain a broad overview of how Sputnik is used, what general problems arise, and how suitable it is as an interface for musical expression. The user study was recorded on video and the interview was audio recorded for later analysis.
 
 \subsection{Participants}
 Musical experience was a criterion in finding participants and from the initial 6 participants, three unfortunately cancelled the test on short notice. The three remaining participants (all male) had an average age of 26 (SD = 5.2) and all had a musical background having played classical instruments but not on a professional level. Two had additional experience with computer and sample based music. The participants were not compensated for taking part in the user study.
 
-None of the participants had used a Wiimote prior to the user study and all where right handed and colour normal. Two participants have seen short explanatory demo videos of Sputnik that were used in order to find participants.
+None of the participants had used a Wiimote prior to the user study and all were right handed and colour normal. Two participants have seen short explanatory demo videos of Sputnik that were used in order to find participants.
 
 \subsection{Setup}
 The user study was conducted in a darkened room with the participant standing about 4 meters away from the overhead projected screen with a diagonal of about 2 meters. The screen had an aspect ratio of about 16:9 and the screen's center was about 1.5m above ground. The Wiimote sensor bar was positioned a few centimetres below the lower edge of the picture. A small stereo speaker set was used that was located on the floor right behind the participant.
 
 \subsection{Procedure and Design}
-At the beginning of the user study, participants where asked for basic personal data. The participants were informed about the user study and the controls where briefly explained. 
+At the beginning of the user study, participants were asked for basic personal data. The participants were informed about the user study and the controls were briefly explained. 
 
 The first task was to try out the navigation and familiarise with the controls. This included basic navigation and orientation as well as grabbing and interacting with objects.
 
-For the second task, participants where asked to describe for every class of interactive objects, what they do and how they react to user interaction. This should make sure that the participants fully explore the system before continuing, and also tested if the behaviour of the objects is understandable.
+For the second task, participants were asked to describe for every class of interactive objects, what they do and how they react to user interaction. This should make sure that the participants fully explore the system before continuing, and also tested if the behaviour of the objects is understandable.
 
-The third task consisted of a brief improvisational musical performance. Time was given to plan and structure it in advance and participants where asked to start when they felt ready. The length of the performance was not specified, only a vague rule of \emph{not too short, not too long} was given. This test should evaluate Sputnik's potential for musical expression, and also force a more goal oriented use of Sputnik.
+The third task consisted of a brief improvisational musical performance. Time was given to plan and structure it in advance and participants were asked to start when they felt ready. The length of the performance was not specified, only a vague rule of \emph{not too short, not too long} was given. This test should evaluate Sputnik's potential for musical expression, and also force a more goal oriented use of Sputnik.
 
-The user study was concluded with a brief ordering task. The participants where presented with four objects and were asked to bring them in order according to their weight. Those objects did not create sounds. With this test the perception of the weight of interactive objects was tested.
+The user study was concluded with a brief ordering task. The participants were presented with four objects and were asked to bring them in order according to their weight. Those objects did not create sounds. With this test the perception of the weight of interactive objects was tested.
 
-After the practical part, a one-page questionnaire was given to the participants. It consisted of 4 Likert-items and 7 QUIS\cite{Chin1988} questions, 4 of them taken from the original paper and 3 additional questions to capture aspects not found in QUIS. A short interview, guided by a set of pre-written questions was conducted afterwards. The questionnaire and interview form can be found in appendix \ref{apx:questionnaire} and \ref{apx:evaluation-form}
+After the practical part, a one-page questionnaire was given to the participants. It consisted of 4 Likert-items and 7 QUIS\citep{Chin1988} questions, 4 of them taken from the original paper and 3 additional questions to capture aspects not found in QUIS. A short interview, guided by a set of pre-written questions was conducted afterwards. The questionnaire and interview form can be found in appendix \ref{apx:questionnaire} and \ref{apx:evaluation-form}.
 
-Due to the small sample size, no quantitative analysis was performed on the Likert and QUIS items. Notes where taken during the user study and interview and all video and audio material was then reviewed to get a general overview. As the analysis was narrowed down, this material was consulted repeatedly to confirm and underpin the findings. 
+Due to the small sample size, no quantitative analysis was performed on the Likert and QUIS items. Notes were taken during the user study and interview and all video and audio material was reviewed to get a general overview. As the analysis was narrowed down, this material was consulted repeatedly to confirm and underpin the findings. 
 
 \subsection{Results}
-Overall, reactions to Sputnik were rather positive which is hinted in the results of the QUIS inspired questionnaire seen in figure \ref{fig:QUIS}. Due to the small number of participants, no direct and strong conclusions can be drawn from this evaluation. It shall rather be seen as a precursor to fully fledged user study and as a hint as to what Sputnik does good, and where there is room for improvement. 
+Overall, reactions to Sputnik were rather positive, which is hinted in the results of the QUIS inspired questionnaire seen in figure \ref{fig:QUIS}. Due to the small number of participants, no direct and strong conclusions can be drawn from this evaluation. It shall rather be seen as a precursor to a fully fledged user study and as a hint as to what Sputnik does good, and where there is room for improvement. 
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -389,7 +387,7 @@ Overall, reactions to Sputnik were rather positive which is hinted in the result
 \end{center}
 \end{figure}
 
-Unfortunately, the results of the Likert items where inconclusive: The first question, "Sputnik is easy to use" resulted in the answer triple (strongly disagree, neutral, agree) and all other items resulted in (disagree, neutral, agree). The results to the QUIS questions in figure \ref{fig:QUIS} lack significance, but show a mildly positive trend. Only the question about responsiveness has unanimously received high values, marking it as a strength of Sputnik.
+Unfortunately, the results of the Likert items were inconclusive: The first question, "Sputnik is easy to use" resulted in the answer triple (strongly disagree, neutral, agree) and all other items resulted in (disagree, neutral, agree). The results to the QUIS questions in figure \ref{fig:QUIS} lack significance, but show a mildly positive trend. Only the question about responsiveness has unanimously received high values, marking it as a strength of Sputnik.
 
 The following sections break down the findings into \emph{Controls and Navigation}, \emph{Visual}, \emph{Interation}, \emph{Improvisational Performance} and finally the object sorting task is reviewed. The break down into this categories is not definitive and the overlapping borders are rather fuzzy than strict.
 
@@ -408,7 +406,7 @@ A problem, however, was the narrow field of view (FOV) of the Wiimote, resulting
 
 Another problem was insufficient pointer precision. All participants struggled at least once in trying to grab small or faraway objects. This might be influenced by the slight jitter of the Wiimote's pointer and its narrow FOV, requiring rather subtle movements.
 
-Differences in movement patterns could also be observed. Two of the three participants did not move the camera very often. Phases of interaction (rotate, grab, interact) and camera movement were clearly separated and camera movement was rather erratic. The third participant also begun in a similar fashion but then gradually started to combine movement and interaction into more sophisticated movements like \emph{circle strafing} (moving sideways while turning) and moving while dragging an object.
+Differences in movement patterns could also be observed. Two of the three participants did not move the camera very often. Phases of interaction (rotate, grab, interact) and camera movement were clearly separated and camera movement was rather erratic. The third participant also begun in a similar fashion, but then gradually began to combine movement and interaction into more sophisticated movements like \emph{circle strafing} (moving sideways while turning) and moving while dragging an object.
 
 All participants tried to pull objects by grabbing them and moving backwards at the same time. This is not implemented in Sputnik and this was noticed and explicitly mentioned by all participants during the test.
 
@@ -436,15 +434,15 @@ The participants seemed to not pay much attention to the textual labels of the o
 % - use of space, spatiality
 % - dragging of all objects, even samplers and stuff. --> natural affordance of the system?
 \subsubsection{Interaction}
-All participants could deduce the functions of the sampler and player objects. Descriptions of the tape machine and harmonic harp were not as precise but captured their general mode of operation. 
+All participants could deduce the functions of the sampler and player objects. Descriptions of the tape machine and harmonic harp were not as precise, but captured their general mode of operation. 
 
-Participants seemed to have no problems using the arc and all participants responded positively when being asked about immersion into the scene. One participant even said at the end that: "I liked the link from me to the objects, when you hold the objects. It made sense". A point noticed and mentioned by all participants was the arbitrary distance limit of the arc. Objects could only be grabbed if they where inside a certain range.
+Participants seemed to have no problems using the arc and all participants responded positively when being asked about immersion into the scene. One participant even said at the end that: "I liked the link from me to the objects, when you hold the objects. It made sense". A point noticed and mentioned by all participants was the arbitrary distance limit of the arc. Objects could only be grabbed if they were inside a certain range.
 
 Two of the 3 participants also tried to waggle the Wiimote, a gesture which is not directly used in Sputnik. 
  
-In regards to the samplers all three participants indicated the need for a way to quickly and directly access some of the objects to either have certain sounds available all the time or to quickly change between sounds.
+In regards to the samplers, all three participants indicated the need for a way to quickly and directly access some of the objects, to either have certain sounds available all the time, or to quickly change between sounds.
 
-Even though Sputnik was not running at a very high frame rate during the test ($\sim30-40$fps) participants indicated in the QUIS that it was \emph{very responsive} and no comments about lag where made in the following interview.
+Even though Sputnik was not running at a very high frame rate during the test ($\sim30-40$fps) participants indicated in the QUIS that it was \emph{very responsive} and no comments about lag were made in the interview.
 
 
 
@@ -460,11 +458,11 @@ All participants used a similar pattern for their improvisation, alternating bet
 
 The two users with experience in computer and sampler base music, arranged the objects before the performance and seemed to be \emph{planing ahead}. A procedure that is probably similar to how they would approach such a task with their usual setup and tools.
 
-Likeability of the interactive objects seems to correlate with the amount of interactivity they provide and how it is used in the system. The tape machine and harmonic harp generally received better comments than the sampler and player objects. Two participants said, that they disliked the player object for being uninteresting and lacking interaction.
+Likeability of the interactive objects seems to correlate with the amount of interactivity they provide and how it is used in the system. The tape machine and harmonic harp generally received better comments than the sampler and player objects. Two participants said that they disliked the player object for being uninteresting and lacking interaction.
 
 All participants expressed the need to exchange the sounds and fit Sputnik to their needs in order to be useful in a live setting.
 
-One participant reported fatigue in his shoulders, an aspect of Sputnik that was not accounted for in the study, but is an important factor in real world usage scenarios.
+One participant reported fatigue in his shoulders, an aspect of Sputnik that was not accounted for in the user study, but is an important factor in real world usage scenarios.
 
 
 % # weight test
@@ -473,7 +471,7 @@ One participant reported fatigue in his shoulders, an aspect of Sputnik that was
 \subsubsection{Object Sorting}
 Two participants sorted the objects correctly, one brought the lightest two in the wrong order. All participants used a continuous grab to assess the weight of the objects. During this task, all participants made comments about the physicality of the objects like: "This is harder to drag. This is less hard. This is quite easy", "B is lighter than C, it can be moved more easily."\footnote{translated from German: "B ist leichter als C, das lässt sich leichter bewegen."}, "C is arguably the heaviest."\footnote{translated from German: "...ist C wohl am schwersten."}.
 
-During the development another user tried to throw the objects to observe their weight, but this behaviour was not observed in the user study.
+During the development, another user tried to throw the objects to observe their weight, but this behaviour was not observed in the user study.
 
 \section{Discussion and Conclusion}
 \label{sec:discussion}
@@ -487,13 +485,13 @@ During the development another user tried to throw the objects to observe their 
 The user study indicates that Sputnik is relatively easy to pick up and use, even for users with no prior experience with the Wiimote controller. More sophisticated and advanced movement patterns seem to emerge as the participants grow accustomed to the system.
 
 % Wiimote not very practicable --> PS move
-What the user study also shows is that the Wiimote is not very suitable as a controller for Sputnik, due to its narrow field of view. It is too easy to move out of the FOV resulting in a loss of control over the camera. Users could usually recover within a few seconds, but still this would be a show stopper if used in an actual live performance. Other input devices like the PlayStation Move\footnote{\texttt{http://en.wikipedia.org/wiki/PlayStation\_Move}} controller, Microsoft's Kinect\footnote{\texttt{http://en.wikipedia.org/wiki/Kinect}} or handheld devices equipped with motion sensors like modern smartphones or gyroscopic mice should be evaluated as alternatives.
+What the user study also shows is that the Wiimote is not very suitable as a controller for Sputnik, due to its narrow field of view. It is too easy to move out of the FOV resulting in a loss of control over the camera. Users could usually recover within a few seconds, but still this would be a show stopper if used in an actual live performance. Other input devices like the PlayStation Move\footnote{\texttt{http://en.wikipedia.org/wiki/PlayStation\_Move}} controller, Microsoft's Kinect\footnote{\texttt{http://en.wikipedia.org/wiki/Kinect}}, or handheld devices equipped with motion sensors like modern smartphones or gyroscopic mice should be evaluated as alternatives.
 
 The arc of light worked well in providing a bodily extension of the user into the virtual scene. It can be effectively used in combination with physical objects to low pass filter user input without loosing the perceived responsiveness of the system.
 
 	
 % Musical expression?
-The question of whether musical and visual expressiveness can be achieved through Sputnik can not be answered in this evaluation. More time needs to be given to the participants and more possibilities to customise Sputnik to their needs and musical and visual style. An approach similar to the one used in \citep{Gurevich2010} could be a good starting point for further evaluations. In this work, users where given a highly constrained one button instrument that could only create a single tone. The participants had a week to practice and prepare a performance, resulting in  diverse play styles. Even though Sputnik is far less constrained, approaching it from this angle could yield interesting insights into its expressive potential. Sputnik's constraints could be a source of creativity rather than a hindrance, as it is mentioned in \citep{Magnusson2010}. 
+The question of whether musical and visual expressiveness can be achieved through Sputnik can not be answered in this evaluation. More time needs to be given to the participants and more possibilities to customise Sputnik to their needs and musical and visual style. An approach similar to the one used in \citep{Gurevich2010} could be a good starting point for further evaluations. In this work, users were given a highly constrained one button instrument that could only create a single tone. The participants had a week to practice and prepare a performance, resulting in  diverse play styles. Even though Sputnik is far less constrained, approaching it from this angle could yield interesting insights into its expressive potential. Sputnik's constraints could be a source of creativity rather than a hindrance, as it is mentioned in \citep{Magnusson2010}. 
 
 
 % Tangible Interface, 
@@ -504,7 +502,7 @@ Even though Sputnik is not a TUI, a strong relation to this field exists. \cite{
 
 The tape machine and harmonic harp in Sputnik employ strong I/O unification. Input and output are tightly coupled through their virtual representation and cannot diverge. Furthermore, their spatial configuration is directly mapped to the sound parameters. 
 
-By seeing Sputnik as a \emph{virtual TUI} with the arc of light as a bodily extension of the user into the virtual space, existing TUI literature can be used to study and evaluate Sputnik. Conversely, translating actual TUIs into a virtual environment can open up new viewing angles on them.
+By seeing Sputnik as a \emph{virtual TUI}, with the arc of light as a bodily extension of the user into the virtual space, existing TUI literature can be used to study and evaluate Sputnik. Conversely, translating actual TUIs into a virtual environment can open up new viewing angles on them.
 
 
 \section{Future Work}
@@ -521,9 +519,9 @@ This project raised a lot of questions and opened up many directions for future 
 
 Sputnik's impact on a live audience and how it can be used for visual expression should be explored. This is an important aspect of Sputnik and a larger scale study is needed.
 
-To be useful for artists and users with less of a technical background editing tools should be provided to allow the artist to change the scene, create new objects and models and change the input/output mapping. Additionally, the performance should be increased to run at $> 60$fps for a smoother experience.
+To be useful for artists and users with less of a technical background, editing tools should be provided to allow the artist to change the scene, create new objects and models and change the input/output mapping. Additionally, the performance should be increased to run at $> 60$fps for a smoother experience.
 
-The Wiimote's motion sensing capabilities were left untapped in Sputnik. Some participants in the user study tried to waggle the Wiimote, an strong indication that more advanced motions and gestures should be explored. Two handed interaction with a second Wiimote instead of the Nunchuck controller could also be interesting to evaluate. It would allow two handed interaction and more advanced gestures known from touch devices like pinching and rotating. 
+The Wiimote's motion sensing capabilities were left untapped in Sputnik. Some participants in the user study tried to waggle the Wiimote, a strong indication that more advanced motions and gestures should be explored. Two handed interaction with a second Wiimote instead of the Nunchuck controller could also be interesting to evaluate. It would allow two handed interaction and more advanced gestures known from touch devices like pinching and rotating. 
 
 Direct visual feedback of the interactive objects to the generated sound should be implemented. The lack of it was mentioned by all participants and it might also be crucial for the effect on a live audience. Additionally, the musical possibilities should be explored by devoting the time and creativity to create genuine pieces of music for Sputnik and to perform them live.
 
